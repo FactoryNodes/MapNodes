@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Textos traducidos (PENDIENTES 82): la clave (name) es el texto en castellano tal como sale en pantalla. Lo genera y
+     lo mantiene Claude con el glosario de docs/i18n/; lo que falta sale en castellano. -->
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Nuevo: un fichero de dispositivo vacío" xml:space="preserve">
+    <value>New: an empty device file</value>
+  </data>
+  <data name="Abrir…: un fichero de dispositivo (.json); también se puede arrastrar a la ventana" xml:space="preserve">
+    <value>Open…: a device file (.json); you can also drag it onto the window</value>
+  </data>
+  <data name="Guardar (Ctrl+S): en su fichero; la primera vez, como marca/modelo.json" xml:space="preserve">
+    <value>Save (Ctrl+S): to its file; the first time, as brand/model.json</value>
+  </data>
+  <data name="Guardar como…: en otro fichero" xml:space="preserve">
+    <value>Save as…: to another file</value>
+  </data>
+  <data name="Idioma del programa (se vuelve a abrir)" xml:space="preserve">
+    <value>Program language (it reopens)</value>
+  </data>
+  <data name="El mapa de un dispositivo: sus parámetros con su dirección Modbus o EtherNet/IP, como lo leen FactoryNodes y la Factory Box." xml:space="preserve">
+    <value>A device's map: its parameters with their Modbus or EtherNet/IP address, as FactoryNodes and the Factory Box read it.</value>
+  </data>
+  <data name="Lo mismo que comprueba el programa al leer el fichero: con algún problema, no lo carga." xml:space="preserve">
+    <value>The same checks the program makes when reading the file: with any problem, it does not load it.</value>
+  </data>
+  <data name="Cabecera" xml:space="preserve">
+    <value>Header</value>
+  </data>
+  <data name="Marca" xml:space="preserve">
+    <value>Brand</value>
+  </data>
+  <data name="El fabricante, como lo escribe él (es la carpeta del fichero, en minúsculas)" xml:space="preserve">
+    <value>The manufacturer, as it writes its name (it is the file's folder, in lowercase)</value>
+  </data>
+  <data name="Modelo" xml:space="preserve">
+    <value>Model</value>
+  </data>
+  <data name="El modelo (es el nombre del fichero). Marca y modelo juntos identifican el dispositivo en los proyectos y en las copias." xml:space="preserve">
+    <value>The model (it is the file name). Brand and model together identify the device in projects and backups.</value>
+  </data>
+  <data name="Tipo de equipo" xml:space="preserve">
+    <value>Device type</value>
+  </data>
+  <data name="Variador, visor de peso, arrancador…" xml:space="preserve">
+    <value>Drive, weight indicator, starter…</value>
+  </data>
+  <data name="Descripción" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="De dónde salen las direcciones" xml:space="preserve">
+    <value>Where the addresses come from</value>
+  </data>
+  <data name="El manual y la página (o la herramienta), para que otro pueda comprobarlo" xml:space="preserve">
+    <value>The manual and page (or the tool), so someone else can check it</value>
+  </data>
+  <data name="Probado con un equipo real" xml:space="preserve">
+    <value>Tested with a real device</value>
+  </data>
+  <data name="Solo si se han leído las direcciones en un equipo de verdad. Sin marcar, el programa avisa antes de restaurar una copia." xml:space="preserve">
+    <value>Only if the addresses have been read on a real device. Unchecked, the program warns before restoring a backup.</value>
+  </data>
+  <data name="Lleva el dibujo del equipo (se conserva al guardar)." xml:space="preserve">
+    <value>It has the device drawing (kept when saving).</value>
+  </data>
+  <data name="Protocolo" xml:space="preserve">
+    <value>Protocol</value>
+  </data>
+  <data name="Numeración de los registros" xml:space="preserve">
+    <value>Register numbering</value>
+  </data>
+  <data name="Si el manual cuenta los registros desde 1, en la trama va la dirección menos 1" xml:space="preserve">
+    <value>If the manual counts registers from 1, the frame carries the address minus 1</value>
+  </data>
+  <data name="Valores de 32 bits" xml:space="preserve">
+    <value>32-bit values</value>
+  </data>
+  <data name="En qué orden van las dos palabras de un UDINT, DINT o REAL" xml:space="preserve">
+    <value>In which order the two words of a UDINT, DINT or REAL go</value>
+  </data>
+  <data name="Registros por lectura (1 a 125)" xml:space="preserve">
+    <value>Registers per read (1 to 125)</value>
+  </data>
+  <data name="Cuántos registros seguidos acepta el equipo en una lectura" xml:space="preserve">
+    <value>How many consecutive registers the device accepts in one read</value>
+  </data>
+  <data name="Guardar en EEPROM tras escribir (vacío: lo guarda solo)" xml:space="preserve">
+    <value>Save to EEPROM after writing (empty: it saves by itself)</value>
+  </data>
+  <data name="La dirección donde se escribe la orden de guardar, como en el manual (0x0900)" xml:space="preserve">
+    <value>The address where the save command is written, as in the manual (0x0900)</value>
+  </data>
+  <data name="El valor que se escribe para guardar" xml:space="preserve">
+    <value>The value written to save</value>
+  </data>
+  <data name="Qué hace (Guardar en EEPROM)" xml:space="preserve">
+    <value>What it does (Save to EEPROM)</value>
+  </data>
+  <data name="Antes de restaurar" xml:space="preserve">
+    <value>Before restoring</value>
+  </data>
+  <data name="Lo que hay que saber antes de escribir una copia en un equipo nuevo (parado, en qué modo…)" xml:space="preserve">
+    <value>What to know before writing a backup to a new device (stopped, in which mode…)</value>
+  </data>
+  <data name="Añadir un parámetro" xml:space="preserve">
+    <value>Add a parameter</value>
+  </data>
+  <data name="Pegar de una hoja de cálculo: código, dirección, tipo, escala, unidad, descripción, grupo, clase (ajuste o en vivo) y si se escribe, en columnas (o separados por punto y coma). Un código que ya está se actualiza." xml:space="preserve">
+    <value>Paste from a spreadsheet: code, address, type, scale, unit, description, group, class (setting or live) and whether it is written, in columns (or separated by semicolons). A code already there is updated.</value>
+  </data>
+  <data name="Código" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="El código del fabricante (F002, ACC): único en el modelo" xml:space="preserve">
+    <value>The manufacturer's code (F002, ACC): unique in the model</value>
+  </data>
+  <data name="Dirección" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="La dirección Modbus como en el manual: 0x1103 o 8502. Vacía si el equipo solo habla EtherNet/IP." xml:space="preserve">
+    <value>The Modbus address as in the manual: 0x1103 or 8502. Empty if the device only speaks EtherNet/IP.</value>
+  </data>
+  <data name="EtherNet/IP" xml:space="preserve">
+    <value>EtherNet/IP</value>
+  </data>
+  <data name="Opcional: clase/instancia/atributo (0x64/1/0x08)" xml:space="preserve">
+    <value>Optional: class/instance/attribute (0x64/1/0x08)</value>
+  </data>
+  <data name="Tipo" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="UINT e INT ocupan un registro; UDINT, DINT y REAL, dos" xml:space="preserve">
+    <value>UINT and INT take one register; UDINT, DINT and REAL, two</value>
+  </data>
+  <data name="Escala" xml:space="preserve">
+    <value>Scale</value>
+  </data>
+  <data name="Valor = registro × escala (0,01: centésimas)" xml:space="preserve">
+    <value>Value = register × scale (0.01: hundredths)</value>
+  </data>
+  <data name="Unidad" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="Grupo" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="Básico" xml:space="preserve">
+    <value>Basic</value>
+  </data>
+  <data name="Sale el primero, en «Básicos»" xml:space="preserve">
+    <value>It comes first, in “Basic”</value>
+  </data>
+  <data name="Clase" xml:space="preserve">
+    <value>Class</value>
+  </data>
+  <data name="Ajuste: se guarda en las copias y se restaura. En vivo: solo se lee (velocidad, intensidad, peso)." xml:space="preserve">
+    <value>Setting: saved in backups and restored. Live: only read (speed, current, weight).</value>
+  </data>
+  <data name="Escribe" xml:space="preserve">
+    <value>Writes</value>
+  </data>
+  <data name="Se puede escribir (restaurar). Sin marcar, se guarda pero no se escribe (versión, capacidad)." xml:space="preserve">
+    <value>It can be written (restored). Unchecked, it is saved but not written (version, capacity).</value>
+  </data>
+  <data name="Calibración" xml:space="preserve">
+    <value>Calibration</value>
+  </data>
+  <data name="Es de la calibración de este equipo (básculas): al restaurar una copia llega sin marcar" xml:space="preserve">
+    <value>It belongs to this device's calibration (scales): when restoring a backup it arrives unchecked</value>
+  </data>
+  <data name="Opciones" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="El texto de cada valor: 0=Adelante; 1=Atrás" xml:space="preserve">
+    <value>The text of each value: 0=Forward; 1=Reverse</value>
+  </data>
+  <data name="Bits" xml:space="preserve">
+    <value>Bits</value>
+  </data>
+  <data name="En una palabra de estado, qué es cada bit: 0=Listo; 3=Fallo" xml:space="preserve">
+    <value>In a status word, what each bit means: 0=Ready; 3=Fault</value>
+  </data>
+  <data name="Nota" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="Rango, valor de fábrica, unidad que depende de otro parámetro…" xml:space="preserve">
+    <value>Range, factory value, unit that depends on another parameter…</value>
+  </data>
+  <data name="Quitar el parámetro" xml:space="preserve">
+    <value>Remove the parameter</value>
+  </data>
+  <data name="Añadir un grupo" xml:space="preserve">
+    <value>Add a group</value>
+  </data>
+  <data name="Los grupos ordenan el listado de parámetros (Datos del motor, Rampas…); el número es el orden." xml:space="preserve">
+    <value>Groups sort the parameter list (Motor data, Ramps…); the number is the order.</value>
+  </data>
+  <data name="Número" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="Texto" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="Quitar el grupo" xml:space="preserve">
+    <value>Remove the group</value>
+  </data>
+  <data name="Añadir una orden" xml:space="preserve">
+    <value>Add a command</value>
+  </data>
+  <data name="Las órdenes del equipo como botones (cero, tara, borrar el pico): un valor que se escribe en una dirección." xml:space="preserve">
+    <value>The device's commands as buttons (zero, tare, clear peak): a value written to an address.</value>
+  </data>
+  <data name="El texto del botón (Tara)" xml:space="preserve">
+    <value>The button text (Tare)</value>
+  </data>
+  <data name="Valor" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="Antes, 0" xml:space="preserve">
+    <value>0 first</value>
+  </data>
+  <data name="Escribir 0 antes del valor (algunos equipos solo ven el cambio)" xml:space="preserve">
+    <value>Write 0 before the value (some devices only see the change)</value>
+  </data>
+  <data name="Confirmar" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Pedir confirmación antes (lo que mueve algo o cambia la calibración)" xml:space="preserve">
+    <value>Ask for confirmation first (what moves something or changes the calibration)</value>
+  </data>
+  <data name="Respuesta en" xml:space="preserve">
+    <value>Response at</value>
+  </data>
+  <data name="Dónde contesta el equipo (vacío: no se espera respuesta)" xml:space="preserve">
+    <value>Where the device answers (empty: no response is expected)</value>
+  </data>
+  <data name="Hecha" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="El valor de la respuesta que dice «hecha»" xml:space="preserve">
+    <value>The response value that means “done”</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="El valor de la respuesta que dice «error»" xml:space="preserve">
+    <value>The response value that means “error”</value>
+  </data>
+  <data name="Quitar la orden" xml:space="preserve">
+    <value>Remove the command</value>
+  </data>
+  <data name="Abrir…" xml:space="preserve">
+    <value>Open…</value>
+  </data>
+  <data name="Ficheros de dispositivo (*.json)" xml:space="preserve">
+    <value>Device files (*.json)</value>
+  </data>
+  <data name="Hay cambios sin guardar. ¿Cerrar igualmente?" xml:space="preserve">
+    <value>There are unsaved changes. Close anyway?</value>
+  </data>
+  <data name="Hay cambios sin guardar. ¿Abrir otro igualmente?" xml:space="preserve">
+    <value>There are unsaved changes. Open another anyway?</value>
+  </data>
+  <data name="Escribe la cabecera y el protocolo, y añade los parámetros (o pégalos de una hoja de cálculo)." xml:space="preserve">
+    <value>Fill in the header and the protocol, and add the parameters (or paste them from a spreadsheet).</value>
+  </data>
+  <data name="(sin nombre)" xml:space="preserve">
+    <value>(no name)</value>
+  </data>
+  <data name="Hay cambios sin guardar. ¿Cambiar de idioma igualmente? El programa se vuelve a abrir y se pierden." xml:space="preserve">
+    <value>There are unsaved changes. Change language anyway? The program reopens and they are lost.</value>
+  </data>
+  <data name="0: la dirección del manual ya es la de la trama" xml:space="preserve">
+    <value>0: the manual's address is already the frame's</value>
+  </data>
+  <data name="1: el manual numera desde 1 (se resta 1)" xml:space="preserve">
+    <value>1: the manual numbers from 1 (1 is subtracted)</value>
+  </data>
+  <data name="Palabra alta primero" xml:space="preserve">
+    <value>High word first</value>
+  </data>
+  <data name="Palabra baja primero" xml:space="preserve">
+    <value>Low word first</value>
+  </data>
+  <data name="0 · sin grupo" xml:space="preserve">
+    <value>0 · no group</value>
+  </data>
+  <data name="Parámetros ({0})" xml:space="preserve">
+    <value>Parameters ({0})</value>
+  </data>
+  <data name="Grupos ({0})" xml:space="preserve">
+    <value>Groups ({0})</value>
+  </data>
+  <data name="Órdenes ({0})" xml:space="preserve">
+    <value>Commands ({0})</value>
+  </data>
+  <data name="Parámetro {0} añadido: escribe su código, su dirección y su tipo." xml:space="preserve">
+    <value>Parameter {0} added: fill in its code, address and type.</value>
+  </data>
+  <data name="Parámetro {0} quitado." xml:space="preserve">
+    <value>Parameter {0} removed.</value>
+  </data>
+  <data name="Grupo {0} añadido: escribe su texto." xml:space="preserve">
+    <value>Group {0} added: type its text.</value>
+  </data>
+  <data name="Grupo {0} quitado (sus parámetros quedan con ese número hasta que les cambies el grupo)." xml:space="preserve">
+    <value>Group {0} removed (its parameters keep that number until you change their group).</value>
+  </data>
+  <data name="Orden nueva" xml:space="preserve">
+    <value>New command</value>
+  </data>
+  <data name="Orden añadida: escribe su texto, la dirección y el valor que se escribe." xml:space="preserve">
+    <value>Command added: fill in its text, the address and the value written.</value>
+  </data>
+  <data name="Orden «{0}» quitada." xml:space="preserve">
+    <value>Command “{0}” removed.</value>
+  </data>
+  <data name="No había nada que pegar: copia de la hoja de cálculo las columnas código, dirección, tipo, escala, unidad, descripción, grupo, clase y si se escribe." xml:space="preserve">
+    <value>There was nothing to paste: copy from the spreadsheet the columns code, address, type, scale, unit, description, group, class and whether it is written.</value>
+  </data>
+  <data name="Pegados: {0} parámetros nuevos y {1} cambiados." xml:space="preserve">
+    <value>Pasted: {0} new parameters and {1} changed.</value>
+  </data>
+  <data name="{0} líneas sin código, saltadas." xml:space="preserve">
+    <value>{0} lines without a code, skipped.</value>
+  </data>
+  <data name="Hay cambios sin guardar. ¿Empezar uno nuevo igualmente?" xml:space="preserve">
+    <value>There are unsaved changes. Start a new one anyway?</value>
+  </data>
+  <data name="Fichero nuevo: escribe la marca y el modelo." xml:space="preserve">
+    <value>New file: type the brand and the model.</value>
+  </data>
+  <data name="No se pudo leer {0}: {1}" xml:space="preserve">
+    <value>Could not read {0}: {1}</value>
+  </data>
+  <data name="{0} no es un fichero de dispositivo: {1}" xml:space="preserve">
+    <value>{0} is not a device file: {1}</value>
+  </data>
+  <data name="Abierto {0}: {1} parámetros." xml:space="preserve">
+    <value>Opened {0}: {1} parameters.</value>
+  </data>
+  <data name="Abierto {0}, con {1} problemas (abajo)." xml:space="preserve">
+    <value>Opened {0}, with {1} problems (below).</value>
+  </data>
+  <data name="No se pudo guardar {0}: {1}" xml:space="preserve">
+    <value>Could not save {0}: {1}</value>
+  </data>
+  <data name="Guardado {0}." xml:space="preserve">
+    <value>Saved {0}.</value>
+  </data>
+  <data name="Guardado {0}, con {1} problemas: el programa no lo cargará hasta que se arreglen." xml:space="preserve">
+    <value>Saved {0}, with {1} problems: the program will not load it until they are fixed.</value>
+  </data>
+  <data name="El fichero vale: el programa lo puede leer." xml:space="preserve">
+    <value>The file is valid: the program can read it.</value>
+  </data>
+  <data name="{0} problemas" xml:space="preserve">
+    <value>{0} problems</value>
+  </data>
+  <data name="Ajuste" xml:space="preserve">
+    <value>Setting</value>
+  </data>
+  <data name="En vivo" xml:space="preserve">
+    <value>Live</value>
+  </data>
+</root>

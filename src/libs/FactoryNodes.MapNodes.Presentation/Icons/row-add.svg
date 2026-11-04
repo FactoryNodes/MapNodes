@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2B2140" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Añadir una fila: tres renglones y un «+» verde. -->
+  <path d="M3 5H17M3 10H17M3 15H11"/>
+  <circle cx="18" cy="17" r="5" fill="#FFFFFF" stroke="#2E7D32"/>
+  <path d="M18 14.3V19.7M15.3 17H20.7" stroke="#2E7D32" stroke-width="2.2"/>
+</svg>

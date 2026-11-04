@@ -1,0 +1,470 @@
+{
+  "schemaVersion": 1,
+  "brand": "Omron",
+  "model": "MX2",
+  "kind": "Variador",
+  "description": "Variador Omron MX2 (3G3MX2). Modbus RTU por RS-485 de serie: por Modbus TCP, con una pasarela TCP/RTU (el número de esclavo es el C072 del variador).",
+  "source": "Tabla de registros del manual del MX2 (I570, apéndice B-4), según la librería pymx2 (MIT, V. Paeder). Escalas de b012, H003, H004 y los códigos: a comprobar.",
+  "verified": false,
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 120 180\"><rect x=\"10\" y=\"5\" width=\"100\" height=\"170\" rx=\"6\" fill=\"#2B2F38\" stroke=\"#14161B\" stroke-width=\"2\"/><rect x=\"22\" y=\"18\" width=\"76\" height=\"30\" rx=\"2\" fill=\"#0E1A12\"/><text x=\"60\" y=\"40\" font-family=\"monospace\" font-size=\"16\" fill=\"#5CE08A\" text-anchor=\"middle\">50.00</text><circle cx=\"35\" cy=\"66\" r=\"6\" fill=\"#4A4F5C\"/><circle cx=\"60\" cy=\"66\" r=\"6\" fill=\"#4A4F5C\"/><circle cx=\"85\" cy=\"66\" r=\"6\" fill=\"#4A4F5C\"/><rect x=\"22\" y=\"84\" width=\"76\" height=\"70\" rx=\"2\" fill=\"#3A3F4B\"/><g stroke=\"#2B2F38\" stroke-width=\"2\"><line x1=\"22\" y1=\"92\" x2=\"98\" y2=\"92\"/><line x1=\"22\" y1=\"100\" x2=\"98\" y2=\"100\"/><line x1=\"22\" y1=\"108\" x2=\"98\" y2=\"108\"/><line x1=\"22\" y1=\"116\" x2=\"98\" y2=\"116\"/><line x1=\"22\" y1=\"124\" x2=\"98\" y2=\"124\"/><line x1=\"22\" y1=\"132\" x2=\"98\" y2=\"132\"/><line x1=\"22\" y1=\"140\" x2=\"98\" y2=\"140\"/><line x1=\"22\" y1=\"148\" x2=\"98\" y2=\"148\"/></g><text x=\"60\" y=\"168\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#C9CCD3\" text-anchor=\"middle\">OMRON MX2</text></svg>",
+  "protocol": {
+    "registerBase": 1,
+    "wordOrder": "HighFirst",
+    "maxRegistersPerRead": 16,
+    "save": {
+      "address": "0x0900",
+      "value": 1,
+      "description": "Guardar en EEPROM"
+    },
+    "restoreNotes": "Con el variador parado. Lo escrito por Modbus se pierde al quitar tensión si no se guarda en EEPROM (se manda al acabar)."
+  },
+  "groups": [
+    {
+      "number": 1,
+      "text": "Datos del motor"
+    },
+    {
+      "number": 2,
+      "text": "Rampas y velocidades"
+    },
+    {
+      "number": 3,
+      "text": "Mando"
+    },
+    {
+      "number": 4,
+      "text": "Entradas y salidas"
+    },
+    {
+      "number": 5,
+      "text": "Ajustes del control"
+    },
+    {
+      "number": 10,
+      "text": "Monitores"
+    }
+  ],
+  "parameters": [
+    {
+      "code": "H003",
+      "address": "0x1503",
+      "type": "UINT",
+      "scale": 1,
+      "unit": "",
+      "description": "Potencia del motor (código de la tabla del manual)",
+      "group": 1,
+      "basic": true
+    },
+    {
+      "code": "H004",
+      "address": "0x1504",
+      "type": "UINT",
+      "scale": 1,
+      "unit": "",
+      "description": "Polos del motor (código de la tabla del manual)",
+      "group": 1,
+      "basic": true
+    },
+    {
+      "code": "A003",
+      "address": "0x1203",
+      "type": "UINT",
+      "scale": 0.1,
+      "unit": "Hz",
+      "description": "Frecuencia base",
+      "group": 1,
+      "basic": true
+    },
+    {
+      "code": "A004",
+      "address": "0x1204",
+      "type": "UINT",
+      "scale": 0.1,
+      "unit": "Hz",
+      "description": "Frecuencia máxima",
+      "group": 1,
+      "basic": true
+    },
+    {
+      "code": "A082",
+      "address": "0x126A",
+      "type": "UINT",
+      "scale": 1,
+      "unit": "",
+      "description": "Tensión del motor (AVR, código)",
+      "group": 1
+    },
+    {
+      "code": "b012",
+      "address": "0x130D",
+      "type": "UINT",
+      "scale": 1,
+      "unit": "",
+      "description": "Nivel térmico electrónico (unidades del manual)",
+      "group": 1,
+      "basic": true
+    },
+    {
+      "code": "b013",
+      "address": "0x130E",
+      "type": "UINT",
+      "scale": 1,
+      "unit": "",
+      "description": "Característica térmica",
+      "group": 1,
+      "options": {
+        "0": "Par reducido",
+        "1": "Par constante",
+        "2": "Libre"
+      }
+    },
+    {
+      "code": "F002",
+      "address": "0x1103",
+      "type": "UDINT",
+      "scale": 0.01,
+      "unit": "s",
+      "description": "Tiempo de aceleración 1",
+      "group": 2,
+      "basic": true
+    },
+    {
+      "code": "F003",
+      "address": "0x1105",
+      "type": "UDINT",
+      "scale": 0.01,
+      "unit": "s",
+      "description": "Tiempo de deceleración 1",
+      "group": 2,
+      "basic": true
+    },
+    {
+      "code": "A020",
+      "address": "0x1216",
+      "type": "UDINT",
+      "scale": 0.01,
+      "unit": "Hz",
+      "description": "Multivelocidad 0",
+      "group": 2
+    },
+    {
+      "code": "A061",
+      "address": "0x124F",
+      "type": "UDINT",
+      "scale": 0.01,
+      "unit": "Hz",
+      "description": "Límite superior de frecuencia",
+      "group": 2
+    },
+    {
+      "code": "A062",
+      "address": "0x1251",
+      "type": "UDINT",
+      "scale": 0.01,
+      "unit": "Hz",
+      "description": "Límite inferior de frecuencia",
+      "group": 2
+    },
+    {
+      "code": "A093",
+      "address": "0x1276",
+      "type": "UDINT",
+      "scale": 0.01,
+      "unit": "s",
+      "description": "Tiempo de deceleración 2",
+      "group": 2
+    },
+    {
+      "code": "A001",
+      "address": "0x1201",
+      "type": "UINT",
+      "scale": 1,
+      "unit": "",
+      "description": "Origen de la consigna de frecuencia",
+      "group": 3,
+      "basic": true,
+      "options": {
+        "0": "Potenciómetro",
+        "1": "Bornes",
+        "2": "Operador (F001)",
+        "3": "Modbus",
+        "4": "Tarjeta opcional",
+        "6": "Tren de pulsos",
+        "7": "Secuencia (Drive Programming)",
+        "10": "Resultado de cálculo"
+      }
+    },
+    {
+      "code": "A002",
+      "address": "0x1202",
+      "type": "UINT",
+      "scale": 1,
+      "unit": "",
+      "description": "Origen de la orden de marcha",
+      "group": 3,
+      "basic": true,
+      "options": {
+        "1": "Bornes",
+        "2": "Operador",
+        "3": "Modbus",
+        "4": "Tarjeta opcional"
+      }
+    },
+    {
+      "code": "F004",
+      "address": "0x1107",
+      "type": "UINT",
+      "scale": 1,
+      "unit": "",
+      "description": "Sentido de giro con la tecla RUN",
+      "group": 3,
+      "options": {
+        "0": "Adelante",
+        "1": "Atrás"
+      }
+    },
+    {
+      "code": "b091",
+      "address": "0x135E",
+      "type": "UINT",
+      "scale": 1,
+      "unit": "",
+      "description": "Modo de paro",
+      "group": 3,
+      "options": {
+        "0": "Deceleración",
+        "1": "Libre"
+      }
+    },
+    {
+      "code": "b001",
+      "address": "0x1301",
+      "type": "UINT",
+      "scale": 1,
+      "unit": "",
+      "description": "Modo de rearranque tras fallo (código)",
+      "group": 3
+    },
+    {
+      "code": "C001",
+      "address": "0x1401",
+      "type": "UINT",
+      "scale": 1,
+      "unit": "",
+      "description": "Función de la entrada 1 (código)",
+      "group": 4
+    },
+    {
+      "code": "C002",
+      "address": "0x1402",
+      "type": "UINT",
+      "scale": 1,
+      "unit": "",
+      "description": "Función de la entrada 2 (código)",
+      "group": 4
+    },
+    {
+      "code": "C021",
+      "address": "0x1415",
+      "type": "UINT",
+      "scale": 1,
+      "unit": "",
+      "description": "Función de la salida 11 (código)",
+      "group": 4
+    },
+    {
+      "code": "C036",
+      "address": "0x1424",
+      "type": "UINT",
+      "scale": 1,
+      "unit": "",
+      "description": "Relé de alarma: contacto en reposo (código)",
+      "group": 4
+    },
+    {
+      "code": "A044",
+      "address": "0x123E",
+      "type": "UINT",
+      "scale": 1,
+      "unit": "",
+      "description": "Característica V/f",
+      "group": 5,
+      "options": {
+        "0": "Par constante",
+        "1": "Par reducido",
+        "2": "V/f libre",
+        "3": "Vectorial sin sensor"
+      }
+    },
+    {
+      "code": "A045",
+      "address": "0x123F",
+      "type": "UINT",
+      "scale": 1,
+      "unit": "%",
+      "description": "Ganancia de la tensión de salida",
+      "group": 5
+    },
+    {
+      "code": "b083",
+      "address": "0x1356",
+      "type": "UINT",
+      "scale": 0.1,
+      "unit": "kHz",
+      "description": "Frecuencia portadora",
+      "group": 5
+    },
+    {
+      "code": "H001",
+      "address": "0x1501",
+      "type": "UINT",
+      "scale": 1,
+      "unit": "",
+      "description": "Autoajuste (código)",
+      "group": 5,
+      "writable": false
+    },
+    {
+      "code": "H002",
+      "address": "0x1502",
+      "type": "UINT",
+      "scale": 1,
+      "unit": "",
+      "description": "Datos del motor usados (código)",
+      "group": 5
+    },
+    {
+      "code": "F001",
+      "address": "0x0001",
+      "type": "UDINT",
+      "scale": 0.01,
+      "unit": "Hz",
+      "description": "Consigna de frecuencia",
+      "group": 10,
+      "kind": "Live"
+    },
+    {
+      "code": "d001",
+      "address": "0x1001",
+      "type": "UDINT",
+      "scale": 0.01,
+      "unit": "Hz",
+      "description": "Frecuencia de salida",
+      "group": 10,
+      "basic": true,
+      "kind": "Live",
+      "writable": false
+    },
+    {
+      "code": "d002",
+      "address": "0x1003",
+      "type": "UINT",
+      "scale": 0.01,
+      "unit": "A",
+      "description": "Intensidad de salida",
+      "group": 10,
+      "basic": true,
+      "kind": "Live",
+      "writable": false
+    },
+    {
+      "code": "d013",
+      "address": "0x1011",
+      "type": "UINT",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "Tensión de salida",
+      "group": 10,
+      "kind": "Live",
+      "writable": false
+    },
+    {
+      "code": "d014",
+      "address": "0x1012",
+      "type": "UINT",
+      "scale": 0.1,
+      "unit": "kW",
+      "description": "Potencia de entrada",
+      "group": 10,
+      "kind": "Live",
+      "writable": false
+    },
+    {
+      "code": "d015",
+      "address": "0x1013",
+      "type": "UDINT",
+      "scale": 0.1,
+      "unit": "kWh",
+      "description": "Energía acumulada",
+      "group": 10,
+      "kind": "Live",
+      "writable": false
+    },
+    {
+      "code": "d016",
+      "address": "0x1015",
+      "type": "UDINT",
+      "scale": 1,
+      "unit": "h",
+      "description": "Horas en marcha",
+      "group": 10,
+      "kind": "Live",
+      "writable": false
+    },
+    {
+      "code": "d017",
+      "address": "0x1017",
+      "type": "UDINT",
+      "scale": 1,
+      "unit": "h",
+      "description": "Horas con tensión",
+      "group": 10,
+      "kind": "Live",
+      "writable": false
+    },
+    {
+      "code": "d018",
+      "address": "0x1019",
+      "type": "INT",
+      "scale": 0.1,
+      "unit": "°C",
+      "description": "Temperatura del radiador",
+      "group": 10,
+      "kind": "Live",
+      "writable": false
+    },
+    {
+      "code": "d080",
+      "address": "0x0011",
+      "type": "UINT",
+      "scale": 1,
+      "unit": "",
+      "description": "Número de fallos",
+      "group": 10,
+      "kind": "Live",
+      "writable": false
+    },
+    {
+      "code": "d102",
+      "address": "0x1026",
+      "type": "UINT",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "Tensión del bus de continua",
+      "group": 10,
+      "kind": "Live",
+      "writable": false
+    },
+    {
+      "code": "d104",
+      "address": "0x1028",
+      "type": "UINT",
+      "scale": 0.1,
+      "unit": "%",
+      "description": "Carga térmica electrónica",
+      "group": 10,
+      "kind": "Live",
+      "writable": false
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- ViewModels de MapNodes (PENDIENTES 200, MIT): el editor de los ficheros de dispositivo (library/devices/<marca>/<modelo>.json). net8.0, sin
+       System.Windows.*: el UI WPF solo pinta, como en FactoryNodes y SoftNodes (CLAUDE.md, reglas 6 y 7); un web usaría lo mismo. -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <!-- Multiidioma (PENDIENTES 82): el castellano es el idioma neutro (la clave de cada texto); los demás, satélites ca/, en/… -->
+    <NeutralLanguage>es</NeutralLanguage>
+  </PropertyGroup>
+
+  <!-- Iconos de los botones (docs/STYLE.md «Botones con dibujo»): cada Icons/*.svg entra en la DLL como "Icons/<archivo>.svg" -->
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\*.svg" LogicalName="Icons/%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FactoryNodes.Localization\FactoryNodes.Localization.csproj" />
+    <ProjectReference Include="..\FactoryNodes.Devices\FactoryNodes.Devices.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,1126 @@
+{
+  "schemaVersion": 1,
+  "brand": "SCAIME",
+  "model": "eNod4-F",
+  "kind": "Transmisor de pesaje",
+  "description": "eNod4-F: transmisor de pesaje para dosificadores por pérdida de peso (carril DIN: eNod4-F-DI00…). Modbus TCP en la versión «-EM» (puerto 502, Unit ID 0xFF o 0); todas las versiones Ethernet (también -EI, -EP, -EC) tienen además Modbus RTU por el RS485 AUX (8N2, como mucho 30 registros por lectura). AUX (conector A8): borna 1 = B− (RB/TB), borna 2 = A+ (RA/TA), 3 = GND; la A de la pasarela va a la borna 2. Dirección = ruedas SW1/SW2 (hex); velocidad = interruptores SW3 1-2-3, y en este equipo «abajo» es ON (los tres abajo = 9600; 1 y 2 abajo, 3 arriba = 115200). Las dos solo cambian tras un reset. Con el USB conectado, el AUX no contesta. El protocolo de AUX/USB tiene que ser Modbus RTU (bits 9-8 de 0x003E = 01), no SCMBus.",
+  "source": "SCAIME NU-Soft-eNod4F-ETH-E-235709-I, capítulos 5 (Modbus TCP), 9 (estado de la medida), 10 (órdenes), 15 (estados y errores de dosificación) y 16 (tabla de registros). Probado el 2026-10-16 con un eNod4-F-EI real (programa 0xD8) por el RS485 AUX y una pasarela Modbus TCP → RTU: a 9600 8N2 y a 115200 8N2 (30 registros en unos 21 ms), dirección 1; se leen todos los parámetros y la palabra baja va primero (capacidad 500000, pendientes 0,01, Kp 0,75); el byte alto de 0x0001 es el código de velocidad (0 = 9600, 4 = 115200). Las órdenes llegan (respuesta en 0x0091); la tara sin célula conectada da error 3 a los 5 s (medida inestable), como dice el manual. Falta: una orden que acabe bien, escribir un parámetro y comparar los decimales con eNodView.",
+  "verified": false,
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 80 180\"><rect x=\"8\" y=\"4\" width=\"64\" height=\"172\" rx=\"4\" fill=\"#E8EAEE\" stroke=\"#8A909C\" stroke-width=\"2\"/><rect x=\"8\" y=\"4\" width=\"64\" height=\"26\" rx=\"4\" fill=\"#1F5FA8\"/><text x=\"40\" y=\"22\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"bold\" fill=\"#FFFFFF\" text-anchor=\"middle\">eNod4-F</text><g fill=\"#4A4F5C\"><rect x=\"16\" y=\"40\" width=\"48\" height=\"10\" rx=\"2\"/><rect x=\"16\" y=\"56\" width=\"48\" height=\"10\" rx=\"2\"/></g><g fill=\"#7A8090\"><circle cx=\"24\" cy=\"82\" r=\"3\"/><circle cx=\"36\" cy=\"82\" r=\"3\"/><circle cx=\"48\" cy=\"82\" r=\"3\"/></g><rect x=\"18\" y=\"100\" width=\"20\" height=\"16\" rx=\"1\" fill=\"#2B2F38\"/><rect x=\"42\" y=\"100\" width=\"20\" height=\"16\" rx=\"1\" fill=\"#2B2F38\"/><g fill=\"#4A4F5C\"><rect x=\"16\" y=\"130\" width=\"48\" height=\"10\" rx=\"2\"/><rect x=\"16\" y=\"146\" width=\"48\" height=\"10\" rx=\"2\"/></g><text x=\"40\" y=\"171\" font-family=\"sans-serif\" font-size=\"8\" fill=\"#5A606C\" text-anchor=\"middle\">SCAIME</text></svg>",
+  "protocol": {
+    "registerBase": 0,
+    "wordOrder": "LowFirst",
+    "maxRegistersPerRead": 30,
+    "save": {
+      "address": "0x0090",
+      "value": 209,
+      "description": "Guardar en EEPROM (orden D1h en el registro de órdenes)"
+    },
+    "restoreNotes": "Con la dosificación parada. Algunos cambios solo valen tras guardar en EEPROM y hacer un Reset (orden D0h). Tras cambiar la red, no quitar tensión en 10 s (el manual avisa de que puede dañarse). Con «Swap data» activado en eNodView, los bytes de cada registro van al revés."
+  },
+  "groups": [
+    {
+      "number": 1,
+      "text": "Identificación"
+    },
+    {
+      "number": 2,
+      "text": "Pesaje y calibración"
+    },
+    {
+      "number": 3,
+      "text": "Filtros"
+    },
+    {
+      "number": 4,
+      "text": "Dosificación y relleno"
+    },
+    {
+      "number": 5,
+      "text": "PID y salida analógica"
+    },
+    {
+      "number": 6,
+      "text": "Entradas, salidas y umbrales"
+    },
+    {
+      "number": 10,
+      "text": "Medida"
+    },
+    {
+      "number": 11,
+      "text": "Dosificación en curso"
+    },
+    {
+      "number": 12,
+      "text": "Órdenes"
+    },
+    {
+      "number": 13,
+      "text": "Entradas y salidas en vivo"
+    }
+  ],
+  "parameters": [
+    {
+      "code": "Status",
+      "address": "0x007D",
+      "type": "UINT",
+      "description": "Estado de la medida",
+      "group": 10,
+      "basic": true,
+      "kind": "Live",
+      "writable": false,
+      "bits": {
+        "2": "b2 (b3b2 ≠ 00: fallo de medida; 01 control de entrada, 10 fuera de capacidad, 11 fuera del rango del A/D)",
+        "3": "b3 (ver b2)",
+        "4": "Medida estable",
+        "5": "Cero dentro de 1/4 de división",
+        "6": "Fallo de EEPROM",
+        "7": "Fuera del rango de medida",
+        "8": "Entrada 1",
+        "9": "Entrada 2",
+        "10": "Salida 1",
+        "11": "Salida 2",
+        "12": "Salida 3",
+        "13": "Salida 4",
+        "14": "Se ha hecho alguna tara"
+      }
+    },
+    {
+      "code": "Gross",
+      "address": "0x007E",
+      "type": "DINT",
+      "description": "Peso bruto",
+      "group": 10,
+      "basic": true,
+      "kind": "Live",
+      "writable": false,
+      "decimalsFrom": {
+        "from": "StabDec",
+        "shift": 8,
+        "mask": 255
+      },
+      "note": "En unidad de peso, con los decimales del byte alto de 0x0008 (StabDec)."
+    },
+    {
+      "code": "Tare",
+      "address": "0x0080",
+      "type": "DINT",
+      "description": "Valor de la tara",
+      "group": 10,
+      "kind": "Live",
+      "writable": false,
+      "decimalsFrom": {
+        "from": "StabDec",
+        "shift": 8,
+        "mask": 255
+      },
+      "note": "En unidad de peso, con los decimales del byte alto de 0x0008 (StabDec)."
+    },
+    {
+      "code": "Net",
+      "address": "0x0082",
+      "type": "DINT",
+      "description": "Peso neto",
+      "group": 10,
+      "basic": true,
+      "kind": "Live",
+      "writable": false,
+      "decimalsFrom": {
+        "from": "StabDec",
+        "shift": 8,
+        "mask": 255
+      },
+      "note": "En unidad de peso, con los decimales del byte alto de 0x0008 (StabDec)."
+    },
+    {
+      "code": "Points",
+      "address": "0x0084",
+      "type": "DINT",
+      "description": "Puntos del convertidor (de fábrica)",
+      "group": 10,
+      "kind": "Live",
+      "writable": false,
+      "note": "±1800000 = cable cortado o mal cableado. La tabla del capítulo 5.6 dice Float y la del 16, Long: comprobar."
+    },
+    {
+      "code": "FlowInst",
+      "address": "0x0086",
+      "type": "REAL",
+      "description": "Caudal instantáneo",
+      "group": 11,
+      "basic": true,
+      "kind": "Live",
+      "writable": false,
+      "note": "unidad de peso / unidad de tiempo del caudal (0x005A)"
+    },
+    {
+      "code": "FlowAvg",
+      "address": "0x0088",
+      "type": "REAL",
+      "description": "Caudal medio",
+      "group": 11,
+      "basic": true,
+      "kind": "Live",
+      "writable": false
+    },
+    {
+      "code": "FlowOut",
+      "address": "0x008A",
+      "type": "REAL",
+      "description": "Salida de control de caudal",
+      "group": 11,
+      "kind": "Live",
+      "writable": false
+    },
+    {
+      "code": "OutValue",
+      "address": "0x008C",
+      "type": "UINT",
+      "description": "Valor de la salida de control",
+      "group": 11,
+      "kind": "Live",
+      "writable": false,
+      "note": "0,01 % de la salida analógica (comprobar)"
+    },
+    {
+      "code": "Total",
+      "address": "0x008D",
+      "type": "UDINT",
+      "description": "Totalizador (unidad de peso × 1000)",
+      "group": 11,
+      "basic": true,
+      "kind": "Live",
+      "writable": false
+    },
+    {
+      "code": "TotalCompl",
+      "address": "0x008F",
+      "type": "UINT",
+      "description": "Totalizador, parte complementaria (unidad de peso)",
+      "group": 11,
+      "kind": "Live",
+      "writable": false
+    },
+    {
+      "code": "Command",
+      "address": "0x0090",
+      "type": "UINT",
+      "description": "Registro de órdenes",
+      "group": 12,
+      "kind": "Live",
+      "options": {
+        "0": "Borrar la respuesta (mandar antes de cada orden)",
+        "208": "Reset (D0h)",
+        "209": "Guardar en EEPROM (D1h)",
+        "210": "Volver a los valores de fábrica (D2h)",
+        "211": "Cero (D3h)",
+        "212": "Tara (D4h)",
+        "213": "Anular la tara (D5h)",
+        "214": "Anular la orden (D6h)",
+        "223": "Totalización / borrar errores (DFh)",
+        "228": "Arrancar / reanudar la dosificación o el lote (E4h)",
+        "229": "Parar la dosificación / anular el lote (E5h)",
+        "237": "Poner a cero el gran total (EDh)",
+        "238": "Poner a cero el total general (EEh)",
+        "241": "Adquisición del cero dinámico (F1h)",
+        "242": "Tara predeterminada (F2h)",
+        "243": "Ciclo de aprendizaje en el siguiente ciclo (F3h)",
+        "244": "Vaciar la tolva (limpieza) (F4h)",
+        "245": "Empezar el relleno (F5h)",
+        "246": "Parar el relleno (F6h)",
+        "247": "Suspender el lote (F7h)",
+        "199": "Parar el PID (C7h)",
+        "200": "Rearrancar el PID (C8h)"
+      },
+      "note": "Escribir 0 antes de cada orden; luego leer el registro de respuesta (0x0091)."
+    },
+    {
+      "code": "Response",
+      "address": "0x0091",
+      "type": "UINT",
+      "description": "Respuesta a la orden",
+      "group": 12,
+      "kind": "Live",
+      "writable": false,
+      "options": {
+        "0": "Lista para otra orden",
+        "1": "Ejecutando la orden",
+        "2": "Orden hecha",
+        "3": "Error al ejecutarla"
+      }
+    },
+    {
+      "code": "IO",
+      "address": "0x0094",
+      "type": "UINT",
+      "description": "Entradas (byte bajo) y salidas (byte alto) lógicas",
+      "group": 13,
+      "kind": "Live",
+      "writable": false,
+      "bits": {
+        "0": "Entrada 1",
+        "1": "Entrada 2",
+        "2": "Entrada 3",
+        "3": "Entrada 4",
+        "8": "Salida 1",
+        "9": "Salida 2",
+        "10": "Salida 3",
+        "11": "Salida 4"
+      },
+      "note": "Bits por entrada/salida supuestos (el manual solo dice byte bajo = entradas, byte alto = salidas)."
+    },
+    {
+      "code": "Deviation",
+      "address": "0x0095",
+      "type": "REAL",
+      "description": "Desviación de peso de la dosificación",
+      "group": 11,
+      "kind": "Live",
+      "writable": false
+    },
+    {
+      "code": "DosingStatus",
+      "address": "0x009A",
+      "type": "UINT",
+      "description": "Estado de la dosificación",
+      "group": 11,
+      "basic": true,
+      "kind": "Live",
+      "writable": false,
+      "bits": {
+        "0": "Parado",
+        "1": "Rellenando",
+        "2": "Fin de la espera del relleno (ciclo de aprendizaje)",
+        "3": "Fin de la estabilización del relleno",
+        "4": "Determinando el caudal",
+        "5": "Dosificando",
+        "6": "Lote suspendido",
+        "7": "Vaciando la tolva",
+        "9": "Ciclo de aprendizaje",
+        "10": "Calibración de caudal hecha",
+        "11": "Dosificación volumétrica",
+        "12": "Extracción activada",
+        "13": "Relleno en curso",
+        "14": "Ciclo de dosificación en curso",
+        "15": "Lote terminado"
+      }
+    },
+    {
+      "code": "DosingErrors",
+      "address": "0x009B",
+      "type": "UINT",
+      "description": "Alarmas de dosificación",
+      "group": 11,
+      "basic": true,
+      "kind": "Live",
+      "writable": false,
+      "bits": {
+        "0": "Caudal instantáneo > máximo admisible",
+        "1": "Caudal instantáneo < mínimo admisible",
+        "2": "Salida de control de caudal > máxima admisible",
+        "3": "Salida de control de caudal < mínima admisible",
+        "4": "Sin variación de peso durante el relleno",
+        "5": "Relleno demasiado largo",
+        "6": "Tolva vacía",
+        "7": "Desbordamiento de la salida del totalizador externo",
+        "8": "Lote demasiado largo",
+        "9": "Tolva llena",
+        "10": "PID parado por el usuario",
+        "11": "Caudal mayor que la capacidad de la máquina"
+      }
+    },
+    {
+      "code": "ErrorCount",
+      "address": "0x009C",
+      "type": "UINT",
+      "description": "Contador de errores de dosificación",
+      "group": 11,
+      "kind": "Live",
+      "writable": false
+    },
+    {
+      "code": "LastError",
+      "address": "0x009D",
+      "type": "UINT",
+      "description": "Último error de dosificación",
+      "group": 11,
+      "kind": "Live",
+      "writable": false,
+      "bits": {
+        "0": "Caudal instantáneo > máximo admisible",
+        "1": "Caudal instantáneo < mínimo admisible",
+        "2": "Salida de control de caudal > máxima admisible",
+        "3": "Salida de control de caudal < mínima admisible",
+        "4": "Sin variación de peso durante el relleno",
+        "5": "Relleno demasiado largo",
+        "6": "Tolva vacía",
+        "7": "Desbordamiento de la salida del totalizador externo",
+        "8": "Lote demasiado largo",
+        "9": "Tolva llena",
+        "10": "PID parado por el usuario",
+        "11": "Caudal mayor que la capacidad de la máquina"
+      }
+    },
+    {
+      "code": "Quality",
+      "address": "0x009E",
+      "type": "REAL",
+      "description": "Indicador de calidad de la dosificación",
+      "group": 11,
+      "kind": "Live",
+      "writable": false,
+      "note": "Desviación típica: cuanto menor, más constante el caudal."
+    },
+    {
+      "code": "TotalFlow",
+      "address": "0x00A0",
+      "type": "REAL",
+      "description": "Caudal de totalización",
+      "group": 11,
+      "kind": "Live",
+      "writable": false
+    },
+    {
+      "code": "GrandTotal",
+      "address": "0x00A2",
+      "type": "UDINT",
+      "description": "Gran total (unidad de peso × 1000)",
+      "group": 11,
+      "kind": "Live",
+      "writable": false
+    },
+    {
+      "code": "GeneralTotal",
+      "address": "0x00A4",
+      "type": "UDINT",
+      "description": "Total general (unidad de peso × 1000)",
+      "group": 11,
+      "kind": "Live",
+      "writable": false
+    },
+    {
+      "code": "ExtractTime",
+      "address": "0x00A6",
+      "type": "REAL",
+      "description": "Tiempo de extracción",
+      "group": 11,
+      "kind": "Live",
+      "writable": false,
+      "unit": "s"
+    },
+    {
+      "code": "Version",
+      "address": "0x0000",
+      "type": "UINT",
+      "description": "Versión del programa y del producto",
+      "group": 1,
+      "kind": "Live",
+      "writable": false,
+      "note": "12 bits bajos: versión del programa; 4 altos: producto (7 = eNod4-F)."
+    },
+    {
+      "code": "ZeroFn",
+      "address": "0x0007",
+      "type": "UINT",
+      "description": "Funciones de cero",
+      "group": 2,
+      "kind": "Setting"
+    },
+    {
+      "code": "StabDec",
+      "address": "0x0008",
+      "type": "UINT",
+      "description": "Criterio de estabilidad (byte bajo) y posición del punto decimal (byte alto)",
+      "group": 2,
+      "basic": true,
+      "kind": "Setting",
+      "calibration": true
+    },
+    {
+      "code": "Capacity",
+      "address": "0x000C",
+      "type": "UDINT",
+      "description": "Capacidad máxima",
+      "group": 2,
+      "basic": true,
+      "kind": "Setting",
+      "calibration": true,
+      "decimalsFrom": {
+        "from": "StabDec",
+        "shift": 8,
+        "mask": 255
+      },
+      "note": "En unidad de peso, con los decimales del byte alto de 0x0008 (StabDec)."
+    },
+    {
+      "code": "Segments",
+      "address": "0x000E",
+      "type": "UINT",
+      "description": "Número de segmentos de calibración",
+      "group": 2,
+      "kind": "Setting",
+      "calibration": true
+    },
+    {
+      "code": "Load1",
+      "address": "0x000F",
+      "type": "UDINT",
+      "description": "Carga de calibración, segmento 1",
+      "group": 2,
+      "kind": "Setting",
+      "calibration": true
+    },
+    {
+      "code": "Load2",
+      "address": "0x0011",
+      "type": "UDINT",
+      "description": "Carga de calibración, segmento 2",
+      "group": 2,
+      "kind": "Setting",
+      "calibration": true
+    },
+    {
+      "code": "Load3",
+      "address": "0x0013",
+      "type": "UDINT",
+      "description": "Carga de calibración, segmento 3",
+      "group": 2,
+      "kind": "Setting",
+      "calibration": true
+    },
+    {
+      "code": "Sensitivity",
+      "address": "0x0015",
+      "type": "UDINT",
+      "description": "Sensibilidad del sensor",
+      "group": 2,
+      "kind": "Setting",
+      "calibration": true
+    },
+    {
+      "code": "Division",
+      "address": "0x0017",
+      "type": "UINT",
+      "description": "Escalón (división)",
+      "group": 2,
+      "kind": "Setting",
+      "calibration": true
+    },
+    {
+      "code": "CalZero",
+      "address": "0x0018",
+      "type": "DINT",
+      "description": "Cero de calibración",
+      "group": 2,
+      "kind": "Setting",
+      "calibration": true
+    },
+    {
+      "code": "Slope1",
+      "address": "0x001A",
+      "type": "REAL",
+      "description": "Coeficiente de pendiente 1",
+      "group": 2,
+      "kind": "Setting",
+      "calibration": true
+    },
+    {
+      "code": "Slope2",
+      "address": "0x001C",
+      "type": "REAL",
+      "description": "Coeficiente de pendiente 2",
+      "group": 2,
+      "kind": "Setting",
+      "calibration": true
+    },
+    {
+      "code": "Slope3",
+      "address": "0x001E",
+      "type": "REAL",
+      "description": "Coeficiente de pendiente 3",
+      "group": 2,
+      "kind": "Setting",
+      "calibration": true
+    },
+    {
+      "code": "ZeroOffset",
+      "address": "0x0092",
+      "type": "DINT",
+      "description": "Desplazamiento del cero",
+      "group": 2,
+      "kind": "Setting",
+      "calibration": true
+    },
+    {
+      "code": "PresetTare",
+      "address": "0x0097",
+      "type": "UDINT",
+      "description": "Tara predeterminada",
+      "group": 2,
+      "kind": "Setting",
+      "decimalsFrom": {
+        "from": "StabDec",
+        "shift": 8,
+        "mask": 255
+      },
+      "note": "En unidad de peso, con los decimales del byte alto de 0x0008 (StabDec)."
+    },
+    {
+      "code": "AdFreq",
+      "address": "0x0036",
+      "type": "UINT",
+      "description": "Frecuencia del convertidor A/D",
+      "group": 3,
+      "kind": "Setting"
+    },
+    {
+      "code": "FilterOrder",
+      "address": "0x0037",
+      "type": "UINT",
+      "description": "Activación del filtro (byte bajo) y orden del paso bajo (byte alto)",
+      "group": 3,
+      "kind": "Setting"
+    },
+    {
+      "code": "Cutoff",
+      "address": "0x0038",
+      "type": "UINT",
+      "description": "Frecuencia de corte del filtro paso bajo",
+      "group": 3,
+      "kind": "Setting"
+    },
+    {
+      "code": "AvgDepth",
+      "address": "0x0039",
+      "type": "UINT",
+      "description": "Profundidad de la media móvil del peso",
+      "group": 3,
+      "kind": "Setting"
+    },
+    {
+      "code": "Clipping",
+      "address": "0x003A",
+      "type": "UINT",
+      "description": "Tolerancia del filtro de recorte del caudal instantáneo",
+      "group": 3,
+      "kind": "Setting"
+    },
+    {
+      "code": "FlowTime",
+      "address": "0x0058",
+      "type": "UINT",
+      "description": "Tiempo de determinación del caudal instantáneo",
+      "group": 3,
+      "kind": "Setting"
+    },
+    {
+      "code": "FlowAvgDepth",
+      "address": "0x0059",
+      "type": "UINT",
+      "description": "Profundidad del caudal medio",
+      "group": 3,
+      "kind": "Setting"
+    },
+    {
+      "code": "FlowTimeUnit",
+      "address": "0x005A",
+      "type": "UINT",
+      "description": "Unidad de tiempo del caudal",
+      "group": 3,
+      "kind": "Setting"
+    },
+    {
+      "code": "NominalFlow",
+      "address": "0x007A",
+      "type": "REAL",
+      "description": "Caudal nominal (consigna)",
+      "group": 4,
+      "basic": true,
+      "kind": "Setting"
+    },
+    {
+      "code": "CycleOptions",
+      "address": "0x005F",
+      "type": "UINT",
+      "description": "Opciones de ciclo y alarmas",
+      "group": 4,
+      "kind": "Setting"
+    },
+    {
+      "code": "RefillStart",
+      "address": "0x0060",
+      "type": "UDINT",
+      "description": "Nivel de inicio del relleno",
+      "group": 4,
+      "basic": true,
+      "kind": "Setting",
+      "decimalsFrom": {
+        "from": "StabDec",
+        "shift": 8,
+        "mask": 255
+      },
+      "note": "En unidad de peso, con los decimales del byte alto de 0x0008 (StabDec)."
+    },
+    {
+      "code": "RefillEnd",
+      "address": "0x0062",
+      "type": "UDINT",
+      "description": "Nivel de fin del relleno",
+      "group": 4,
+      "basic": true,
+      "kind": "Setting",
+      "decimalsFrom": {
+        "from": "StabDec",
+        "shift": 8,
+        "mask": 255
+      },
+      "note": "En unidad de peso, con los decimales del byte alto de 0x0008 (StabDec)."
+    },
+    {
+      "code": "RefillThrow",
+      "address": "0x0064",
+      "type": "DINT",
+      "description": "Vuelo del relleno",
+      "group": 4,
+      "kind": "Setting",
+      "decimalsFrom": {
+        "from": "StabDec",
+        "shift": 8,
+        "mask": 255
+      },
+      "note": "En unidad de peso, con los decimales del byte alto de 0x0008 (StabDec)."
+    },
+    {
+      "code": "RefillFlow",
+      "address": "0x0066",
+      "type": "REAL",
+      "description": "Caudal impuesto durante el relleno",
+      "group": 4,
+      "kind": "Setting"
+    },
+    {
+      "code": "EmptyLevel",
+      "address": "0x0068",
+      "type": "UDINT",
+      "description": "Nivel de tolva vacía",
+      "group": 4,
+      "kind": "Setting",
+      "decimalsFrom": {
+        "from": "StabDec",
+        "shift": 8,
+        "mask": 255
+      },
+      "note": "En unidad de peso, con los decimales del byte alto de 0x0008 (StabDec)."
+    },
+    {
+      "code": "FullLevel",
+      "address": "0x0A3E",
+      "type": "UDINT",
+      "description": "Nivel de tolva llena",
+      "group": 4,
+      "kind": "Setting",
+      "decimalsFrom": {
+        "from": "StabDec",
+        "shift": 8,
+        "mask": 255
+      },
+      "note": "En unidad de peso, con los decimales del byte alto de 0x0008 (StabDec)."
+    },
+    {
+      "code": "RefillMaxStart",
+      "address": "0x006B",
+      "type": "UINT",
+      "description": "Tiempo máximo de arranque del relleno",
+      "group": 4,
+      "kind": "Setting"
+    },
+    {
+      "code": "RefillCheck",
+      "address": "0x006C",
+      "type": "UINT",
+      "description": "Intervalo de control de variación de peso en el relleno",
+      "group": 4,
+      "kind": "Setting"
+    },
+    {
+      "code": "RefillMax",
+      "address": "0x006D",
+      "type": "UINT",
+      "description": "Tiempo máximo de relleno",
+      "group": 4,
+      "kind": "Setting"
+    },
+    {
+      "code": "FlowMin",
+      "address": "0x006E",
+      "type": "UINT",
+      "description": "Caudal instantáneo mínimo admisible",
+      "group": 4,
+      "kind": "Setting"
+    },
+    {
+      "code": "FlowMax",
+      "address": "0x006F",
+      "type": "UINT",
+      "description": "Caudal instantáneo máximo admisible",
+      "group": 4,
+      "kind": "Setting"
+    },
+    {
+      "code": "OutMin",
+      "address": "0x0070",
+      "type": "UINT",
+      "description": "Salida de control de caudal mínima admisible",
+      "group": 4,
+      "kind": "Setting"
+    },
+    {
+      "code": "OutMax",
+      "address": "0x0071",
+      "type": "UINT",
+      "description": "Salida de control de caudal máxima admisible",
+      "group": 4,
+      "kind": "Setting"
+    },
+    {
+      "code": "InhibitStart",
+      "address": "0x0072",
+      "type": "UINT",
+      "description": "Inhibición de alarmas de caudal al arrancar",
+      "group": 4,
+      "kind": "Setting"
+    },
+    {
+      "code": "InhibitRun",
+      "address": "0x0073",
+      "type": "UINT",
+      "description": "Inhibición de alarmas de caudal en servicio",
+      "group": 4,
+      "kind": "Setting"
+    },
+    {
+      "code": "BatchMax",
+      "address": "0x0074",
+      "type": "UINT",
+      "description": "Tiempo máximo del lote",
+      "group": 4,
+      "kind": "Setting"
+    },
+    {
+      "code": "BatchWeight",
+      "address": "0x0075",
+      "type": "UDINT",
+      "description": "Peso a totalizar (unidad de peso × 1000)",
+      "group": 4,
+      "kind": "Setting"
+    },
+    {
+      "code": "BatchCompl",
+      "address": "0x0077",
+      "type": "UINT",
+      "description": "Peso a totalizar, parte complementaria",
+      "group": 4,
+      "kind": "Setting"
+    },
+    {
+      "code": "BatchInflight",
+      "address": "0x0078",
+      "type": "DINT",
+      "description": "Vuelo del peso a totalizar",
+      "group": 4,
+      "kind": "Setting"
+    },
+    {
+      "code": "MaxFlow",
+      "address": "0x0A59",
+      "type": "REAL",
+      "description": "Caudal máximo",
+      "group": 4,
+      "kind": "Setting"
+    },
+    {
+      "code": "Kp",
+      "address": "0x0A35",
+      "type": "REAL",
+      "description": "PID: Kp",
+      "group": 5,
+      "kind": "Setting"
+    },
+    {
+      "code": "Ti",
+      "address": "0x0A37",
+      "type": "UDINT",
+      "description": "PID: Ti",
+      "group": 5,
+      "kind": "Setting",
+      "unit": "ms"
+    },
+    {
+      "code": "Td",
+      "address": "0x0A39",
+      "type": "UDINT",
+      "description": "PID: Td",
+      "group": 5,
+      "kind": "Setting"
+    },
+    {
+      "code": "PidBehavior",
+      "address": "0x0A3B",
+      "type": "UINT",
+      "description": "PID: comportamiento",
+      "group": 5,
+      "kind": "Setting",
+      "options": {
+        "0": "Estable",
+        "1": "Rápido",
+        "2": "Lento"
+      }
+    },
+    {
+      "code": "PidTuneFlow",
+      "address": "0x0A3C",
+      "type": "REAL",
+      "description": "PID: caudal para el autoajuste",
+      "group": 5,
+      "kind": "Setting"
+    },
+    {
+      "code": "PidTuneCycles",
+      "address": "0x0A50",
+      "type": "UINT",
+      "description": "PID: ciclos del autoajuste",
+      "group": 5,
+      "kind": "Setting",
+      "note": "Se recomiendan 10."
+    },
+    {
+      "code": "RampUp",
+      "address": "0x0A56",
+      "type": "UINT",
+      "description": "Rampa de subida de la salida analógica",
+      "group": 5,
+      "kind": "Setting"
+    },
+    {
+      "code": "RampDown",
+      "address": "0x0A57",
+      "type": "UINT",
+      "description": "Rampa de bajada de la salida analógica",
+      "group": 5,
+      "kind": "Setting"
+    },
+    {
+      "code": "InFn12",
+      "address": "0x0042",
+      "type": "UINT",
+      "description": "Función de las entradas 1 (byte bajo) y 2 (byte alto)",
+      "group": 6,
+      "kind": "Setting"
+    },
+    {
+      "code": "HoldTime",
+      "address": "0x0043",
+      "type": "UINT",
+      "description": "Tiempo de mantenimiento",
+      "group": 6,
+      "kind": "Setting"
+    },
+    {
+      "code": "OutFn12",
+      "address": "0x0044",
+      "type": "UINT",
+      "description": "Función de las salidas 1 (byte bajo) y 2 (byte alto)",
+      "group": 6,
+      "kind": "Setting"
+    },
+    {
+      "code": "OutFn34",
+      "address": "0x0045",
+      "type": "UINT",
+      "description": "Función de las salidas 3 (byte bajo) y 4 (byte alto)",
+      "group": 6,
+      "kind": "Setting"
+    },
+    {
+      "code": "High1",
+      "address": "0x0046",
+      "type": "DINT",
+      "description": "Umbral alto 1",
+      "group": 6,
+      "kind": "Setting"
+    },
+    {
+      "code": "Low1",
+      "address": "0x0048",
+      "type": "DINT",
+      "description": "Umbral bajo 1",
+      "group": 6,
+      "kind": "Setting"
+    },
+    {
+      "code": "High2",
+      "address": "0x004A",
+      "type": "DINT",
+      "description": "Umbral alto 2",
+      "group": 6,
+      "kind": "Setting"
+    },
+    {
+      "code": "Low2",
+      "address": "0x004C",
+      "type": "DINT",
+      "description": "Umbral bajo 2",
+      "group": 6,
+      "kind": "Setting"
+    },
+    {
+      "code": "High3",
+      "address": "0x004E",
+      "type": "DINT",
+      "description": "Umbral alto 3",
+      "group": 6,
+      "kind": "Setting"
+    },
+    {
+      "code": "Low3",
+      "address": "0x0050",
+      "type": "DINT",
+      "description": "Umbral bajo 3",
+      "group": 6,
+      "kind": "Setting"
+    },
+    {
+      "code": "High4",
+      "address": "0x0052",
+      "type": "DINT",
+      "description": "Umbral alto 4",
+      "group": 6,
+      "kind": "Setting"
+    },
+    {
+      "code": "Low4",
+      "address": "0x0054",
+      "type": "DINT",
+      "description": "Umbral bajo 4",
+      "group": 6,
+      "kind": "Setting"
+    },
+    {
+      "code": "ThresholdFn",
+      "address": "0x0056",
+      "type": "UINT",
+      "description": "Funciones de los umbrales 1-2 (byte bajo) y 3-4 (byte alto)",
+      "group": 6,
+      "kind": "Setting"
+    }
+  ],
+  "commands": [
+    {
+      "text": "Cero",
+      "address": "0x0090",
+      "value": 211,
+      "clearFirst": true,
+      "response": {
+        "address": "0x0091",
+        "done": 2,
+        "error": 3
+      }
+    },
+    {
+      "text": "Tara",
+      "address": "0x0090",
+      "value": 212,
+      "clearFirst": true,
+      "response": {
+        "address": "0x0091",
+        "done": 2,
+        "error": 3
+      }
+    },
+    {
+      "text": "Anular la tara",
+      "address": "0x0090",
+      "value": 213,
+      "clearFirst": true,
+      "response": {
+        "address": "0x0091",
+        "done": 2,
+        "error": 3
+      }
+    },
+    {
+      "text": "Arrancar la dosificación",
+      "address": "0x0090",
+      "value": 228,
+      "clearFirst": true,
+      "response": {
+        "address": "0x0091",
+        "done": 2,
+        "error": 3
+      },
+      "confirm": true,
+      "note": "Arranca o reanuda la dosificación o el lote (E4h)."
+    },
+    {
+      "text": "Parar la dosificación",
+      "address": "0x0090",
+      "value": 229,
+      "clearFirst": true,
+      "response": {
+        "address": "0x0091",
+        "done": 2,
+        "error": 3
+      },
+      "confirm": true,
+      "note": "Para la dosificación o anula el lote (E5h)."
+    },
+    {
+      "text": "Empezar el relleno",
+      "address": "0x0090",
+      "value": 245,
+      "clearFirst": true,
+      "response": {
+        "address": "0x0091",
+        "done": 2,
+        "error": 3
+      },
+      "confirm": true
+    },
+    {
+      "text": "Parar el relleno",
+      "address": "0x0090",
+      "value": 246,
+      "clearFirst": true,
+      "response": {
+        "address": "0x0091",
+        "done": 2,
+        "error": 3
+      }
+    },
+    {
+      "text": "Borrar errores",
+      "address": "0x0090",
+      "value": 223,
+      "clearFirst": true,
+      "response": {
+        "address": "0x0091",
+        "done": 2,
+        "error": 3
+      },
+      "note": "Totalización / borrar errores de dosificación (DFh)."
+    },
+    {
+      "text": "Guardar en EEPROM",
+      "address": "0x0090",
+      "value": 209,
+      "clearFirst": true,
+      "response": {
+        "address": "0x0091",
+        "done": 2,
+        "error": 3
+      },
+      "note": "Algunos cambios solo valen tras guardar y un reset."
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2B2140" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Guardar como: el disquete con un lápiz. -->
+  <path d="M3.5 3.5H17L20.5 7V11"/>
+  <path d="M3.5 3.5V20.5H11"/>
+  <path d="M7 3.5V9H16V3.5"/>
+  <path d="M7 20.5V14H12"/>
+  <path d="M14 21.5L14.6 18.6L20 13.2L22.3 15.5L16.9 20.9Z" stroke="#D6A24C"/>
+</svg>

@@ -1,0 +1,664 @@
+{
+  "schemaVersion": 1,
+  "brand": "Utilcell",
+  "model": "DAT 400",
+  "kind": "Transmisor de pesaje",
+  "description": "DAT 400: transmisor de pesaje con visor de 6 dígitos para carril DIN (24 VCC), 2 entradas, 2 salidas y pico (versiones /A analógica, /PROFIBUS, /DEVICENET). Modbus RTU esclavo por RS232 (COM1) o RS485 (COM2 si no lleva fieldbus); no tiene Modbus TCP: hace falta una pasarela TCP/RTU.",
+  "source": "Utilcell, manual técnico DAT 400 (software PW13081, versiones analógica/Profibus/DeviceNet), «Protocolo Modbus RTU», páginas 41-45. Dirección = la del manual sin el 4 inicial (40001 → 1). Leídos todos los bloques en un equipo real (firmware 0x5105) por una pasarela Modbus TCP/RTU, 9600 8N1, esclavo 1, el 2026-10-16; escritura probada solo en el registro de monitor (funciones 06 y 16).",
+  "verified": false,
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 110 100\"><rect x=\"4\" y=\"4\" width=\"102\" height=\"92\" rx=\"4\" fill=\"#E8EAEE\" stroke=\"#8A909C\" stroke-width=\"2\"/><rect x=\"12\" y=\"12\" width=\"86\" height=\"28\" rx=\"2\" fill=\"#2B1010\"/><text x=\"55\" y=\"33\" font-family=\"monospace\" font-size=\"18\" font-weight=\"bold\" fill=\"#FF3B30\" text-anchor=\"middle\">8888.8</text><g fill=\"#7A8090\"><circle cx=\"20\" cy=\"50\" r=\"2.5\"/><circle cx=\"32\" cy=\"50\" r=\"2.5\"/><circle cx=\"44\" cy=\"50\" r=\"2.5\"/><circle cx=\"56\" cy=\"50\" r=\"2.5\"/></g><g fill=\"#4A4F5C\"><rect x=\"14\" y=\"60\" width=\"18\" height=\"12\" rx=\"2\"/><rect x=\"36\" y=\"60\" width=\"18\" height=\"12\" rx=\"2\"/><rect x=\"58\" y=\"60\" width=\"18\" height=\"12\" rx=\"2\"/><rect x=\"80\" y=\"60\" width=\"18\" height=\"12\" rx=\"2\"/></g><text x=\"55\" y=\"88\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#5A606C\" text-anchor=\"middle\">DAT 400</text></svg>",
+  "protocol": {
+    "registerBase": 1,
+    "wordOrder": "HighFirst",
+    "maxRegistersPerRead": 16,
+    "save": {
+      "address": "503",
+      "value": 32,
+      "description": "Guardar en la memoria permanente (orden 0x0020)"
+    },
+    "restoreNotes": "Lo que se cambia por Modbus se pierde al apagar si no se manda la orden 0x0020 (el bit 9 del estado avisa). Escribir la capacidad, la sensibilidad, la capacidad neta o el filtro tarda hasta 550 ms, y guardar hasta 350 ms. Cambiar la capacidad, la sensibilidad, la neta o la tara del sistema rehace la calibración teórica y borra la linealización: restaurar la calibración al final. Serie de fábrica: 9600, n-8-1, dirección 1; el protocolo de COM1 tiene que estar en «Modbus»."
+  },
+  "groups": [
+    {
+      "number": 1,
+      "text": "Identificación"
+    },
+    {
+      "number": 2,
+      "text": "Calibración"
+    },
+    {
+      "number": 3,
+      "text": "Pesaje"
+    },
+    {
+      "number": 6,
+      "text": "Consignas"
+    },
+    {
+      "number": 7,
+      "text": "Salida analógica"
+    },
+    {
+      "number": 10,
+      "text": "Medida"
+    },
+    {
+      "number": 12,
+      "text": "Órdenes"
+    },
+    {
+      "number": 13,
+      "text": "Entradas, salidas y teclas"
+    },
+    {
+      "number": 14,
+      "text": "Comprobación de la comunicación"
+    }
+  ],
+  "parameters": [
+    {
+      "code": "Status",
+      "address": "1",
+      "type": "UINT",
+      "description": "Registro de estado",
+      "group": 10,
+      "basic": true,
+      "kind": "Live",
+      "writable": false,
+      "bits": {
+        "0": "Centro de cero",
+        "1": "Peso estable",
+        "2": "En la banda de cero",
+        "3": "Tara puesta",
+        "4": "Carga escasa",
+        "5": "Carga excesiva",
+        "6": "Fuera de rango (célula desconectada o señal fuera de rango)",
+        "8": "Teclado bloqueado",
+        "9": "Cambios sin guardar (orden 0x0020)",
+        "10": "Entrada 1",
+        "11": "Entrada 2",
+        "12": "Salida 1",
+        "13": "Salida 2"
+      },
+      "note": "Manual: 40001."
+    },
+    {
+      "code": "Gross",
+      "address": "2",
+      "type": "DINT",
+      "description": "Peso bruto",
+      "group": 10,
+      "basic": true,
+      "kind": "Live",
+      "writable": false,
+      "decimalsFrom": {
+        "from": "DspDiv",
+        "map": {
+          "0": 3,
+          "1": 3,
+          "2": 3,
+          "3": 2,
+          "4": 2,
+          "5": 2,
+          "6": 1,
+          "7": 1,
+          "8": 1,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0,
+          "13": 0,
+          "14": 0
+        }
+      },
+      "note": "Manual: 40002. Con los decimales del valor de división (DspDiv)."
+    },
+    {
+      "code": "Net",
+      "address": "4",
+      "type": "DINT",
+      "description": "Peso neto",
+      "group": 10,
+      "basic": true,
+      "kind": "Live",
+      "writable": false,
+      "decimalsFrom": {
+        "from": "DspDiv",
+        "map": {
+          "0": 3,
+          "1": 3,
+          "2": 3,
+          "3": 2,
+          "4": 2,
+          "5": 2,
+          "6": 1,
+          "7": 1,
+          "8": 1,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0,
+          "13": 0,
+          "14": 0
+        }
+      },
+      "note": "Manual: 40004. Con los decimales del valor de división (DspDiv)."
+    },
+    {
+      "code": "Peak",
+      "address": "6",
+      "type": "DINT",
+      "description": "Valor de pico",
+      "group": 10,
+      "kind": "Live",
+      "writable": false,
+      "decimalsFrom": {
+        "from": "DspDiv",
+        "map": {
+          "0": 3,
+          "1": 3,
+          "2": 3,
+          "3": 2,
+          "4": 2,
+          "5": 2,
+          "6": 1,
+          "7": 1,
+          "8": 1,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0,
+          "13": 0,
+          "14": 0
+        }
+      },
+      "note": "Manual: 40006. Con los decimales del valor de división (DspDiv)."
+    },
+    {
+      "code": "Signal",
+      "address": "8",
+      "type": "INT",
+      "description": "Señal de las células",
+      "group": 10,
+      "scale": 0.0001,
+      "unit": "mV/V",
+      "kind": "Live",
+      "writable": false,
+      "note": "Manual: 40008. Escala como la de la sensibilidad (el manual no la da)."
+    },
+    {
+      "code": "Inputs",
+      "address": "9",
+      "type": "UINT",
+      "description": "Entradas lógicas",
+      "group": 13,
+      "kind": "Live",
+      "writable": false,
+      "bits": {
+        "0": "Entrada 1",
+        "1": "Entrada 2"
+      },
+      "note": "Manual: 40009."
+    },
+    {
+      "code": "Outputs",
+      "address": "10",
+      "type": "UINT",
+      "description": "Salidas lógicas",
+      "group": 13,
+      "kind": "Live",
+      "bits": {
+        "0": "Salida 1",
+        "1": "Salida 2"
+      },
+      "note": "Manual: 40010. Se puede escribir, pero solo manda en una salida cuya consigna vale 0."
+    },
+    {
+      "code": "Keys",
+      "address": "11",
+      "type": "UINT",
+      "description": "Teclas pulsadas",
+      "group": 13,
+      "kind": "Live",
+      "writable": false,
+      "bits": {
+        "0": "SET",
+        "1": "FUN",
+        "2": "0",
+        "3": "PRG"
+      },
+      "note": "Manual: 40011."
+    },
+    {
+      "code": "Firmware",
+      "address": "12",
+      "type": "UINT",
+      "description": "Código y versión del firmware",
+      "group": 1,
+      "kind": "Live",
+      "writable": false,
+      "note": "Manual: 40012. Byte alto: código del firmware; byte bajo: versión."
+    },
+    {
+      "code": "Set1",
+      "address": "201",
+      "type": "DINT",
+      "description": "Consigna 1",
+      "group": 6,
+      "basic": true,
+      "kind": "Setting",
+      "decimalsFrom": {
+        "from": "DspDiv",
+        "map": {
+          "0": 3,
+          "1": 3,
+          "2": 3,
+          "3": 2,
+          "4": 2,
+          "5": 2,
+          "6": 1,
+          "7": 1,
+          "8": 1,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0,
+          "13": 0,
+          "14": 0
+        }
+      },
+      "note": "Manual: 40201. Con los decimales del valor de división (DspDiv). No está en la lista de lo que guarda la orden 0x0020."
+    },
+    {
+      "code": "Set2",
+      "address": "203",
+      "type": "DINT",
+      "description": "Consigna 2",
+      "group": 6,
+      "basic": true,
+      "kind": "Setting",
+      "decimalsFrom": {
+        "from": "DspDiv",
+        "map": {
+          "0": 3,
+          "1": 3,
+          "2": 3,
+          "3": 2,
+          "4": 2,
+          "5": 2,
+          "6": 1,
+          "7": 1,
+          "8": 1,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0,
+          "13": 0,
+          "14": 0
+        }
+      },
+      "note": "Manual: 40203. Con los decimales del valor de división (DspDiv). No está en la lista de lo que guarda la orden 0x0020."
+    },
+    {
+      "code": "Data",
+      "address": "501",
+      "type": "DINT",
+      "description": "Dato para la orden (p. ej. el peso de calibración)",
+      "group": 12,
+      "kind": "Live",
+      "note": "Manual: 40501. Solo escritura (puede dar error al leerlo). Escribir el dato y la orden en una sola escritura de 3 registros (función 16)."
+    },
+    {
+      "code": "Command",
+      "address": "503",
+      "type": "UINT",
+      "description": "Registro de órdenes",
+      "group": 12,
+      "kind": "Live",
+      "options": {
+        "0": "Sin orden",
+        "1": "Cero semiautomático",
+        "2": "Tara automática",
+        "3": "Borrar el pico",
+        "16": "Calibración del cero (0x0010)",
+        "17": "Calibración del fondo de escala con el peso del dato (0x0011)",
+        "32": "Guardar en la memoria permanente (0x0020)",
+        "32767": "Acceso directo a la memoria (0x7FFF, fieldbus)"
+      },
+      "note": "Manual: 40503. Solo escritura (puede dar error al leerlo)."
+    },
+    {
+      "code": "CapaC",
+      "address": "1001",
+      "type": "DINT",
+      "description": "Capacidad de las células (suma de las nominales)",
+      "group": 2,
+      "basic": true,
+      "kind": "Setting",
+      "calibration": true,
+      "note": "Manual: 41001. 1 a 500000, misma unidad que el peso; de fábrica 10000. Al cambiarla se rehace la calibración teórica."
+    },
+    {
+      "code": "SEnsit",
+      "address": "1003",
+      "type": "UINT",
+      "description": "Sensibilidad de las células",
+      "group": 2,
+      "scale": 0.0001,
+      "unit": "mV/V",
+      "basic": true,
+      "kind": "Setting",
+      "calibration": true,
+      "note": "Manual: 41003. 0,5000 a 4,0000; de fábrica 2,0000 (leído en un equipo: 20000)."
+    },
+    {
+      "code": "DspDiv",
+      "address": "1004",
+      "type": "UINT",
+      "description": "Valor de división",
+      "group": 2,
+      "basic": true,
+      "kind": "Setting",
+      "calibration": true,
+      "options": {
+        "0": "0,001",
+        "1": "0,002",
+        "2": "0,005",
+        "3": "0,01",
+        "4": "0,02",
+        "5": "0,05",
+        "6": "0,1",
+        "7": "0,2",
+        "8": "0,5",
+        "9": "1",
+        "10": "2",
+        "11": "5",
+        "12": "10",
+        "13": "20",
+        "14": "50"
+      },
+      "note": "Manual: 41004. Da los decimales de todos los pesos. El valor 3 sale como «0,00» en el manual (errata: 0,01)."
+    },
+    {
+      "code": "DeadL",
+      "address": "1005",
+      "type": "DINT",
+      "description": "Tara del sistema (peso fijo)",
+      "group": 2,
+      "kind": "Setting",
+      "calibration": true,
+      "note": "Manual: 41005. De fábrica 0."
+    },
+    {
+      "code": "NEtCap",
+      "address": "1007",
+      "type": "DINT",
+      "description": "Capacidad del sistema (neta)",
+      "group": 2,
+      "basic": true,
+      "kind": "Setting",
+      "calibration": true,
+      "note": "Manual: 41007. 1 a 500000, no menos de 1/10 de la capacidad de las células; de fábrica 10000. Es también la consigna de sobrecarga."
+    },
+    {
+      "code": "F1LtEr",
+      "address": "1101",
+      "type": "UINT",
+      "description": "Filtro de peso",
+      "group": 3,
+      "basic": true,
+      "kind": "Setting",
+      "options": {
+        "0": "50 Hz / respuesta 25 Hz",
+        "1": "50 Hz / 16 Hz",
+        "2": "25 Hz / 8 Hz",
+        "3": "25 Hz / 5 Hz",
+        "4": "25 Hz / 2,5 Hz",
+        "5": "10 Hz / 1,5 Hz",
+        "6": "10 Hz / 1 Hz",
+        "7": "10 Hz / 0,7 Hz",
+        "8": "5 Hz / 0,4 Hz",
+        "9": "5 Hz / 0,2 Hz"
+      },
+      "note": "Manual: 41101. De fábrica 5."
+    },
+    {
+      "code": "Not1on",
+      "address": "1102",
+      "type": "UINT",
+      "description": "Estabilidad del peso",
+      "group": 3,
+      "kind": "Setting",
+      "options": {
+        "0": "Siempre estable",
+        "1": "Rápida",
+        "2": "Media",
+        "3": "Precisa",
+        "4": "Máxima precisión"
+      },
+      "note": "Manual: 41102. De fábrica 2."
+    },
+    {
+      "code": "Auto0",
+      "address": "1103",
+      "type": "DINT",
+      "description": "Auto-cero al encender (peso máximo)",
+      "group": 3,
+      "kind": "Setting",
+      "note": "Manual: 41103. 0 hasta la capacidad; de fábrica 0. La tabla Modbus lo llama «en %», 0-100: comprobar en qué unidad va."
+    },
+    {
+      "code": "0trAc",
+      "address": "1105",
+      "type": "UINT",
+      "description": "Seguimiento de cero",
+      "group": 3,
+      "kind": "Setting",
+      "options": {
+        "0": "Apagado",
+        "1": "0,5 div/s",
+        "2": "1 div/s",
+        "3": "2 div/s",
+        "4": "3 div/s"
+      },
+      "note": "Manual: 41105. De fábrica 0."
+    },
+    {
+      "code": "0band",
+      "address": "1106",
+      "type": "UINT",
+      "description": "Banda de cero (divisiones)",
+      "group": 3,
+      "kind": "Setting",
+      "note": "Manual: 41106. 0 a 200; de fábrica 100."
+    },
+    {
+      "code": "NodE1",
+      "address": "1201",
+      "type": "UINT",
+      "description": "Modo de la consigna 1",
+      "group": 6,
+      "kind": "Setting",
+      "bits": {
+        "2": "Contacto normalmente cerrado",
+        "3": "Con peso negativo",
+        "4": "Solo con peso estable"
+      },
+      "note": "Manual: 41201. Bits 0-1: 0 neto, 1 bruto, 2 pico. Bit 2: 0 N.A., 1 N.C. Bit 3: 0 peso positivo, 1 negativo. Bit 4: 0 siempre, 1 solo con peso estable (de fábrica: bruto, N.A., positivo, siempre = 1)."
+    },
+    {
+      "code": "Hyst-1",
+      "address": "1202",
+      "type": "DINT",
+      "description": "Histéresis de la consigna 1",
+      "group": 6,
+      "kind": "Setting",
+      "note": "Manual: 41202. 0 a 999; de fábrica 2."
+    },
+    {
+      "code": "t1NEr1",
+      "address": "1204",
+      "type": "UINT",
+      "description": "Temporización de la consigna 1",
+      "group": 6,
+      "scale": 0.1,
+      "unit": "s",
+      "kind": "Setting",
+      "note": "Manual: 41204. 0 a 99,9 s; 0 = sin temporización. Pasado el tiempo, la salida se apaga aunque siga el peso."
+    },
+    {
+      "code": "dELay1",
+      "address": "1205",
+      "type": "UINT",
+      "description": "Retardo de la consigna 1",
+      "group": 6,
+      "scale": 0.1,
+      "unit": "s",
+      "kind": "Setting",
+      "note": "Manual: 41205. 0 a 99,9 s; 0 = sin retardo."
+    },
+    {
+      "code": "NodE2",
+      "address": "1206",
+      "type": "UINT",
+      "description": "Modo de la consigna 2",
+      "group": 6,
+      "kind": "Setting",
+      "bits": {
+        "2": "Contacto normalmente cerrado",
+        "3": "Con peso negativo",
+        "4": "Solo con peso estable"
+      },
+      "note": "Manual: 41206. Bits 0-1: 0 neto, 1 bruto, 2 pico. Bit 2: 0 N.A., 1 N.C. Bit 3: 0 peso positivo, 1 negativo. Bit 4: 0 siempre, 1 solo con peso estable (de fábrica: bruto, N.A., positivo, siempre = 1)."
+    },
+    {
+      "code": "Hyst-2",
+      "address": "1207",
+      "type": "DINT",
+      "description": "Histéresis de la consigna 2",
+      "group": 6,
+      "kind": "Setting",
+      "note": "Manual: 41207. 0 a 999; de fábrica 2."
+    },
+    {
+      "code": "t1NEr2",
+      "address": "1209",
+      "type": "UINT",
+      "description": "Temporización de la consigna 2",
+      "group": 6,
+      "scale": 0.1,
+      "unit": "s",
+      "kind": "Setting",
+      "note": "Manual: 41209. 0 a 99,9 s; 0 = sin temporización. Pasado el tiempo, la salida se apaga aunque siga el peso."
+    },
+    {
+      "code": "dELay2",
+      "address": "1210",
+      "type": "UINT",
+      "description": "Retardo de la consigna 2",
+      "group": 6,
+      "scale": 0.1,
+      "unit": "s",
+      "kind": "Setting",
+      "note": "Manual: 41210. 0 a 99,9 s; 0 = sin retardo."
+    },
+    {
+      "code": "F-SCaL",
+      "address": "1401",
+      "type": "DINT",
+      "description": "Fondo de escala de la salida analógica",
+      "group": 7,
+      "kind": "Setting",
+      "note": "Manual: 41401. Solo en el DAT 400/A. 0 a 99999; de fábrica, la capacidad."
+    },
+    {
+      "code": "AnaMode",
+      "address": "1403",
+      "type": "UINT",
+      "description": "Peso de la salida analógica",
+      "group": 7,
+      "kind": "Setting",
+      "options": {
+        "0": "Neto",
+        "1": "Bruto",
+        "2": "Pico"
+      },
+      "note": "Manual: 41403. Solo en el DAT 400/A. Los valores de la tabla G no salen en el manual: supuestos en el orden del menú (de fábrica, bruto)."
+    },
+    {
+      "code": "ranGE",
+      "address": "1404",
+      "type": "UINT",
+      "description": "Rango de la salida analógica",
+      "group": 7,
+      "kind": "Setting",
+      "options": {
+        "0": "0-20 mA",
+        "1": "4-20 mA",
+        "2": "0-10 V",
+        "3": "0-5 V"
+      },
+      "note": "Manual: 41404. Solo en el DAT 400/A. Los valores de la tabla H no salen en el manual: supuestos en el orden del menú (de fábrica, 4-20 mA)."
+    },
+    {
+      "code": "AnaOut",
+      "address": "1405",
+      "type": "UINT",
+      "description": "Valor de la salida analógica (puntos)",
+      "group": 7,
+      "kind": "Live",
+      "note": "Manual: 41405. Solo en el DAT 400/A. 0 a 65535; solo se usa si el fondo de escala es 0."
+    },
+    {
+      "code": "MonW",
+      "address": "2000",
+      "type": "UINT",
+      "description": "Registro de monitor (escritura)",
+      "group": 14,
+      "kind": "Live",
+      "note": "Manual: 42000. Lo escrito aquí se copia en 42100: sirve para comprobar la comunicación."
+    },
+    {
+      "code": "MonR",
+      "address": "2100",
+      "type": "UINT",
+      "description": "Registro de monitor (lectura)",
+      "group": 14,
+      "kind": "Live",
+      "writable": false,
+      "note": "Manual: 42100."
+    }
+  ],
+  "commands": [
+    {
+      "text": "Cero",
+      "address": "503",
+      "value": 1,
+      "note": "Cero semiautomático (dentro de la banda de cero)."
+    },
+    {
+      "text": "Tara",
+      "address": "503",
+      "value": 2
+    },
+    {
+      "text": "Borrar el pico",
+      "address": "503",
+      "value": 3
+    },
+    {
+      "text": "Calibrar el cero",
+      "address": "503",
+      "value": 16,
+      "confirm": true,
+      "note": "Con la báscula vacía y el peso estable. Cambia la calibración: luego, guardar."
+    },
+    {
+      "text": "Guardar en memoria",
+      "address": "503",
+      "value": 32,
+      "note": "Guarda en la memoria permanente lo cambiado por Modbus (el bit 9 del estado se apaga)."
+    }
+  ]
+}

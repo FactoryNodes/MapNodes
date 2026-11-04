@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- MapNodes (PENDIENTES 200, licencia MIT): el editor de los ficheros de dispositivo de FactoryNodes (library/devices/<marca>/<modelo>.json:
+       cabecera, protocolo, parámetros con su dirección Modbus o EtherNet/IP, grupos y órdenes). Solo UI y composición: la lógica vive en
+       src/libs/FactoryNodes.MapNodes.Presentation (ViewModels) y src/libs/FactoryNodes.Devices (el formato). -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>MapNodes</AssemblyName>
+    <RootNamespace>MapNodes</RootNamespace>
+    <ApplicationIcon>Assets/mapnodes.ico</ApplicationIcon>
+    <Product>MapNodes</Product>
+    <AssemblyTitle>MapNodes</AssemblyTitle>
+  </PropertyGroup>
+
+  <!-- La versión con la fecha y hora de cada compilación -->
+  <Import Project="..\..\..\build\AppVersion.props" Condition="Exists('..\..\..\build\AppVersion.props')" />
+
+  <ItemGroup>
+    <!-- Pinta los iconos SVG de los botones (BSD-3-Clause), el mismo que usan FactoryNodes y SoftNodes -->
+    <PackageReference Include="SharpVectors.Wpf" Version="1.8.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\libs\FactoryNodes.MapNodes.Presentation\FactoryNodes.MapNodes.Presentation.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\mapnodes.ico" />
+  </ItemGroup>
+
+</Project>
