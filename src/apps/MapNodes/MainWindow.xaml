@@ -28,6 +28,14 @@
                     <Button Style="{StaticResource IconButton}" Command="{Binding SaveAsCommand}" ToolTip="{l:T 'Guardar como…: en otro fichero'}">
                         <Image Source="{Binding Source={x:Static p:MapNodesIcons.SaveAs}, Converter={StaticResource SvgImage}}" Width="18" Height="18" />
                     </Button>
+                    <Button Style="{StaticResource IconButton}" Command="{Binding OpenWebCommand}" Margin="14,0,0,0"
+                            ToolTip="{l:T 'Abrir de la web…: los ficheros de dispositivo publicados por FactoryNodes, por tipo y marca'}">
+                        <Image Source="{Binding Source={x:Static p:MapNodesIcons.WebOpen}, Converter={StaticResource SvgImage}}" Width="18" Height="18" />
+                    </Button>
+                    <Button Style="{StaticResource IconButton}" Command="{Binding ShareCommand}"
+                            ToolTip="{l:T 'Compartir…: guarda el fichero y abre la página donde se sube con tu cuenta. Lo revisamos antes de publicarlo; los ficheros compartidos llevan la licencia CC-BY 4.0.'}">
+                        <Image Source="{Binding Source={x:Static p:MapNodesIcons.Share}, Converter={StaticResource SvgImage}}" Width="18" Height="18" />
+                    </Button>
                 </StackPanel>
                 <Button DockPanel.Dock="Right" x:Name="LanguageButton" Style="{StaticResource IconButton}" Margin="0" Click="OnLanguageClick"
                         ToolTip="{l:T 'Idioma del programa (se vuelve a abrir)'}">
@@ -84,8 +92,14 @@
                     <TextBox Text="{Binding Brand, UpdateSourceTrigger=LostFocus}" ToolTip="{l:T 'El fabricante, como lo escribe él (es la carpeta del fichero, en minúsculas)'}" />
                     <TextBlock Text="{l:T 'Modelo'}" Style="{StaticResource FieldLabel}" />
                     <TextBox Text="{Binding ModelName, UpdateSourceTrigger=LostFocus}" ToolTip="{l:T 'El modelo (es el nombre del fichero). Marca y modelo juntos identifican el dispositivo en los proyectos y en las copias.'}" />
-                    <TextBlock Text="{l:T 'Tipo de equipo'}" Style="{StaticResource FieldLabel}" />
-                    <TextBox Text="{Binding Kind, UpdateSourceTrigger=LostFocus}" ToolTip="{l:T 'Variador, visor de peso, arrancador…'}" />
+                    <TextBlock Text="{l:T 'Tipo'}" Style="{StaticResource FieldLabel}" />
+                    <ComboBox ItemsSource="{Binding TypeOptions}" SelectedValuePath="Value" DisplayMemberPath="Text" SelectedValue="{Binding Type}"
+                              ToolTip="{l:T 'El tipo, de la lista: por él se elige el dispositivo en el programa, antes que por la marca'}" />
+                    <TextBlock Text="{l:T 'Idioma de los textos'}" Style="{StaticResource FieldLabel}" />
+                    <ComboBox ItemsSource="{Binding LanguageOptions}" SelectedValuePath="Value" DisplayMemberPath="Text" SelectedValue="{Binding Language}"
+                              ToolTip="{l:T 'En qué idioma están escritos los textos de este fichero. Las traducciones a otros idiomas van en ficheros aparte (pestaña «Traducción»).'}" />
+                    <TextBlock Text="{l:T 'Qué es'}" Style="{StaticResource FieldLabel}" />
+                    <TextBox Text="{Binding Kind, UpdateSourceTrigger=LostFocus}" ToolTip="{l:T 'En palabras, al lado del modelo: transmisor de pesaje, regulador LED…'}" />
                     <TextBlock Text="{l:T 'Descripción'}" Style="{StaticResource FieldLabel}" />
                     <TextBox Text="{Binding Description, UpdateSourceTrigger=LostFocus}" TextWrapping="Wrap" AcceptsReturn="True" MinHeight="48" />
                     <TextBlock Text="{l:T 'De dónde salen las direcciones'}" Style="{StaticResource FieldLabel}" />
@@ -93,8 +107,36 @@
                              ToolTip="{l:T 'El manual y la página (o la herramienta), para que otro pueda comprobarlo'}" />
                     <CheckBox Content="{l:T 'Probado con un equipo real'}" IsChecked="{Binding Verified}" Margin="0,10,0,0"
                               ToolTip="{l:T 'Solo si se han leído las direcciones en un equipo de verdad. Sin marcar, el programa avisa antes de restaurar una copia.'}" />
-                    <TextBlock Text="{l:T 'Lleva el dibujo del equipo (se conserva al guardar).'}" Foreground="{StaticResource GrayBrush}" FontSize="11" Margin="0,6,0,0"
-                               Visibility="{Binding HasDrawing, Converter={StaticResource BoolToVisibility}}" />
+                    <Grid Margin="0,4,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="{l:T 'Versión'}" Style="{StaticResource FieldLabel}" />
+                            <TextBox Text="{Binding Version, UpdateSourceTrigger=LostFocus}" Margin="0,0,6,0"
+                                     ToolTip="{l:T 'La versión de este fichero (1, 2, 3…): súbela con cada corrección que compartas'}" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="{l:T 'Autor'}" Style="{StaticResource FieldLabel}" />
+                            <TextBox Text="{Binding Author, UpdateSourceTrigger=LostFocus}" ToolTip="{l:T 'Quién ha hecho el fichero: se cita al compartirlo (CC-BY 4.0)'}" />
+                        </StackPanel>
+                    </Grid>
+
+                    <TextBlock Text="{l:T 'Dibujo del equipo'}" Style="{StaticResource FieldLabel}" />
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Right" VerticalAlignment="Top">
+                            <Button Style="{StaticResource IconButton}" Command="{Binding LoadDrawingCommand}" ToolTip="{l:T 'Cargar el dibujo de un fichero SVG'}">
+                                <Image Source="{Binding Source={x:Static p:MapNodesIcons.DrawingOpen}, Converter={StaticResource SvgImage}}" Width="18" Height="18" />
+                            </Button>
+                            <Button Style="{StaticResource IconButton}" Command="{Binding RemoveDrawingCommand}" ToolTip="{l:T 'Quitar el dibujo'}">
+                                <Image Source="{Binding Source={x:Static p:MapNodesIcons.RemoveRow}, Converter={StaticResource SvgImage}}" Width="18" Height="18" />
+                            </Button>
+                        </StackPanel>
+                        <Border BorderBrush="{StaticResource MistBrush}" BorderThickness="1" Height="96" Margin="0,0,6,0" Background="{StaticResource PaperBrush}">
+                            <Image Source="{Binding Svg, Converter={StaticResource SvgImage}}" Margin="6" Stretch="Uniform" />
+                        </Border>
+                    </DockPanel>
 
                     <TextBlock Text="{l:T 'Protocolo'}" Style="{StaticResource SectionTitle}" />
                     <TextBlock Text="{l:T 'Numeración de los registros'}" Style="{StaticResource FieldLabel}" />
@@ -120,6 +162,33 @@
                     <TextBlock Text="{l:T 'Antes de restaurar'}" Style="{StaticResource FieldLabel}" />
                     <TextBox Text="{Binding RestoreNotes, UpdateSourceTrigger=LostFocus}" TextWrapping="Wrap" AcceptsReturn="True" MinHeight="48"
                              ToolTip="{l:T 'Lo que hay que saber antes de escribir una copia en un equipo nuevo (parado, en qué modo…)'}" />
+
+                    <TextBlock Text="{l:T 'Probar con el equipo'}" Style="{StaticResource SectionTitle}" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="{l:T 'IP'}" Style="{StaticResource FieldLabel}" />
+                            <TextBox Text="{Binding TestHost, UpdateSourceTrigger=PropertyChanged}" ToolTip="{l:T 'La IP del equipo, o la de su pasarela Modbus TCP/RTU'}" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Margin="6,0,0,0">
+                            <TextBlock Text="{l:T 'Puerto'}" Style="{StaticResource FieldLabel}" />
+                            <TextBox Text="{Binding TestPort, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Margin="6,0,0,0">
+                            <TextBlock Text="{l:T 'Esclavo'}" Style="{StaticResource FieldLabel}" />
+                            <TextBox Text="{Binding TestUnit, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                        <Button Grid.Column="3" Style="{StaticResource IconButton}" Command="{Binding TestCommand}" VerticalAlignment="Bottom" Margin="6,0,0,0"
+                                ToolTip="{l:T 'Lee del equipo todos los parámetros con dirección Modbus y pone lo leído en la columna «Leído», para ver que las direcciones cuadran. Solo lee: no escribe nada.'}">
+                            <Image Source="{Binding Source={x:Static p:MapNodesIcons.DeviceTest}, Converter={StaticResource SvgImage}}" Width="18" Height="18" />
+                        </Button>
+                    </Grid>
+                    <TextBlock Text="{Binding TestText}" Foreground="{StaticResource GrayBrush}" FontSize="11" TextWrapping="Wrap" Margin="0,6,0,0" />
                 </StackPanel>
             </ScrollViewer>
         </Border>
@@ -245,6 +314,22 @@
                                     <DataTemplate>
                                         <TextBox Style="{StaticResource CellBox}" Text="{Binding Bits, UpdateSourceTrigger=LostFocus}"
                                                  ToolTip="{l:T 'En una palabra de estado, qué es cada bit: 0=Listo; 3=Fallo'}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="{l:T 'Decimales de'}" Width="130">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Style="{StaticResource CellBox}" Text="{Binding DecimalsFrom, UpdateSourceTrigger=LostFocus}" FontFamily="Consolas"
+                                                 ToolTip="{l:T 'Si los decimales los da otro parámetro (un peso): su código y, si hace falta, el desplazamiento, la máscara y la tabla. «StabDec >>8 &amp;255» (el byte alto) o «DspDiv: 0=3; 5=2» (según su valor). Vacío: solo la escala.'}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="{l:T 'Leído'}" Width="110">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding TestValue}" Foreground="{StaticResource TealBrush}" VerticalAlignment="Center" Margin="4,0" TextTrimming="CharacterEllipsis"
+                                                   ToolTip="{Binding TestValue}" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -394,6 +479,46 @@
                                         <Button Padding="2" BorderThickness="0" Content="×" FontSize="14" Margin="0" Background="Transparent"
                                                 Command="{Binding DataContext.RemoveCommandCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}"
                                                 AutomationProperties.Name="{l:T 'Quitar la orden'}" ToolTip="{l:T 'Quitar la orden'}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </TabItem>
+                    <!-- Traducción (2026-11-12): los textos del fichero en otro idioma, con el original al lado. Es un fichero aparte, solo de textos. -->
+            <TabItem Header="{Binding TranslationHeader}">
+                <DockPanel Margin="6">
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,6">
+                        <TextBlock Text="{l:T 'Traducir al'}" VerticalAlignment="Center" Margin="0,0,8,0" />
+                        <ComboBox ItemsSource="{Binding TranslationLanguageOptions}" SelectedValuePath="Value" DisplayMemberPath="Text" SelectedValue="{Binding TranslationLanguage}" MinWidth="130" />
+                        <Button Style="{StaticResource IconButton}" Command="{Binding StartTranslationCommand}" Margin="8,0,0,0"
+                                ToolTip="{l:T 'Poner en la lista los textos del fichero abierto para traducirlos (lo ya traducido se conserva). No hace falta haber guardado el fichero.'}">
+                            <Image Source="{Binding Source={x:Static p:MapNodesIcons.AddRow}, Converter={StaticResource SvgImage}}" Width="18" Height="18" />
+                        </Button>
+                        <Button Style="{StaticResource IconButton}" Command="{Binding OpenTranslationCommand}"
+                                ToolTip="{l:T 'Abrir una traducción ya hecha de este modelo, para seguir con ella'}">
+                            <Image Source="{Binding Source={x:Static p:MapNodesIcons.Open}, Converter={StaticResource SvgImage}}" Width="18" Height="18" />
+                        </Button>
+                        <Button Style="{StaticResource PrimaryIconButton}" Command="{Binding SaveTranslationCommand}"
+                                ToolTip="{l:T 'Guardar la traducción en su propio fichero (modelo.idioma.json): solo lleva textos, sin direcciones ni parámetros; el fichero del dispositivo no cambia'}">
+                            <Image Source="{Binding Source={x:Static p:MapNodesIcons.Save}, Converter={StaticResource SvgImage}}" Width="18" Height="18" />
+                        </Button>
+                        <TextBlock Text="{l:T 'Versión'}" VerticalAlignment="Center" Margin="16,0,6,0" />
+                        <TextBox Text="{Binding TranslationVersion, UpdateSourceTrigger=LostFocus}" Width="44" />
+                        <TextBlock Text="{l:T 'Autor'}" VerticalAlignment="Center" Margin="12,0,6,0" />
+                        <TextBox Text="{Binding TranslationAuthor, UpdateSourceTrigger=LostFocus}" Width="180" />
+                    </StackPanel>
+                    <DataGrid ItemsSource="{Binding TranslationRows}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" HeadersVisibility="Column"
+                              GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="{StaticResource MistBrush}" EnableRowVirtualization="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="{l:T 'Qué'}" Binding="{Binding What}" IsReadOnly="True" Width="170" />
+                            <DataGridTextColumn Header="{l:T 'En el fichero'}" Binding="{Binding Original}" IsReadOnly="True" Width="*" />
+                            <DataGridTemplateColumn Header="{l:T 'Traducción'}" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Style="{StaticResource CellBox}" Text="{Binding Text, UpdateSourceTrigger=LostFocus}"
+                                                 ToolTip="{l:T 'Vacío: se ve como en el fichero'}" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>

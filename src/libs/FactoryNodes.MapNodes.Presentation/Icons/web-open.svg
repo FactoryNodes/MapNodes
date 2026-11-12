@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2B2140" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Abrir de la web: una nube con una flecha hacia abajo. -->
+  <path d="M7 17.5H6A4 4 0 0 1 6 9.5A6 6 0 0 1 17.5 8.5A4.5 4.5 0 0 1 18 17.5H17"/>
+  <path d="M12 11.5V20.5M9 17.5L12 20.5L15 17.5"/>
+</svg>

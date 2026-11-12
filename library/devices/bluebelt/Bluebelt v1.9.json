@@ -1,0 +1,1295 @@
+{
+  "schemaVersion": 1,
+  "brand": "Bluebelt",
+  "model": "Bluebelt v1.9",
+  "type": "weighing",
+  "language": "es",
+  "kind": "Regulador de cinta pesadora",
+  "description": "Bluebelt v1.9 (fabricante sin confirmar: el manual no lo dice): regulador de caudal para cinta pesadora (células de carga, encoder o velocidad fija, regulación con salida analógica, 15 set points de caudal y totalizador). Modbus RTU esclavo por COM2 (RS485 o RS422); no tiene Modbus TCP: hace falta una pasarela TCP/RTU.",
+  "source": "Manual de instrucciones BLUEBELT v1.9 (Rev. 25/05/09), «Lista registros protocolo Modbus» y «Otros registros Modbus», páginas 51-54; unidades y decimales de las páginas 20-24 y 59. Dirección = la del manual sin el 4 inicial (40001 → 1; el manual: «al registro 40001 se le asigna la dirección 0000»). Sin probar en un equipo real.",
+  "verified": false,
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 110 100\"><rect x=\"4\" y=\"4\" width=\"102\" height=\"60\" rx=\"4\" fill=\"#E8EAEE\" stroke=\"#8A909C\" stroke-width=\"2\"/><rect x=\"12\" y=\"12\" width=\"86\" height=\"22\" rx=\"2\" fill=\"#10202B\"/><text x=\"55\" y=\"29\" font-family=\"monospace\" font-size=\"14\" font-weight=\"bold\" fill=\"#7FE0A0\" text-anchor=\"middle\">12.50 t/h</text><rect x=\"14\" y=\"42\" width=\"12\" height=\"12\" rx=\"2\" fill=\"#8A909C\"/><rect x=\"32\" y=\"42\" width=\"12\" height=\"12\" rx=\"2\" fill=\"#8A909C\"/><rect x=\"50\" y=\"42\" width=\"12\" height=\"12\" rx=\"2\" fill=\"#8A909C\"/><rect x=\"68\" y=\"42\" width=\"12\" height=\"12\" rx=\"2\" fill=\"#C9A227\"/><path d=\"M45 64 V76 M65 64 V76\" stroke=\"#8A909C\" stroke-width=\"2\"/><path d=\"M18 76 H92 M18 92 H92\" stroke=\"#2B2140\" stroke-width=\"3\"/><circle cx=\"18\" cy=\"84\" r=\"8\" fill=\"#5A606C\"/><circle cx=\"92\" cy=\"84\" r=\"8\" fill=\"#5A606C\"/></svg>",
+  "protocol": {
+    "registerBase": 1,
+    "wordOrder": "HighFirst",
+    "maxRegistersPerRead": 16,
+    "save": {
+      "address": "501",
+      "value": 1,
+      "description": "Memorizar los parámetros en la memoria permanente (tarda 2-3 s)"
+    },
+    "restoreNotes": "Los registros de 40101 en adelante son para cargar y descargar la memoria del equipo, no para el uso diario. Al acabar de escribirlos hay que mandar la memorización (40501 = 1, tarda 2-3 s): si no, se pierden al apagar. Muchos dependen de otros (el caudal máximo fija la unidad y los decimales del caudal y del total): no cambiar uno suelto. La velocidad, el periférico y la dirección serie no se restauran (cortarían el Modbus). COM2 de fábrica a 9600; su protocolo tiene que estar en Modbus RTU."
+  },
+  "groups": [
+    {
+      "number": 1,
+      "text": "Marcha"
+    },
+    {
+      "number": 2,
+      "text": "Set points"
+    },
+    {
+      "number": 3,
+      "text": "Regulación"
+    },
+    {
+      "number": 4,
+      "text": "Puesta a cero de la cinta"
+    },
+    {
+      "number": 5,
+      "text": "Calibración del peso"
+    },
+    {
+      "number": 6,
+      "text": "Velocidad y caudal"
+    },
+    {
+      "number": 7,
+      "text": "Funcionamiento"
+    },
+    {
+      "number": 8,
+      "text": "Entradas, salidas y comunicación"
+    },
+    {
+      "number": 9,
+      "text": "Salida analógica"
+    },
+    {
+      "number": 10,
+      "text": "Salida de cada set point"
+    }
+  ],
+  "parameters": [
+    {
+      "code": "Flow",
+      "address": "1",
+      "type": "UINT",
+      "description": "Caudal instantáneo",
+      "group": 1,
+      "kind": "Live",
+      "writable": false,
+      "basic": true,
+      "decimalsFrom": {
+        "from": "FlowDec"
+      },
+      "note": "Manual: 40001. Con los decimales del caudal (FlowDec); la unidad, en FlowUnit (kg/h o t/h)."
+    },
+    {
+      "code": "Total",
+      "address": "2",
+      "type": "UDINT",
+      "description": "Total transportado",
+      "group": 1,
+      "kind": "Live",
+      "writable": false,
+      "basic": true,
+      "decimalsFrom": {
+        "from": "FlowDec",
+        "map": {
+          "0": 1,
+          "1": 2,
+          "2": 3,
+          "3": 4
+        }
+      },
+      "note": "Manual: 40002. 40002 (alta) y 40003 (baja). Un decimal más que el caudal (tabla de la página 24). El manual dice que se puede poner a cero escribiendo."
+    },
+    {
+      "code": "State",
+      "address": "4",
+      "type": "UINT",
+      "description": "Estado de marcha",
+      "group": 1,
+      "kind": "Live",
+      "writable": false,
+      "basic": true,
+      "bits": {
+        "0": "Marcha",
+        "1": "Manual",
+        "2": "Regulación",
+        "3": "AL1",
+        "4": "AL2",
+        "5": "AL3",
+        "6": "AL4",
+        "7": "AL5",
+        "8": "Alarma de desviación",
+        "9": "Salida SET",
+        "10": "Salida PRE-SET"
+      },
+      "note": "Manual: 40004."
+    },
+    {
+      "code": "SetpointNo",
+      "address": "5",
+      "type": "UINT",
+      "description": "Número de set point activado",
+      "group": 1,
+      "kind": "Live",
+      "writable": true,
+      "basic": true,
+      "note": "Manual: 40005. 1 a 15."
+    },
+    {
+      "code": "Mode",
+      "address": "6",
+      "type": "UINT",
+      "description": "Funcionamiento",
+      "group": 1,
+      "kind": "Live",
+      "writable": true,
+      "basic": true,
+      "options": {
+        "0": "Automático",
+        "1": "Manual"
+      },
+      "note": "Manual: 40006."
+    },
+    {
+      "code": "ManualOut",
+      "address": "7",
+      "type": "UINT",
+      "description": "Salida analógica en manual",
+      "group": 1,
+      "kind": "Live",
+      "writable": true,
+      "unit": "%",
+      "note": "Manual: 40007. 0-100 %."
+    },
+    {
+      "code": "OutPct",
+      "address": "8",
+      "type": "UINT",
+      "description": "Salida analógica instantánea",
+      "group": 1,
+      "kind": "Live",
+      "writable": false,
+      "basic": true,
+      "unit": "%",
+      "note": "Manual: 40008."
+    },
+    {
+      "code": "Speed",
+      "address": "9",
+      "type": "UINT",
+      "description": "Velocidad instantánea de la cinta",
+      "group": 1,
+      "kind": "Live",
+      "writable": false,
+      "basic": true,
+      "scale": 0.01,
+      "unit": "m/min",
+      "note": "Manual: 40009. Escala supuesta: dos decimales, como la velocidad predeterminada (el manual no la da)."
+    },
+    {
+      "code": "RunInput",
+      "address": "70",
+      "type": "UINT",
+      "description": "Ingreso de marcha por Modbus",
+      "group": 1,
+      "kind": "Live",
+      "writable": true,
+      "bits": {
+        "0": "Marcha (ingreso cerrado)",
+        "15": "Manda el registro, no la entrada 1"
+      },
+      "note": "Manual: 40070. Bit 15 = 1: el registro manda sobre la entrada 1 y el bit 0 da la marcha; bit 15 = 0: manda la entrada. Se pone a 0 al apagar el equipo."
+    },
+    {
+      "code": "SP1",
+      "address": "11",
+      "type": "UINT",
+      "description": "Set point 1 de caudal",
+      "group": 2,
+      "kind": "Setting",
+      "writable": true,
+      "basic": true,
+      "decimalsFrom": {
+        "from": "FlowDec"
+      },
+      "note": "Manual: 40011. Con los decimales del caudal."
+    },
+    {
+      "code": "SP2",
+      "address": "12",
+      "type": "UINT",
+      "description": "Set point 2 de caudal",
+      "group": 2,
+      "kind": "Setting",
+      "writable": true,
+      "basic": false,
+      "decimalsFrom": {
+        "from": "FlowDec"
+      },
+      "note": "Manual: 40012. Con los decimales del caudal."
+    },
+    {
+      "code": "SP3",
+      "address": "13",
+      "type": "UINT",
+      "description": "Set point 3 de caudal",
+      "group": 2,
+      "kind": "Setting",
+      "writable": true,
+      "basic": false,
+      "decimalsFrom": {
+        "from": "FlowDec"
+      },
+      "note": "Manual: 40013. Con los decimales del caudal."
+    },
+    {
+      "code": "SP4",
+      "address": "14",
+      "type": "UINT",
+      "description": "Set point 4 de caudal",
+      "group": 2,
+      "kind": "Setting",
+      "writable": true,
+      "basic": false,
+      "decimalsFrom": {
+        "from": "FlowDec"
+      },
+      "note": "Manual: 40014. Con los decimales del caudal."
+    },
+    {
+      "code": "SP5",
+      "address": "15",
+      "type": "UINT",
+      "description": "Set point 5 de caudal",
+      "group": 2,
+      "kind": "Setting",
+      "writable": true,
+      "basic": false,
+      "decimalsFrom": {
+        "from": "FlowDec"
+      },
+      "note": "Manual: 40015. Con los decimales del caudal."
+    },
+    {
+      "code": "SP6",
+      "address": "16",
+      "type": "UINT",
+      "description": "Set point 6 de caudal",
+      "group": 2,
+      "kind": "Setting",
+      "writable": true,
+      "basic": false,
+      "decimalsFrom": {
+        "from": "FlowDec"
+      },
+      "note": "Manual: 40016. Con los decimales del caudal."
+    },
+    {
+      "code": "SP7",
+      "address": "17",
+      "type": "UINT",
+      "description": "Set point 7 de caudal",
+      "group": 2,
+      "kind": "Setting",
+      "writable": true,
+      "basic": false,
+      "decimalsFrom": {
+        "from": "FlowDec"
+      },
+      "note": "Manual: 40017. Con los decimales del caudal."
+    },
+    {
+      "code": "SP8",
+      "address": "18",
+      "type": "UINT",
+      "description": "Set point 8 de caudal",
+      "group": 2,
+      "kind": "Setting",
+      "writable": true,
+      "basic": false,
+      "decimalsFrom": {
+        "from": "FlowDec"
+      },
+      "note": "Manual: 40018. Con los decimales del caudal."
+    },
+    {
+      "code": "SP9",
+      "address": "19",
+      "type": "UINT",
+      "description": "Set point 9 de caudal",
+      "group": 2,
+      "kind": "Setting",
+      "writable": true,
+      "basic": false,
+      "decimalsFrom": {
+        "from": "FlowDec"
+      },
+      "note": "Manual: 40019. Con los decimales del caudal."
+    },
+    {
+      "code": "SP10",
+      "address": "20",
+      "type": "UINT",
+      "description": "Set point 10 de caudal",
+      "group": 2,
+      "kind": "Setting",
+      "writable": true,
+      "basic": false,
+      "decimalsFrom": {
+        "from": "FlowDec"
+      },
+      "note": "Manual: 40020. Con los decimales del caudal."
+    },
+    {
+      "code": "SP11",
+      "address": "21",
+      "type": "UINT",
+      "description": "Set point 11 de caudal",
+      "group": 2,
+      "kind": "Setting",
+      "writable": true,
+      "basic": false,
+      "decimalsFrom": {
+        "from": "FlowDec"
+      },
+      "note": "Manual: 40021. Con los decimales del caudal."
+    },
+    {
+      "code": "SP12",
+      "address": "22",
+      "type": "UINT",
+      "description": "Set point 12 de caudal",
+      "group": 2,
+      "kind": "Setting",
+      "writable": true,
+      "basic": false,
+      "decimalsFrom": {
+        "from": "FlowDec"
+      },
+      "note": "Manual: 40022. Con los decimales del caudal."
+    },
+    {
+      "code": "SP13",
+      "address": "23",
+      "type": "UINT",
+      "description": "Set point 13 de caudal",
+      "group": 2,
+      "kind": "Setting",
+      "writable": true,
+      "basic": false,
+      "decimalsFrom": {
+        "from": "FlowDec"
+      },
+      "note": "Manual: 40023. Con los decimales del caudal."
+    },
+    {
+      "code": "SP14",
+      "address": "24",
+      "type": "UINT",
+      "description": "Set point 14 de caudal",
+      "group": 2,
+      "kind": "Setting",
+      "writable": true,
+      "basic": false,
+      "decimalsFrom": {
+        "from": "FlowDec"
+      },
+      "note": "Manual: 40024. Con los decimales del caudal."
+    },
+    {
+      "code": "SP15",
+      "address": "25",
+      "type": "UINT",
+      "description": "Set point 15 de caudal",
+      "group": 2,
+      "kind": "Setting",
+      "writable": true,
+      "basic": false,
+      "decimalsFrom": {
+        "from": "FlowDec"
+      },
+      "note": "Manual: 40025. Con los decimales del caudal."
+    },
+    {
+      "code": "StartOutPct",
+      "address": "26",
+      "type": "UINT",
+      "description": "Salida analógica al arrancar (set 15)",
+      "group": 2,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "%",
+      "note": "Manual: 40026. 1-99: salida al arrancar con el set point 15; 0: la última salida antes de parar (página 52)."
+    },
+    {
+      "code": "TotalSet",
+      "address": "31",
+      "type": "UDINT",
+      "description": "Set de total transportado",
+      "group": 2,
+      "kind": "Setting",
+      "writable": true,
+      "decimalsFrom": {
+        "from": "FlowDec",
+        "map": {
+          "0": 1,
+          "1": 2,
+          "2": 3,
+          "3": 4
+        }
+      },
+      "note": "Manual: 40031. 40031 (alta) y 40032 (baja). Con los decimales del total."
+    },
+    {
+      "code": "Kp",
+      "address": "41",
+      "type": "UINT",
+      "description": "Constante proporcional",
+      "group": 3,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "%",
+      "note": "Manual: 40041. 1-250 (de fábrica 50)."
+    },
+    {
+      "code": "Ki",
+      "address": "42",
+      "type": "UINT",
+      "description": "Constante integral",
+      "group": 3,
+      "kind": "Setting",
+      "writable": true,
+      "note": "Manual: 40042. 1-10 (de fábrica 1)."
+    },
+    {
+      "code": "DeadBand",
+      "address": "43",
+      "type": "UINT",
+      "description": "Banda muerta",
+      "group": 3,
+      "kind": "Setting",
+      "writable": true,
+      "decimalsFrom": {
+        "from": "FlowDec"
+      },
+      "note": "Manual: 40043. En unidades de caudal."
+    },
+    {
+      "code": "Tolerance",
+      "address": "44",
+      "type": "UINT",
+      "description": "Tolerancia del set",
+      "group": 3,
+      "kind": "Setting",
+      "writable": true,
+      "decimalsFrom": {
+        "from": "FlowDec"
+      },
+      "note": "Manual: 40044. En unidades de caudal, o en % según TolMode (40306)."
+    },
+    {
+      "code": "MaxCapacity",
+      "address": "45",
+      "type": "UDINT",
+      "description": "Capacidad máxima del sistema",
+      "group": 3,
+      "kind": "Live",
+      "writable": false,
+      "unit": "kg/h",
+      "note": "Manual: 40045. 40045 (alta) y 40046 (baja). Solo lectura."
+    },
+    {
+      "code": "KK",
+      "address": "51",
+      "type": "UINT",
+      "description": "Coeficiente de corrección KK",
+      "group": 3,
+      "kind": "Setting",
+      "writable": true,
+      "scale": 0.001,
+      "calibration": true,
+      "note": "Manual: 40051. En milésimas: 1000 = 1,000 (0,001-9,999)."
+    },
+    {
+      "code": "ZeroTurns",
+      "address": "61",
+      "type": "UINT",
+      "description": "Vueltas de la puesta a cero de la cinta",
+      "group": 4,
+      "kind": "Setting",
+      "writable": true,
+      "note": "Manual: 40061. 1-10."
+    },
+    {
+      "code": "ZeroMode",
+      "address": "62",
+      "type": "UINT",
+      "description": "Puesta a cero por",
+      "group": 4,
+      "kind": "Setting",
+      "writable": true,
+      "options": {
+        "0": "Tiempo",
+        "1": "Longitud"
+      },
+      "note": "Manual: 40062."
+    },
+    {
+      "code": "BeltTurnTime",
+      "address": "63",
+      "type": "UINT",
+      "description": "Tiempo de una vuelta de la cinta",
+      "group": 4,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "s",
+      "note": "Manual: 40063."
+    },
+    {
+      "code": "BeltTurnLength",
+      "address": "64",
+      "type": "UINT",
+      "description": "Longitud de una vuelta de la cinta",
+      "group": 4,
+      "kind": "Setting",
+      "writable": true,
+      "note": "Manual: 40064."
+    },
+    {
+      "code": "AutoZero",
+      "address": "65",
+      "type": "UINT",
+      "description": "Auto-cero de la cinta",
+      "group": 4,
+      "kind": "Setting",
+      "writable": true,
+      "options": {
+        "0": "No",
+        "1": "Sí"
+      },
+      "note": "Manual: 40065."
+    },
+    {
+      "code": "CellCapacity",
+      "address": "101",
+      "type": "UDINT",
+      "description": "Capacidad de las células de carga",
+      "group": 5,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "kg",
+      "calibration": true,
+      "note": "Manual: 40101. 40101 (alta) y 40102 (baja)."
+    },
+    {
+      "code": "CellSens",
+      "address": "103",
+      "type": "UDINT",
+      "description": "Sensibilidad de las células de carga",
+      "group": 5,
+      "kind": "Setting",
+      "writable": true,
+      "scale": 0.001,
+      "unit": "mV/V",
+      "calibration": true,
+      "note": "Manual: 40103. 40103 (alta) y 40104 (baja). Escala supuesta: 1.000-3.999 mV/V."
+    },
+    {
+      "code": "WeightDivIndex",
+      "address": "105",
+      "type": "UINT",
+      "description": "Índice del valor de división del peso",
+      "group": 5,
+      "kind": "Setting",
+      "writable": true,
+      "calibration": true,
+      "note": "Manual: 40105."
+    },
+    {
+      "code": "WeightDiv",
+      "address": "106",
+      "type": "UINT",
+      "description": "Valor de división del peso",
+      "group": 5,
+      "kind": "Setting",
+      "writable": true,
+      "calibration": true,
+      "note": "Manual: 40106."
+    },
+    {
+      "code": "WeightDec",
+      "address": "107",
+      "type": "UINT",
+      "description": "Decimales del peso",
+      "group": 5,
+      "kind": "Setting",
+      "writable": true,
+      "calibration": true,
+      "note": "Manual: 40107. 0 a 4."
+    },
+    {
+      "code": "WeightZeros",
+      "address": "108",
+      "type": "UINT",
+      "description": "Ceros fijos del peso",
+      "group": 5,
+      "kind": "Setting",
+      "writable": true,
+      "calibration": true,
+      "note": "Manual: 40108."
+    },
+    {
+      "code": "MaxWeightDiv",
+      "address": "109",
+      "type": "UINT",
+      "description": "Peso máximo en divisiones",
+      "group": 5,
+      "kind": "Setting",
+      "writable": true,
+      "calibration": true,
+      "note": "Manual: 40109."
+    },
+    {
+      "code": "ZeroCal",
+      "address": "110",
+      "type": "UDINT",
+      "description": "Calibrado del cero del peso",
+      "group": 5,
+      "kind": "Setting",
+      "writable": true,
+      "calibration": true,
+      "note": "Manual: 40110. 40110 (alta) y 40111 (baja)."
+    },
+    {
+      "code": "SpanCal",
+      "address": "112",
+      "type": "UDINT",
+      "description": "Calibrado del fondo de escala del peso",
+      "group": 5,
+      "kind": "Setting",
+      "writable": true,
+      "calibration": true,
+      "note": "Manual: 40112. 40112 (alta) y 40113 (baja)."
+    },
+    {
+      "code": "WeightFilter",
+      "address": "114",
+      "type": "UINT",
+      "description": "Filtro del peso",
+      "group": 5,
+      "kind": "Setting",
+      "writable": true,
+      "note": "Manual: 40114. 0-9 (de fábrica 5)."
+    },
+    {
+      "code": "Encoder",
+      "address": "201",
+      "type": "UINT",
+      "description": "Velocidad de la cinta",
+      "group": 6,
+      "kind": "Setting",
+      "writable": true,
+      "options": {
+        "1": "Constante",
+        "2": "Encoder"
+      },
+      "note": "Manual: 40201. Valores de la programación por teclado (página 22); la tabla de fábrica dice 0-1: comprobar en el equipo."
+    },
+    {
+      "code": "RollerDiam",
+      "address": "202",
+      "type": "UINT",
+      "description": "Diámetro del rodillo del encoder",
+      "group": 6,
+      "kind": "Setting",
+      "writable": true,
+      "scale": 0.1,
+      "unit": "cm",
+      "calibration": true,
+      "note": "Manual: 40202."
+    },
+    {
+      "code": "EncoderRes",
+      "address": "203",
+      "type": "UINT",
+      "description": "Impulsos por vuelta del encoder",
+      "group": 6,
+      "kind": "Setting",
+      "writable": true,
+      "calibration": true,
+      "note": "Manual: 40203."
+    },
+    {
+      "code": "BeltSpeed",
+      "address": "204",
+      "type": "UINT",
+      "description": "Velocidad predeterminada de la cinta",
+      "group": 6,
+      "kind": "Setting",
+      "writable": true,
+      "scale": 0.01,
+      "unit": "m/min",
+      "calibration": true,
+      "note": "Manual: 40204. Sin encoder."
+    },
+    {
+      "code": "RollerDist",
+      "address": "205",
+      "type": "UINT",
+      "description": "Distancia entre rodillos",
+      "group": 6,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "cm",
+      "calibration": true,
+      "note": "Manual: 40205."
+    },
+    {
+      "code": "MaxFlow",
+      "address": "206",
+      "type": "UDINT",
+      "description": "Caudal máximo del sistema",
+      "group": 6,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "kg/h",
+      "calibration": true,
+      "note": "Manual: 40206. 40206 (alta) y 40207 (baja). Fija la unidad, la resolución y los decimales del caudal y del total."
+    },
+    {
+      "code": "FlowDiv",
+      "address": "208",
+      "type": "UINT",
+      "description": "Valor de división del caudal",
+      "group": 6,
+      "kind": "Setting",
+      "writable": true,
+      "calibration": true,
+      "note": "Manual: 40208."
+    },
+    {
+      "code": "FlowDec",
+      "address": "209",
+      "type": "UINT",
+      "description": "Decimales del caudal",
+      "group": 6,
+      "kind": "Setting",
+      "writable": true,
+      "calibration": true,
+      "note": "Manual: 40209."
+    },
+    {
+      "code": "FlowRatio",
+      "address": "210",
+      "type": "UINT",
+      "description": "Relación unidad de caudal / unidad de peso",
+      "group": 6,
+      "kind": "Setting",
+      "writable": true,
+      "calibration": true,
+      "note": "Manual: 40210."
+    },
+    {
+      "code": "FlowUnit",
+      "address": "211",
+      "type": "UINT",
+      "description": "Unidad del caudal",
+      "group": 6,
+      "kind": "Setting",
+      "writable": true,
+      "calibration": true,
+      "note": "Manual: 40211. kg/h o t/h; el manual no da los valores."
+    },
+    {
+      "code": "FlowFilter",
+      "address": "212",
+      "type": "UINT",
+      "description": "Filtro del caudal",
+      "group": 6,
+      "kind": "Setting",
+      "writable": true,
+      "note": "Manual: 40212. 1-9 (de fábrica 2)."
+    },
+    {
+      "code": "WeightTimeout",
+      "address": "213",
+      "type": "UINT",
+      "description": "Tiempo máximo con el peso fijo (alarma 5)",
+      "group": 6,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "s",
+      "note": "Manual: 40213. 1-200."
+    },
+    {
+      "code": "K",
+      "address": "214",
+      "type": "UINT",
+      "description": "Coeficiente K",
+      "group": 6,
+      "kind": "Setting",
+      "writable": true,
+      "calibration": true,
+      "note": "Manual: 40214."
+    },
+    {
+      "code": "BeltZero",
+      "address": "215",
+      "type": "UINT",
+      "description": "Valor de cero de la cinta",
+      "group": 6,
+      "kind": "Setting",
+      "writable": true,
+      "calibration": true,
+      "note": "Manual: 40215."
+    },
+    {
+      "code": "TestTime",
+      "address": "251",
+      "type": "UINT",
+      "description": "Tiempo de prueba",
+      "group": 7,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "s",
+      "note": "Manual: 40251."
+    },
+    {
+      "code": "MinWeight",
+      "address": "252",
+      "type": "UINT",
+      "description": "Peso mínimo",
+      "group": 7,
+      "kind": "Setting",
+      "writable": true,
+      "decimalsFrom": {
+        "from": "WeightDec"
+      },
+      "note": "Manual: 40252. Con los decimales del peso."
+    },
+    {
+      "code": "PulseValue",
+      "address": "253",
+      "type": "UDINT",
+      "description": "Valor del impulso del totalizador",
+      "group": 7,
+      "kind": "Setting",
+      "writable": true,
+      "decimalsFrom": {
+        "from": "FlowDec",
+        "map": {
+          "0": 1,
+          "1": 2,
+          "2": 3,
+          "3": 4
+        }
+      },
+      "note": "Manual: 40253. 40253 (alta) y 40254 (baja). Decimales supuestos: los del total."
+    },
+    {
+      "code": "MinAnalog",
+      "address": "255",
+      "type": "UINT",
+      "description": "Valor mínimo de la salida analógica",
+      "group": 7,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "%",
+      "note": "Manual: 40255."
+    },
+    {
+      "code": "OperMode",
+      "address": "256",
+      "type": "UINT",
+      "description": "Tipo de funcionamiento",
+      "group": 7,
+      "kind": "Setting",
+      "writable": true,
+      "note": "Manual: 40256."
+    },
+    {
+      "code": "OutLockTime",
+      "address": "257",
+      "type": "UINT",
+      "description": "Bloqueo de la salida al arrancar",
+      "group": 7,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "s",
+      "note": "Manual: 40257."
+    },
+    {
+      "code": "TolInitTime",
+      "address": "258",
+      "type": "UINT",
+      "description": "Retardo inicial de la alarma de tolerancia",
+      "group": 7,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "s",
+      "note": "Manual: 40258."
+    },
+    {
+      "code": "TolDelay",
+      "address": "259",
+      "type": "UINT",
+      "description": "Retardo de la alarma de tolerancia",
+      "group": 7,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "s",
+      "note": "Manual: 40259."
+    },
+    {
+      "code": "Out4Logic",
+      "address": "301",
+      "type": "UINT",
+      "description": "Lógica de la salida 4 (alarma fatal)",
+      "group": 8,
+      "kind": "Setting",
+      "writable": true,
+      "note": "Manual: 40301."
+    },
+    {
+      "code": "Out5Logic",
+      "address": "302",
+      "type": "UINT",
+      "description": "Lógica de la salida 5 (fuera de tolerancia)",
+      "group": 8,
+      "kind": "Setting",
+      "writable": true,
+      "note": "Manual: 40302."
+    },
+    {
+      "code": "In6Func",
+      "address": "303",
+      "type": "UINT",
+      "description": "Función de la entrada 6",
+      "group": 8,
+      "kind": "Setting",
+      "writable": true,
+      "note": "Manual: 40303."
+    },
+    {
+      "code": "AL3Enable",
+      "address": "304",
+      "type": "UINT",
+      "description": "Alarma 3 habilitada",
+      "group": 8,
+      "kind": "Setting",
+      "writable": true,
+      "note": "Manual: 40304."
+    },
+    {
+      "code": "Language",
+      "address": "305",
+      "type": "UINT",
+      "description": "Idioma del visor y de la impresora",
+      "group": 8,
+      "kind": "Setting",
+      "writable": true,
+      "note": "Manual: 40305."
+    },
+    {
+      "code": "TolMode",
+      "address": "306",
+      "type": "UINT",
+      "description": "Tolerancia absoluta o en porcentaje",
+      "group": 8,
+      "kind": "Setting",
+      "writable": true,
+      "note": "Manual: 40306."
+    },
+    {
+      "code": "Baud1",
+      "address": "307",
+      "type": "UINT",
+      "description": "Velocidad de COM1",
+      "group": 8,
+      "kind": "Setting",
+      "writable": false,
+      "note": "Manual: 40307. No se restaura: cambiarla puede cortar la comunicación Modbus."
+    },
+    {
+      "code": "Baud2",
+      "address": "308",
+      "type": "UINT",
+      "description": "Velocidad de COM2",
+      "group": 8,
+      "kind": "Setting",
+      "writable": false,
+      "note": "Manual: 40308. No se restaura: es la del Modbus."
+    },
+    {
+      "code": "Periph1",
+      "address": "309",
+      "type": "UINT",
+      "description": "Periférico de COM1",
+      "group": 8,
+      "kind": "Setting",
+      "writable": false,
+      "note": "Manual: 40309. No se restaura: cambiarlo puede cortar la comunicación Modbus."
+    },
+    {
+      "code": "Periph2",
+      "address": "310",
+      "type": "UINT",
+      "description": "Periférico de COM2",
+      "group": 8,
+      "kind": "Setting",
+      "writable": false,
+      "note": "Manual: 40310. No se restaura: es el del Modbus."
+    },
+    {
+      "code": "SerialAddr",
+      "address": "311",
+      "type": "UINT",
+      "description": "Dirección serie",
+      "group": 8,
+      "kind": "Setting",
+      "writable": false,
+      "note": "Manual: 40311. No se restaura: cambiarla corta la comunicación Modbus."
+    },
+    {
+      "code": "AoFullScale",
+      "address": "312",
+      "type": "UINT",
+      "description": "Fondo de escala de la salida analógica",
+      "group": 9,
+      "kind": "Setting",
+      "writable": true,
+      "note": "Manual: 40312."
+    },
+    {
+      "code": "AoZeroCal",
+      "address": "313",
+      "type": "UINT",
+      "description": "Calibrado del cero de la salida analógica",
+      "group": 9,
+      "kind": "Setting",
+      "writable": true,
+      "calibration": true,
+      "note": "Manual: 40313."
+    },
+    {
+      "code": "AoSpanCal",
+      "address": "314",
+      "type": "UINT",
+      "description": "Calibrado del fondo de escala de la salida analógica",
+      "group": 9,
+      "kind": "Setting",
+      "writable": true,
+      "calibration": true,
+      "note": "Manual: 40314."
+    },
+    {
+      "code": "AoRange",
+      "address": "315",
+      "type": "UINT",
+      "description": "Rango de la salida analógica",
+      "group": 9,
+      "kind": "Setting",
+      "writable": true,
+      "note": "Manual: 40315. 0-10 V o 4-20 mA; el manual no da los valores."
+    },
+    {
+      "code": "SP1Out",
+      "address": "401",
+      "type": "UINT",
+      "description": "Salida analógica del set point 1",
+      "group": 10,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "%",
+      "note": "Manual: 40401."
+    },
+    {
+      "code": "SP2Out",
+      "address": "402",
+      "type": "UINT",
+      "description": "Salida analógica del set point 2",
+      "group": 10,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "%",
+      "note": "Manual: 40402."
+    },
+    {
+      "code": "SP3Out",
+      "address": "403",
+      "type": "UINT",
+      "description": "Salida analógica del set point 3",
+      "group": 10,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "%",
+      "note": "Manual: 40403."
+    },
+    {
+      "code": "SP4Out",
+      "address": "404",
+      "type": "UINT",
+      "description": "Salida analógica del set point 4",
+      "group": 10,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "%",
+      "note": "Manual: 40404."
+    },
+    {
+      "code": "SP5Out",
+      "address": "405",
+      "type": "UINT",
+      "description": "Salida analógica del set point 5",
+      "group": 10,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "%",
+      "note": "Manual: 40405."
+    },
+    {
+      "code": "SP6Out",
+      "address": "406",
+      "type": "UINT",
+      "description": "Salida analógica del set point 6",
+      "group": 10,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "%",
+      "note": "Manual: 40406."
+    },
+    {
+      "code": "SP7Out",
+      "address": "407",
+      "type": "UINT",
+      "description": "Salida analógica del set point 7",
+      "group": 10,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "%",
+      "note": "Manual: 40407."
+    },
+    {
+      "code": "SP8Out",
+      "address": "408",
+      "type": "UINT",
+      "description": "Salida analógica del set point 8",
+      "group": 10,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "%",
+      "note": "Manual: 40408."
+    },
+    {
+      "code": "SP9Out",
+      "address": "409",
+      "type": "UINT",
+      "description": "Salida analógica del set point 9",
+      "group": 10,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "%",
+      "note": "Manual: 40409."
+    },
+    {
+      "code": "SP10Out",
+      "address": "410",
+      "type": "UINT",
+      "description": "Salida analógica del set point 10",
+      "group": 10,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "%",
+      "note": "Manual: 40410."
+    },
+    {
+      "code": "SP11Out",
+      "address": "411",
+      "type": "UINT",
+      "description": "Salida analógica del set point 11",
+      "group": 10,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "%",
+      "note": "Manual: 40411."
+    },
+    {
+      "code": "SP12Out",
+      "address": "412",
+      "type": "UINT",
+      "description": "Salida analógica del set point 12",
+      "group": 10,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "%",
+      "note": "Manual: 40412."
+    },
+    {
+      "code": "SP13Out",
+      "address": "413",
+      "type": "UINT",
+      "description": "Salida analógica del set point 13",
+      "group": 10,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "%",
+      "note": "Manual: 40413."
+    },
+    {
+      "code": "SP14Out",
+      "address": "414",
+      "type": "UINT",
+      "description": "Salida analógica del set point 14",
+      "group": 10,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "%",
+      "note": "Manual: 40414."
+    },
+    {
+      "code": "SP15Out",
+      "address": "415",
+      "type": "UINT",
+      "description": "Salida analógica del set point 15",
+      "group": 10,
+      "kind": "Setting",
+      "writable": true,
+      "unit": "%",
+      "note": "Manual: 40415."
+    }
+  ],
+  "commands": [
+    {
+      "text": "Automático",
+      "address": "6",
+      "value": 0,
+      "confirm": true,
+      "note": "Pasa a funcionamiento automático (regula el caudal)."
+    },
+    {
+      "text": "Manual",
+      "address": "6",
+      "value": 1,
+      "confirm": true,
+      "note": "Pasa a manual: la salida analógica es la de 40007."
+    },
+    {
+      "text": "Marcha por Modbus",
+      "address": "70",
+      "value": 32769,
+      "confirm": true,
+      "note": "40070 = 0x8001: manda el registro y da la marcha."
+    },
+    {
+      "text": "Paro por Modbus",
+      "address": "70",
+      "value": 32768,
+      "confirm": true,
+      "note": "40070 = 0x8000: manda el registro y quita la marcha."
+    },
+    {
+      "text": "Marcha por la entrada",
+      "address": "70",
+      "value": 0,
+      "confirm": false,
+      "note": "40070 = 0: vuelve a mandar la entrada 1."
+    }
+  ]
+}

@@ -119,6 +119,20 @@ public sealed class WpfMapNodesServices : IMapNodesServices
 
     public CultureInfo SystemCulture { get; } = CultureInfo.CurrentUICulture;
 
+    private static readonly System.Net.Http.HttpClient Http = new() { Timeout = TimeSpan.FromSeconds(20) };
+
+    public string? ChooseDrawingToOpen()
+    {
+        var dialog = new OpenFileDialog { Filter = "SVG|*.svg", InitialDirectory = _lastFolder ?? "" };
+        return dialog.ShowDialog(Owner) == true ? dialog.FileName : null;
+    }
+
+    public FactoryNodes.Devices.IModbusClient? Connect(string host, int port) => new FactoryNodes.Modbus.ModbusTcpClient(host, port);
+
+    public Func<string, CancellationToken, Task<byte[]>>? HttpBytes => (url, cancellation) => Http.GetByteArrayAsync(url, cancellation);
+
+    public void OpenUrl(string url) => Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+
     public void Restart()
     {
         if (Environment.ProcessPath is { } exe)

@@ -2,6 +2,8 @@
   "schemaVersion": 1,
   "brand": "Dalcnet",
   "model": "DLD1248-4CV-MODBUS",
+  "type": "lighting",
+  "language": "es",
   "kind": "Regulador LED",
   "description": "DLD1248-4CV-MODBUS: regulador (dimmer) LED de 4 canales de tensión constante para carril DIN, 12-48 V DC, 4 x 5 A como mucho; blanco, Dim to Warm, Tunable White, RGB y RGBW. Modbus RTU esclavo por RS485; no tiene Modbus TCP: hace falta una pasarela TCP/RTU. El equipo no polariza el bus (lo tiene que hacer el maestro o las bornas).",
   "source": "Dalcnet, DLD1248 4 channels Device Manual, Rev. 12/05/2023 (DLD1248-4CV-MODBUS_DS_008), «Modbus setup», «Channels map - Modbus» y «Supported functions», páginas 24-27 (interruptores: páginas 6-8). Probado el 2026-10-17 con un equipo real por una pasarela Modbus TCP/RTU, 9600 8N1 (rueda x100 en 6), esclavo 1, carga y mapa RGBW: las variables son registros de retención desde la dirección 0 (función 03; escritura con 06 y 16, se leen de vuelta). Contesta hasta la dirección 31 (25-29 no son variables del manual); no responde a 01, 02 ni 04.",

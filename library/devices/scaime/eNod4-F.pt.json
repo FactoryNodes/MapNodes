@@ -1,0 +1,432 @@
+{
+  "schemaVersion": 1,
+  "translationOf": {
+    "brand": "SCAIME",
+    "model": "eNod4-F"
+  },
+  "language": "pt",
+  "version": 1,
+  "author": "",
+  "kind": "Transmissor de pesagem",
+  "groups": {
+    "1": "Identificação",
+    "2": "Pesagem e calibração",
+    "3": "Filtros",
+    "4": "Dosagem e reenchimento",
+    "5": "PID e saída analógica",
+    "6": "Entradas, saídas e limiares",
+    "10": "Medida",
+    "11": "Dosagem em curso",
+    "12": "Comandos",
+    "13": "Entradas e saídas em direto"
+  },
+  "parameters": {
+    "Status": {
+      "description": "Estado da medida",
+      "bits": {
+        "2": "b2 (b3b2 ≠ 00: falha de medida; 01 controlo de entrada, 10 fora de capacidade, 11 fora da gama do A/D)",
+        "3": "b3 (ver b2)",
+        "4": "Medida estável",
+        "5": "Zero dentro de 1/4 de divisão",
+        "6": "Falha de EEPROM",
+        "7": "Fora da gama de medida",
+        "8": "Entrada 1",
+        "9": "Entrada 2",
+        "10": "Saída 1",
+        "11": "Saída 2",
+        "12": "Saída 3",
+        "13": "Saída 4",
+        "14": "Foi feita alguma tara"
+      }
+    },
+    "Gross": {
+      "description": "Peso bruto"
+    },
+    "Tare": {
+      "description": "Valor da tara"
+    },
+    "Net": {
+      "description": "Peso líquido"
+    },
+    "Points": {
+      "description": "Pontos do conversor (de fábrica)"
+    },
+    "FlowInst": {
+      "description": "Caudal instantâneo"
+    },
+    "FlowAvg": {
+      "description": "Caudal médio"
+    },
+    "FlowOut": {
+      "description": "Saída de controlo de caudal"
+    },
+    "OutValue": {
+      "description": "Valor da saída de controlo"
+    },
+    "Total": {
+      "description": "Totalizador (unidade de peso × 1000)"
+    },
+    "TotalCompl": {
+      "description": "Totalizador, parte complementar (unidade de peso)"
+    },
+    "Command": {
+      "description": "Registo de comandos",
+      "options": {
+        "0": "Limpar a resposta (enviar antes de cada comando)",
+        "208": "Reset (D0h)",
+        "209": "Guardar na EEPROM (D1h)",
+        "210": "Repor os valores de fábrica (D2h)",
+        "211": "Zero (D3h)",
+        "212": "Tara (D4h)",
+        "213": "Anular a tara (D5h)",
+        "214": "Anular o comando (D6h)",
+        "223": "Totalização / limpar erros (DFh)",
+        "228": "Arrancar / retomar a dosagem ou o lote (E4h)",
+        "229": "Parar a dosagem / anular o lote (E5h)",
+        "237": "Pôr a zero o grande total (EDh)",
+        "238": "Pôr a zero o total geral (EEh)",
+        "241": "Aquisição do zero dinâmico (F1h)",
+        "242": "Tara predefinida (F2h)",
+        "243": "Ciclo de aprendizagem no ciclo seguinte (F3h)",
+        "244": "Esvaziar a tremonha (limpeza) (F4h)",
+        "245": "Iniciar o reenchimento (F5h)",
+        "246": "Parar o reenchimento (F6h)",
+        "247": "Suspender o lote (F7h)",
+        "199": "Parar o PID (C7h)",
+        "200": "Rearrancar o PID (C8h)"
+      }
+    },
+    "Response": {
+      "description": "Resposta ao comando",
+      "options": {
+        "0": "Pronto para outro comando",
+        "1": "A executar o comando",
+        "2": "Comando executado",
+        "3": "Erro ao executá-lo"
+      }
+    },
+    "IO": {
+      "description": "Entradas (byte baixo) e saídas (byte alto) lógicas",
+      "bits": {
+        "0": "Entrada 1",
+        "1": "Entrada 2",
+        "2": "Entrada 3",
+        "3": "Entrada 4",
+        "8": "Saída 1",
+        "9": "Saída 2",
+        "10": "Saída 3",
+        "11": "Saída 4"
+      }
+    },
+    "Deviation": {
+      "description": "Desvio de peso da dosagem"
+    },
+    "DosingStatus": {
+      "description": "Estado da dosagem",
+      "bits": {
+        "0": "Parado",
+        "1": "A reencher",
+        "2": "Fim da espera do reenchimento (ciclo de aprendizagem)",
+        "3": "Fim da estabilização do reenchimento",
+        "4": "A determinar o caudal",
+        "5": "A dosear",
+        "6": "Lote suspenso",
+        "7": "A esvaziar a tremonha",
+        "9": "Ciclo de aprendizagem",
+        "10": "Calibração de caudal feita",
+        "11": "Dosagem volumétrica",
+        "12": "Extração ativada",
+        "13": "Reenchimento em curso",
+        "14": "Ciclo de dosagem em curso",
+        "15": "Lote terminado"
+      }
+    },
+    "DosingErrors": {
+      "description": "Alarmes de dosagem",
+      "bits": {
+        "0": "Caudal instantâneo > máximo admissível",
+        "1": "Caudal instantâneo < mínimo admissível",
+        "2": "Saída de controlo de caudal > máxima admissível",
+        "3": "Saída de controlo de caudal < mínima admissível",
+        "4": "Sem variação de peso durante o reenchimento",
+        "5": "Reenchimento demasiado longo",
+        "6": "Tremonha vazia",
+        "7": "Transbordo da saída do totalizador externo",
+        "8": "Lote demasiado longo",
+        "9": "Tremonha cheia",
+        "10": "PID parado pelo utilizador",
+        "11": "Caudal superior à capacidade da máquina"
+      }
+    },
+    "ErrorCount": {
+      "description": "Contador de erros de dosagem"
+    },
+    "LastError": {
+      "description": "Último erro de dosagem",
+      "bits": {
+        "0": "Caudal instantâneo > máximo admissível",
+        "1": "Caudal instantâneo < mínimo admissível",
+        "2": "Saída de controlo de caudal > máxima admissível",
+        "3": "Saída de controlo de caudal < mínima admissível",
+        "4": "Sem variação de peso durante o reenchimento",
+        "5": "Reenchimento demasiado longo",
+        "6": "Tremonha vazia",
+        "7": "Transbordo da saída do totalizador externo",
+        "8": "Lote demasiado longo",
+        "9": "Tremonha cheia",
+        "10": "PID parado pelo utilizador",
+        "11": "Caudal superior à capacidade da máquina"
+      }
+    },
+    "Quality": {
+      "description": "Indicador de qualidade da dosagem"
+    },
+    "TotalFlow": {
+      "description": "Caudal de totalização"
+    },
+    "GrandTotal": {
+      "description": "Grande total (unidade de peso × 1000)"
+    },
+    "GeneralTotal": {
+      "description": "Total geral (unidade de peso × 1000)"
+    },
+    "ExtractTime": {
+      "description": "Tempo de extração"
+    },
+    "Version": {
+      "description": "Versão do programa e do produto"
+    },
+    "ZeroFn": {
+      "description": "Funções de zero"
+    },
+    "StabDec": {
+      "description": "Critério de estabilidade (byte baixo) e posição do ponto decimal (byte alto)"
+    },
+    "Capacity": {
+      "description": "Capacidade máxima"
+    },
+    "Segments": {
+      "description": "Número de segmentos de calibração"
+    },
+    "Load1": {
+      "description": "Carga de calibração, segmento 1"
+    },
+    "Load2": {
+      "description": "Carga de calibração, segmento 2"
+    },
+    "Load3": {
+      "description": "Carga de calibração, segmento 3"
+    },
+    "Sensitivity": {
+      "description": "Sensibilidade do sensor"
+    },
+    "Division": {
+      "description": "Escalão (divisão)"
+    },
+    "CalZero": {
+      "description": "Zero de calibração"
+    },
+    "Slope1": {
+      "description": "Coeficiente de declive 1"
+    },
+    "Slope2": {
+      "description": "Coeficiente de declive 2"
+    },
+    "Slope3": {
+      "description": "Coeficiente de declive 3"
+    },
+    "ZeroOffset": {
+      "description": "Desvio do zero"
+    },
+    "PresetTare": {
+      "description": "Tara predefinida"
+    },
+    "AdFreq": {
+      "description": "Frequência do conversor A/D"
+    },
+    "FilterOrder": {
+      "description": "Ativação do filtro (byte baixo) e ordem do passa-baixo (byte alto)"
+    },
+    "Cutoff": {
+      "description": "Frequência de corte do filtro passa-baixo"
+    },
+    "AvgDepth": {
+      "description": "Profundidade da média móvel do peso"
+    },
+    "Clipping": {
+      "description": "Tolerância do filtro de recorte do caudal instantâneo"
+    },
+    "FlowTime": {
+      "description": "Tempo de determinação do caudal instantâneo"
+    },
+    "FlowAvgDepth": {
+      "description": "Profundidade do caudal médio"
+    },
+    "FlowTimeUnit": {
+      "description": "Unidade de tempo do caudal"
+    },
+    "NominalFlow": {
+      "description": "Caudal nominal (setpoint)"
+    },
+    "CycleOptions": {
+      "description": "Opções de ciclo e alarmes"
+    },
+    "RefillStart": {
+      "description": "Nível de início do reenchimento"
+    },
+    "RefillEnd": {
+      "description": "Nível de fim do reenchimento"
+    },
+    "RefillThrow": {
+      "description": "Material em queda do reenchimento"
+    },
+    "RefillFlow": {
+      "description": "Caudal imposto durante o reenchimento"
+    },
+    "EmptyLevel": {
+      "description": "Nível de tremonha vazia"
+    },
+    "FullLevel": {
+      "description": "Nível de tremonha cheia"
+    },
+    "RefillMaxStart": {
+      "description": "Tempo máximo de arranque do reenchimento"
+    },
+    "RefillCheck": {
+      "description": "Intervalo de controlo de variação de peso no reenchimento"
+    },
+    "RefillMax": {
+      "description": "Tempo máximo de reenchimento"
+    },
+    "FlowMin": {
+      "description": "Caudal instantâneo mínimo admissível"
+    },
+    "FlowMax": {
+      "description": "Caudal instantâneo máximo admissível"
+    },
+    "OutMin": {
+      "description": "Saída de controlo de caudal mínima admissível"
+    },
+    "OutMax": {
+      "description": "Saída de controlo de caudal máxima admissível"
+    },
+    "InhibitStart": {
+      "description": "Inibição de alarmes de caudal no arranque"
+    },
+    "InhibitRun": {
+      "description": "Inibição de alarmes de caudal em serviço"
+    },
+    "BatchMax": {
+      "description": "Tempo máximo do lote"
+    },
+    "BatchWeight": {
+      "description": "Peso a totalizar (unidade de peso × 1000)"
+    },
+    "BatchCompl": {
+      "description": "Peso a totalizar, parte complementar"
+    },
+    "BatchInflight": {
+      "description": "Material em queda do peso a totalizar"
+    },
+    "MaxFlow": {
+      "description": "Caudal máximo"
+    },
+    "Kp": {
+      "description": "PID: Kp"
+    },
+    "Ti": {
+      "description": "PID: Ti"
+    },
+    "Td": {
+      "description": "PID: Td"
+    },
+    "PidBehavior": {
+      "description": "PID: comportamento",
+      "options": {
+        "0": "Estável",
+        "1": "Rápido",
+        "2": "Lento"
+      }
+    },
+    "PidTuneFlow": {
+      "description": "PID: caudal para o autoajuste"
+    },
+    "PidTuneCycles": {
+      "description": "PID: ciclos do autoajuste"
+    },
+    "RampUp": {
+      "description": "Rampa de subida da saída analógica"
+    },
+    "RampDown": {
+      "description": "Rampa de descida da saída analógica"
+    },
+    "InFn12": {
+      "description": "Função das entradas 1 (byte baixo) e 2 (byte alto)"
+    },
+    "HoldTime": {
+      "description": "Tempo de manutenção"
+    },
+    "OutFn12": {
+      "description": "Função das saídas 1 (byte baixo) e 2 (byte alto)"
+    },
+    "OutFn34": {
+      "description": "Função das saídas 3 (byte baixo) e 4 (byte alto)"
+    },
+    "High1": {
+      "description": "Limiar alto 1"
+    },
+    "Low1": {
+      "description": "Limiar baixo 1"
+    },
+    "High2": {
+      "description": "Limiar alto 2"
+    },
+    "Low2": {
+      "description": "Limiar baixo 2"
+    },
+    "High3": {
+      "description": "Limiar alto 3"
+    },
+    "Low3": {
+      "description": "Limiar baixo 3"
+    },
+    "High4": {
+      "description": "Limiar alto 4"
+    },
+    "Low4": {
+      "description": "Limiar baixo 4"
+    },
+    "ThresholdFn": {
+      "description": "Funções dos limiares 1-2 (byte baixo) e 3-4 (byte alto)"
+    }
+  },
+  "commands": {
+    "Cero": {
+      "text": "Zero"
+    },
+    "Tara": {
+      "text": "Tara"
+    },
+    "Anular la tara": {
+      "text": "Anular a tara"
+    },
+    "Arrancar la dosificación": {
+      "text": "Arrancar a dosagem"
+    },
+    "Parar la dosificación": {
+      "text": "Parar a dosagem"
+    },
+    "Empezar el relleno": {
+      "text": "Iniciar o reenchimento"
+    },
+    "Parar el relleno": {
+      "text": "Parar o reenchimento"
+    },
+    "Borrar errores": {
+      "text": "Limpar erros"
+    },
+    "Guardar en EEPROM": {
+      "text": "Guardar na EEPROM"
+    }
+  }
+}

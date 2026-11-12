@@ -1,0 +1,372 @@
+{
+  "schemaVersion": 1,
+  "translationOf": {
+    "brand": "Bluebelt",
+    "model": "Bluebelt v1.9"
+  },
+  "language": "pt",
+  "version": 1,
+  "author": "",
+  "kind": "Regulador de tapete pesador",
+  "groups": {
+    "1": "Marcha",
+    "2": "Setpoints",
+    "3": "Regulação",
+    "4": "Colocação a zero do tapete",
+    "5": "Calibração do peso",
+    "6": "Velocidade e caudal",
+    "7": "Funcionamento",
+    "8": "Entradas, saídas e comunicação",
+    "9": "Saída analógica",
+    "10": "Saída de cada setpoint"
+  },
+  "parameters": {
+    "Flow": {
+      "description": "Caudal instantâneo"
+    },
+    "Total": {
+      "description": "Total transportado"
+    },
+    "State": {
+      "description": "Estado de marcha",
+      "bits": {
+        "0": "Marcha",
+        "1": "Manual",
+        "2": "Regulação",
+        "3": "AL1",
+        "4": "AL2",
+        "5": "AL3",
+        "6": "AL4",
+        "7": "AL5",
+        "8": "Alarme de desvio",
+        "9": "Saída SET",
+        "10": "Saída PRE-SET"
+      }
+    },
+    "SetpointNo": {
+      "description": "Número do setpoint ativado"
+    },
+    "Mode": {
+      "description": "Funcionamento",
+      "options": {
+        "0": "Automático",
+        "1": "Manual"
+      }
+    },
+    "ManualOut": {
+      "description": "Saída analógica em manual"
+    },
+    "OutPct": {
+      "description": "Saída analógica instantânea"
+    },
+    "Speed": {
+      "description": "Velocidade instantânea do tapete"
+    },
+    "RunInput": {
+      "description": "Entrada de marcha por Modbus",
+      "bits": {
+        "0": "Marcha (entrada fechada)",
+        "15": "Manda o registo, não a entrada 1"
+      }
+    },
+    "SP1": {
+      "description": "Setpoint 1 de caudal"
+    },
+    "SP2": {
+      "description": "Setpoint 2 de caudal"
+    },
+    "SP3": {
+      "description": "Setpoint 3 de caudal"
+    },
+    "SP4": {
+      "description": "Setpoint 4 de caudal"
+    },
+    "SP5": {
+      "description": "Setpoint 5 de caudal"
+    },
+    "SP6": {
+      "description": "Setpoint 6 de caudal"
+    },
+    "SP7": {
+      "description": "Setpoint 7 de caudal"
+    },
+    "SP8": {
+      "description": "Setpoint 8 de caudal"
+    },
+    "SP9": {
+      "description": "Setpoint 9 de caudal"
+    },
+    "SP10": {
+      "description": "Setpoint 10 de caudal"
+    },
+    "SP11": {
+      "description": "Setpoint 11 de caudal"
+    },
+    "SP12": {
+      "description": "Setpoint 12 de caudal"
+    },
+    "SP13": {
+      "description": "Setpoint 13 de caudal"
+    },
+    "SP14": {
+      "description": "Setpoint 14 de caudal"
+    },
+    "SP15": {
+      "description": "Setpoint 15 de caudal"
+    },
+    "StartOutPct": {
+      "description": "Saída analógica no arranque (set 15)"
+    },
+    "TotalSet": {
+      "description": "Set de total transportado"
+    },
+    "Kp": {
+      "description": "Constante proporcional"
+    },
+    "Ki": {
+      "description": "Constante integral"
+    },
+    "DeadBand": {
+      "description": "Banda morta"
+    },
+    "Tolerance": {
+      "description": "Tolerância do set"
+    },
+    "MaxCapacity": {
+      "description": "Capacidade máxima do sistema"
+    },
+    "KK": {
+      "description": "Coeficiente de correção KK"
+    },
+    "ZeroTurns": {
+      "description": "Voltas da colocação a zero do tapete"
+    },
+    "ZeroMode": {
+      "description": "Colocação a zero por",
+      "options": {
+        "0": "Tempo",
+        "1": "Comprimento"
+      }
+    },
+    "BeltTurnTime": {
+      "description": "Tempo de uma volta do tapete"
+    },
+    "BeltTurnLength": {
+      "description": "Comprimento de uma volta do tapete"
+    },
+    "AutoZero": {
+      "description": "Auto-zero do tapete",
+      "options": {
+        "0": "Não",
+        "1": "Sim"
+      }
+    },
+    "CellCapacity": {
+      "description": "Capacidade das células de carga"
+    },
+    "CellSens": {
+      "description": "Sensibilidade das células de carga"
+    },
+    "WeightDivIndex": {
+      "description": "Índice do valor de divisão do peso"
+    },
+    "WeightDiv": {
+      "description": "Valor de divisão do peso"
+    },
+    "WeightDec": {
+      "description": "Decimais do peso"
+    },
+    "WeightZeros": {
+      "description": "Zeros fixos do peso"
+    },
+    "MaxWeightDiv": {
+      "description": "Peso máximo em divisões"
+    },
+    "ZeroCal": {
+      "description": "Calibração do zero do peso"
+    },
+    "SpanCal": {
+      "description": "Calibração do fundo de escala do peso"
+    },
+    "WeightFilter": {
+      "description": "Filtro do peso"
+    },
+    "Encoder": {
+      "description": "Velocidade do tapete",
+      "options": {
+        "1": "Constante",
+        "2": "Encoder"
+      }
+    },
+    "RollerDiam": {
+      "description": "Diâmetro do rolo do encoder"
+    },
+    "EncoderRes": {
+      "description": "Impulsos por volta do encoder"
+    },
+    "BeltSpeed": {
+      "description": "Velocidade predefinida do tapete"
+    },
+    "RollerDist": {
+      "description": "Distância entre rolos"
+    },
+    "MaxFlow": {
+      "description": "Caudal máximo do sistema"
+    },
+    "FlowDiv": {
+      "description": "Valor de divisão do caudal"
+    },
+    "FlowDec": {
+      "description": "Decimais do caudal"
+    },
+    "FlowRatio": {
+      "description": "Relação unidade de caudal / unidade de peso"
+    },
+    "FlowUnit": {
+      "description": "Unidade do caudal"
+    },
+    "FlowFilter": {
+      "description": "Filtro do caudal"
+    },
+    "WeightTimeout": {
+      "description": "Tempo máximo com o peso fixo (alarme 5)"
+    },
+    "K": {
+      "description": "Coeficiente K"
+    },
+    "BeltZero": {
+      "description": "Valor de zero do tapete"
+    },
+    "TestTime": {
+      "description": "Tempo de teste"
+    },
+    "MinWeight": {
+      "description": "Peso mínimo"
+    },
+    "PulseValue": {
+      "description": "Valor do impulso do totalizador"
+    },
+    "MinAnalog": {
+      "description": "Valor mínimo da saída analógica"
+    },
+    "OperMode": {
+      "description": "Tipo de funcionamento"
+    },
+    "OutLockTime": {
+      "description": "Bloqueio da saída no arranque"
+    },
+    "TolInitTime": {
+      "description": "Atraso inicial do alarme de tolerância"
+    },
+    "TolDelay": {
+      "description": "Atraso do alarme de tolerância"
+    },
+    "Out4Logic": {
+      "description": "Lógica da saída 4 (alarme fatal)"
+    },
+    "Out5Logic": {
+      "description": "Lógica da saída 5 (fora de tolerância)"
+    },
+    "In6Func": {
+      "description": "Função da entrada 6"
+    },
+    "AL3Enable": {
+      "description": "Alarme 3 ativado"
+    },
+    "Language": {
+      "description": "Idioma do visor e da impressora"
+    },
+    "TolMode": {
+      "description": "Tolerância absoluta ou em percentagem"
+    },
+    "Baud1": {
+      "description": "Velocidade de COM1"
+    },
+    "Baud2": {
+      "description": "Velocidade de COM2"
+    },
+    "Periph1": {
+      "description": "Periférico de COM1"
+    },
+    "Periph2": {
+      "description": "Periférico de COM2"
+    },
+    "SerialAddr": {
+      "description": "Endereço série"
+    },
+    "AoFullScale": {
+      "description": "Fundo de escala da saída analógica"
+    },
+    "AoZeroCal": {
+      "description": "Calibração do zero da saída analógica"
+    },
+    "AoSpanCal": {
+      "description": "Calibração do fundo de escala da saída analógica"
+    },
+    "AoRange": {
+      "description": "Gama da saída analógica"
+    },
+    "SP1Out": {
+      "description": "Saída analógica do setpoint 1"
+    },
+    "SP2Out": {
+      "description": "Saída analógica do setpoint 2"
+    },
+    "SP3Out": {
+      "description": "Saída analógica do setpoint 3"
+    },
+    "SP4Out": {
+      "description": "Saída analógica do setpoint 4"
+    },
+    "SP5Out": {
+      "description": "Saída analógica do setpoint 5"
+    },
+    "SP6Out": {
+      "description": "Saída analógica do setpoint 6"
+    },
+    "SP7Out": {
+      "description": "Saída analógica do setpoint 7"
+    },
+    "SP8Out": {
+      "description": "Saída analógica do setpoint 8"
+    },
+    "SP9Out": {
+      "description": "Saída analógica do setpoint 9"
+    },
+    "SP10Out": {
+      "description": "Saída analógica do setpoint 10"
+    },
+    "SP11Out": {
+      "description": "Saída analógica do setpoint 11"
+    },
+    "SP12Out": {
+      "description": "Saída analógica do setpoint 12"
+    },
+    "SP13Out": {
+      "description": "Saída analógica do setpoint 13"
+    },
+    "SP14Out": {
+      "description": "Saída analógica do setpoint 14"
+    },
+    "SP15Out": {
+      "description": "Saída analógica do setpoint 15"
+    }
+  },
+  "commands": {
+    "Automático": {
+      "text": "Automático"
+    },
+    "Manual": {
+      "text": "Manual"
+    },
+    "Marcha por Modbus": {
+      "text": "Marcha por Modbus"
+    },
+    "Paro por Modbus": {
+      "text": "Paragem por Modbus"
+    },
+    "Marcha por la entrada": {
+      "text": "Marcha pela entrada"
+    }
+  }
+}

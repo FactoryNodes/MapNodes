@@ -1,0 +1,432 @@
+{
+  "schemaVersion": 1,
+  "translationOf": {
+    "brand": "SCAIME",
+    "model": "eNod4-F"
+  },
+  "language": "en",
+  "version": 1,
+  "author": "",
+  "kind": "Weighing transmitter",
+  "groups": {
+    "1": "Identification",
+    "2": "Weighing and calibration",
+    "3": "Filters",
+    "4": "Dosing and refill",
+    "5": "PID and analog output",
+    "6": "Inputs, outputs and thresholds",
+    "10": "Measurement",
+    "11": "Dosing in progress",
+    "12": "Commands",
+    "13": "Live inputs and outputs"
+  },
+  "parameters": {
+    "Status": {
+      "description": "Measurement status",
+      "bits": {
+        "2": "b2 (b3b2 ≠ 00: measurement fault; 01 input check, 10 out of capacity, 11 out of A/D range)",
+        "3": "b3 (see b2)",
+        "4": "Measurement stable",
+        "5": "Zero within 1/4 division",
+        "6": "EEPROM fault",
+        "7": "Out of measurement range",
+        "8": "Input 1",
+        "9": "Input 2",
+        "10": "Output 1",
+        "11": "Output 2",
+        "12": "Output 3",
+        "13": "Output 4",
+        "14": "A tare has been done"
+      }
+    },
+    "Gross": {
+      "description": "Gross weight"
+    },
+    "Tare": {
+      "description": "Tare value"
+    },
+    "Net": {
+      "description": "Net weight"
+    },
+    "Points": {
+      "description": "Converter points (factory)"
+    },
+    "FlowInst": {
+      "description": "Instantaneous flow rate"
+    },
+    "FlowAvg": {
+      "description": "Average flow rate"
+    },
+    "FlowOut": {
+      "description": "Flow rate control output"
+    },
+    "OutValue": {
+      "description": "Control output value"
+    },
+    "Total": {
+      "description": "Totalizer (weight unit × 1000)"
+    },
+    "TotalCompl": {
+      "description": "Totalizer, complementary part (weight unit)"
+    },
+    "Command": {
+      "description": "Command register",
+      "options": {
+        "0": "Clear the response (send before each command)",
+        "208": "Reset (D0h)",
+        "209": "Save to EEPROM (D1h)",
+        "210": "Restore factory values (D2h)",
+        "211": "Zero (D3h)",
+        "212": "Tare (D4h)",
+        "213": "Cancel tare (D5h)",
+        "214": "Cancel command (D6h)",
+        "223": "Totalization / clear errors (DFh)",
+        "228": "Start / resume dosing or batch (E4h)",
+        "229": "Stop dosing / cancel batch (E5h)",
+        "237": "Reset the grand total (EDh)",
+        "238": "Reset the general total (EEh)",
+        "241": "Dynamic zero acquisition (F1h)",
+        "242": "Preset tare (F2h)",
+        "243": "Learning cycle on the next cycle (F3h)",
+        "244": "Empty the hopper (cleaning) (F4h)",
+        "245": "Start refill (F5h)",
+        "246": "Stop refill (F6h)",
+        "247": "Suspend batch (F7h)",
+        "199": "Stop PID (C7h)",
+        "200": "Restart PID (C8h)"
+      }
+    },
+    "Response": {
+      "description": "Command response",
+      "options": {
+        "0": "Ready for another command",
+        "1": "Executing the command",
+        "2": "Command done",
+        "3": "Error executing it"
+      }
+    },
+    "IO": {
+      "description": "Logic inputs (low byte) and outputs (high byte)",
+      "bits": {
+        "0": "Input 1",
+        "1": "Input 2",
+        "2": "Input 3",
+        "3": "Input 4",
+        "8": "Output 1",
+        "9": "Output 2",
+        "10": "Output 3",
+        "11": "Output 4"
+      }
+    },
+    "Deviation": {
+      "description": "Dosing weight deviation"
+    },
+    "DosingStatus": {
+      "description": "Dosing status",
+      "bits": {
+        "0": "Stopped",
+        "1": "Refilling",
+        "2": "End of refill wait (learning cycle)",
+        "3": "End of refill stabilization",
+        "4": "Determining the flow rate",
+        "5": "Dosing",
+        "6": "Batch suspended",
+        "7": "Emptying the hopper",
+        "9": "Learning cycle",
+        "10": "Flow rate calibration done",
+        "11": "Volumetric dosing",
+        "12": "Extraction active",
+        "13": "Refill in progress",
+        "14": "Dosing cycle in progress",
+        "15": "Batch finished"
+      }
+    },
+    "DosingErrors": {
+      "description": "Dosing alarms",
+      "bits": {
+        "0": "Instantaneous flow rate > maximum allowed",
+        "1": "Instantaneous flow rate < minimum allowed",
+        "2": "Flow rate control output > maximum allowed",
+        "3": "Flow rate control output < minimum allowed",
+        "4": "No weight variation during refill",
+        "5": "Refill too long",
+        "6": "Hopper empty",
+        "7": "External totalizer output overflow",
+        "8": "Batch too long",
+        "9": "Hopper full",
+        "10": "PID stopped by the user",
+        "11": "Flow rate greater than machine capacity"
+      }
+    },
+    "ErrorCount": {
+      "description": "Dosing error counter"
+    },
+    "LastError": {
+      "description": "Last dosing error",
+      "bits": {
+        "0": "Instantaneous flow rate > maximum allowed",
+        "1": "Instantaneous flow rate < minimum allowed",
+        "2": "Flow rate control output > maximum allowed",
+        "3": "Flow rate control output < minimum allowed",
+        "4": "No weight variation during refill",
+        "5": "Refill too long",
+        "6": "Hopper empty",
+        "7": "External totalizer output overflow",
+        "8": "Batch too long",
+        "9": "Hopper full",
+        "10": "PID stopped by the user",
+        "11": "Flow rate greater than machine capacity"
+      }
+    },
+    "Quality": {
+      "description": "Dosing quality indicator"
+    },
+    "TotalFlow": {
+      "description": "Totalization flow rate"
+    },
+    "GrandTotal": {
+      "description": "Grand total (weight unit × 1000)"
+    },
+    "GeneralTotal": {
+      "description": "General total (weight unit × 1000)"
+    },
+    "ExtractTime": {
+      "description": "Extraction time"
+    },
+    "Version": {
+      "description": "Program and product version"
+    },
+    "ZeroFn": {
+      "description": "Zero functions"
+    },
+    "StabDec": {
+      "description": "Stability criterion (low byte) and decimal point position (high byte)"
+    },
+    "Capacity": {
+      "description": "Maximum capacity"
+    },
+    "Segments": {
+      "description": "Number of calibration segments"
+    },
+    "Load1": {
+      "description": "Calibration load, segment 1"
+    },
+    "Load2": {
+      "description": "Calibration load, segment 2"
+    },
+    "Load3": {
+      "description": "Calibration load, segment 3"
+    },
+    "Sensitivity": {
+      "description": "Sensor sensitivity"
+    },
+    "Division": {
+      "description": "Scale interval (division)"
+    },
+    "CalZero": {
+      "description": "Calibration zero"
+    },
+    "Slope1": {
+      "description": "Slope coefficient 1"
+    },
+    "Slope2": {
+      "description": "Slope coefficient 2"
+    },
+    "Slope3": {
+      "description": "Slope coefficient 3"
+    },
+    "ZeroOffset": {
+      "description": "Zero offset"
+    },
+    "PresetTare": {
+      "description": "Preset tare"
+    },
+    "AdFreq": {
+      "description": "A/D converter frequency"
+    },
+    "FilterOrder": {
+      "description": "Filter activation (low byte) and low-pass order (high byte)"
+    },
+    "Cutoff": {
+      "description": "Low-pass filter cutoff frequency"
+    },
+    "AvgDepth": {
+      "description": "Weight moving average depth"
+    },
+    "Clipping": {
+      "description": "Instantaneous flow rate clipping filter tolerance"
+    },
+    "FlowTime": {
+      "description": "Instantaneous flow rate determination time"
+    },
+    "FlowAvgDepth": {
+      "description": "Average flow rate depth"
+    },
+    "FlowTimeUnit": {
+      "description": "Flow rate time unit"
+    },
+    "NominalFlow": {
+      "description": "Nominal flow rate (setpoint)"
+    },
+    "CycleOptions": {
+      "description": "Cycle and alarm options"
+    },
+    "RefillStart": {
+      "description": "Refill start level"
+    },
+    "RefillEnd": {
+      "description": "Refill end level"
+    },
+    "RefillThrow": {
+      "description": "Refill in-flight"
+    },
+    "RefillFlow": {
+      "description": "Flow rate imposed during refill"
+    },
+    "EmptyLevel": {
+      "description": "Hopper empty level"
+    },
+    "FullLevel": {
+      "description": "Hopper full level"
+    },
+    "RefillMaxStart": {
+      "description": "Maximum refill start time"
+    },
+    "RefillCheck": {
+      "description": "Weight variation check interval during refill"
+    },
+    "RefillMax": {
+      "description": "Maximum refill time"
+    },
+    "FlowMin": {
+      "description": "Minimum allowed instantaneous flow rate"
+    },
+    "FlowMax": {
+      "description": "Maximum allowed instantaneous flow rate"
+    },
+    "OutMin": {
+      "description": "Minimum allowed flow rate control output"
+    },
+    "OutMax": {
+      "description": "Maximum allowed flow rate control output"
+    },
+    "InhibitStart": {
+      "description": "Flow rate alarm inhibition at start"
+    },
+    "InhibitRun": {
+      "description": "Flow rate alarm inhibition in service"
+    },
+    "BatchMax": {
+      "description": "Maximum batch time"
+    },
+    "BatchWeight": {
+      "description": "Weight to totalize (weight unit × 1000)"
+    },
+    "BatchCompl": {
+      "description": "Weight to totalize, complementary part"
+    },
+    "BatchInflight": {
+      "description": "In-flight of the weight to totalize"
+    },
+    "MaxFlow": {
+      "description": "Maximum flow rate"
+    },
+    "Kp": {
+      "description": "PID: Kp"
+    },
+    "Ti": {
+      "description": "PID: Ti"
+    },
+    "Td": {
+      "description": "PID: Td"
+    },
+    "PidBehavior": {
+      "description": "PID: behavior",
+      "options": {
+        "0": "Stable",
+        "1": "Fast",
+        "2": "Slow"
+      }
+    },
+    "PidTuneFlow": {
+      "description": "PID: flow rate for auto-tuning"
+    },
+    "PidTuneCycles": {
+      "description": "PID: auto-tuning cycles"
+    },
+    "RampUp": {
+      "description": "Analog output ramp-up"
+    },
+    "RampDown": {
+      "description": "Analog output ramp-down"
+    },
+    "InFn12": {
+      "description": "Function of inputs 1 (low byte) and 2 (high byte)"
+    },
+    "HoldTime": {
+      "description": "Holding time"
+    },
+    "OutFn12": {
+      "description": "Function of outputs 1 (low byte) and 2 (high byte)"
+    },
+    "OutFn34": {
+      "description": "Function of outputs 3 (low byte) and 4 (high byte)"
+    },
+    "High1": {
+      "description": "High threshold 1"
+    },
+    "Low1": {
+      "description": "Low threshold 1"
+    },
+    "High2": {
+      "description": "High threshold 2"
+    },
+    "Low2": {
+      "description": "Low threshold 2"
+    },
+    "High3": {
+      "description": "High threshold 3"
+    },
+    "Low3": {
+      "description": "Low threshold 3"
+    },
+    "High4": {
+      "description": "High threshold 4"
+    },
+    "Low4": {
+      "description": "Low threshold 4"
+    },
+    "ThresholdFn": {
+      "description": "Functions of thresholds 1-2 (low byte) and 3-4 (high byte)"
+    }
+  },
+  "commands": {
+    "Cero": {
+      "text": "Zero"
+    },
+    "Tara": {
+      "text": "Tare"
+    },
+    "Anular la tara": {
+      "text": "Cancel tare"
+    },
+    "Arrancar la dosificación": {
+      "text": "Start dosing"
+    },
+    "Parar la dosificación": {
+      "text": "Stop dosing"
+    },
+    "Empezar el relleno": {
+      "text": "Start refill"
+    },
+    "Parar el relleno": {
+      "text": "Stop refill"
+    },
+    "Borrar errores": {
+      "text": "Clear errors"
+    },
+    "Guardar en EEPROM": {
+      "text": "Save to EEPROM"
+    }
+  }
+}

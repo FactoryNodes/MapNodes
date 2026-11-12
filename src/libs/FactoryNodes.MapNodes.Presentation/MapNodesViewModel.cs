@@ -13,7 +13,7 @@ namespace FactoryNodes.MapNodes.Presentation;
 /// pestañas; abajo, lo que no vale (lo mismo que comprueba el programa al leerlo). Lo que la ventana no enseña (el dibujo, los decimales que da
 /// otro parámetro) se conserva tal cual al guardar.
 /// </summary>
-public sealed class MapNodesViewModel : ObservableObject
+public sealed partial class MapNodesViewModel : ObservableObject
 {
     public const string ProductName = "MapNodes";
 
@@ -44,6 +44,9 @@ public sealed class MapNodesViewModel : ObservableObject
         RemoveGroupCommand = new RelayCommand(p => { if (p is GroupRow row) RemoveGroup(row); });
         AddCommandCommand = new RelayCommand(() => AddCommand());
         RemoveCommandCommand = new RelayCommand(p => { if (p is CommandRow row) RemoveCommand(row); });
+        Web = new MapNodesWebViewModel(this, services.HttpBytes is { } http ? new DeviceDownloads(http) : null);
+        InitMore();
+        InitTranslation();
         Rebuild();
         Status = L.T("Escribe la cabecera y el protocolo, y añade los parámetros (o pégalos de una hoja de cálculo).");
     }
@@ -133,7 +136,7 @@ public sealed class MapNodesViewModel : ObservableObject
         }
     }
 
-    /// <summary>Lleva dibujo (se conserva; MapNodes no lo edita).</summary>
+    /// <summary>Lleva dibujo.</summary>
     public bool HasDrawing => _model.Svg.Trim().Length > 0;
 
     // ---------- Protocolo ----------
@@ -383,6 +386,9 @@ public sealed class MapNodesViewModel : ObservableObject
             return false;
         }
 
+        // una traducción (solo textos) se abre sobre el fichero que ya está abierto, en su pestaña
+        if (DeviceTranslation.Looks(text)) return LoadTranslation(text, _services.FileName(path));
+
         var (model, problems) = DeviceModel.Read(text);
         if (model is null)
         {
@@ -435,6 +441,8 @@ public sealed class MapNodesViewModel : ObservableObject
     {
         _model = model;
         _path = path;
+        TranslationRows.Clear();   // la traducción era del fichero de antes
+        OnPropertyChanged(nameof(TranslationHeader));
         Rebuild();
         IsDirty = false;
         OnPropertyChanged(nameof(Title));
@@ -453,6 +461,7 @@ public sealed class MapNodesViewModel : ObservableObject
         Commands.Clear();
         foreach (var command in _model.Commands) Commands.Add(new CommandRow(command, this));
         foreach (var name in new[] { nameof(Brand), nameof(ModelName), nameof(Kind), nameof(Description), nameof(Source), nameof(Verified), nameof(HasDrawing),
+                     nameof(Type), nameof(Version), nameof(Author), nameof(Svg), nameof(Language), nameof(TranslationLanguageOptions),
                      nameof(RegisterBase), nameof(WordOrder), nameof(MaxRegistersPerRead), nameof(SaveAddress), nameof(SaveValue), nameof(SaveDescription),
                      nameof(RestoreNotes), nameof(GroupOptions), nameof(ParametersHeader), nameof(GroupsHeader), nameof(CommandsHeader), nameof(Title) })
             OnPropertyChanged(name);
@@ -541,7 +550,7 @@ public sealed class GroupRow(int number, string text, MapNodesViewModel owner) :
 /// Un parámetro en la tabla. Las opciones y los bits se escriben en una línea («0=Adelante; 1=Atrás»); la escala acepta coma o punto. Lo que no
 /// se enseña (los decimales que da otro parámetro) se queda como estaba.
 /// </summary>
-public sealed class ParameterRow(DeviceParameter parameter, MapNodesViewModel owner) : ObservableObject
+public sealed partial class ParameterRow(DeviceParameter parameter, MapNodesViewModel owner) : ObservableObject
 {
     public DeviceParameter Parameter { get; } = parameter;
 
@@ -640,9 +649,6 @@ public sealed class ParameterRow(DeviceParameter parameter, MapNodesViewModel ow
     public string Options { get => ToText(Parameter.Options); set => SetMap(value, m => Parameter.Options = m, Options); }
     public string Bits { get => ToText(Parameter.Bits); set => SetMap(value, m => Parameter.Bits = m, Bits); }
     public string Note { get => Parameter.Note; set => Set(value, v => Parameter.Note = v, Parameter.Note); }
-
-    /// <summary>Sus decimales los da otro parámetro (se conserva; no se edita aquí).</summary>
-    public string DecimalsFrom => Parameter.DecimalsFrom?.From ?? "";
 
     /// <summary>«0=Adelante; 1=Atrás».</summary>
     public static string ToText(Dictionary<string, string>? map) =>

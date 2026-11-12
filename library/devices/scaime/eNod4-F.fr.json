@@ -1,0 +1,432 @@
+{
+  "schemaVersion": 1,
+  "translationOf": {
+    "brand": "SCAIME",
+    "model": "eNod4-F"
+  },
+  "language": "fr",
+  "version": 1,
+  "author": "",
+  "kind": "Transmetteur de pesage",
+  "groups": {
+    "1": "Identification",
+    "2": "Pesage et étalonnage",
+    "3": "Filtres",
+    "4": "Dosage et remplissage",
+    "5": "PID et sortie analogique",
+    "6": "Entrées, sorties et seuils",
+    "10": "Mesure",
+    "11": "Dosage en cours",
+    "12": "Commandes",
+    "13": "Entrées et sorties en direct"
+  },
+  "parameters": {
+    "Status": {
+      "description": "État de la mesure",
+      "bits": {
+        "2": "b2 (b3b2 ≠ 00 : défaut de mesure ; 01 contrôle d'entrée, 10 hors capacité, 11 hors plage de l'A/N)",
+        "3": "b3 (voir b2)",
+        "4": "Mesure stable",
+        "5": "Zéro à 1/4 de division près",
+        "6": "Défaut d'EEPROM",
+        "7": "Hors plage de mesure",
+        "8": "Entrée 1",
+        "9": "Entrée 2",
+        "10": "Sortie 1",
+        "11": "Sortie 2",
+        "12": "Sortie 3",
+        "13": "Sortie 4",
+        "14": "Une tare a été effectuée"
+      }
+    },
+    "Gross": {
+      "description": "Poids brut"
+    },
+    "Tare": {
+      "description": "Valeur de la tare"
+    },
+    "Net": {
+      "description": "Poids net"
+    },
+    "Points": {
+      "description": "Points du convertisseur (d'usine)"
+    },
+    "FlowInst": {
+      "description": "Débit instantané"
+    },
+    "FlowAvg": {
+      "description": "Débit moyen"
+    },
+    "FlowOut": {
+      "description": "Sortie de régulation de débit"
+    },
+    "OutValue": {
+      "description": "Valeur de la sortie de régulation"
+    },
+    "Total": {
+      "description": "Totalisateur (unité de poids × 1000)"
+    },
+    "TotalCompl": {
+      "description": "Totalisateur, partie complémentaire (unité de poids)"
+    },
+    "Command": {
+      "description": "Registre de commandes",
+      "options": {
+        "0": "Effacer la réponse (envoyer avant chaque commande)",
+        "208": "Reset (D0h)",
+        "209": "Enregistrer en EEPROM (D1h)",
+        "210": "Revenir aux valeurs d'usine (D2h)",
+        "211": "Zéro (D3h)",
+        "212": "Tare (D4h)",
+        "213": "Annuler la tare (D5h)",
+        "214": "Annuler la commande (D6h)",
+        "223": "Totalisation / effacer les erreurs (DFh)",
+        "228": "Démarrer / reprendre le dosage ou le lot (E4h)",
+        "229": "Arrêter le dosage / annuler le lot (E5h)",
+        "237": "Remettre à zéro le grand total (EDh)",
+        "238": "Remettre à zéro le total général (EEh)",
+        "241": "Acquisition du zéro dynamique (F1h)",
+        "242": "Tare prédéterminée (F2h)",
+        "243": "Cycle d'apprentissage au cycle suivant (F3h)",
+        "244": "Vider la trémie (nettoyage) (F4h)",
+        "245": "Démarrer le remplissage (F5h)",
+        "246": "Arrêter le remplissage (F6h)",
+        "247": "Suspendre le lot (F7h)",
+        "199": "Arrêter le PID (C7h)",
+        "200": "Redémarrer le PID (C8h)"
+      }
+    },
+    "Response": {
+      "description": "Réponse à la commande",
+      "options": {
+        "0": "Prêt pour une autre commande",
+        "1": "Commande en cours d'exécution",
+        "2": "Commande exécutée",
+        "3": "Erreur d'exécution"
+      }
+    },
+    "IO": {
+      "description": "Entrées (octet bas) et sorties (octet haut) logiques",
+      "bits": {
+        "0": "Entrée 1",
+        "1": "Entrée 2",
+        "2": "Entrée 3",
+        "3": "Entrée 4",
+        "8": "Sortie 1",
+        "9": "Sortie 2",
+        "10": "Sortie 3",
+        "11": "Sortie 4"
+      }
+    },
+    "Deviation": {
+      "description": "Écart de poids du dosage"
+    },
+    "DosingStatus": {
+      "description": "État du dosage",
+      "bits": {
+        "0": "Arrêté",
+        "1": "Remplissage",
+        "2": "Fin de l'attente du remplissage (cycle d'apprentissage)",
+        "3": "Fin de la stabilisation du remplissage",
+        "4": "Détermination du débit",
+        "5": "Dosage",
+        "6": "Lot suspendu",
+        "7": "Vidange de la trémie",
+        "9": "Cycle d'apprentissage",
+        "10": "Étalonnage du débit effectué",
+        "11": "Dosage volumétrique",
+        "12": "Extraction activée",
+        "13": "Remplissage en cours",
+        "14": "Cycle de dosage en cours",
+        "15": "Lot terminé"
+      }
+    },
+    "DosingErrors": {
+      "description": "Alarmes de dosage",
+      "bits": {
+        "0": "Débit instantané > maximum admissible",
+        "1": "Débit instantané < minimum admissible",
+        "2": "Sortie de régulation de débit > maximum admissible",
+        "3": "Sortie de régulation de débit < minimum admissible",
+        "4": "Pas de variation de poids pendant le remplissage",
+        "5": "Remplissage trop long",
+        "6": "Trémie vide",
+        "7": "Dépassement de la sortie du totalisateur externe",
+        "8": "Lot trop long",
+        "9": "Trémie pleine",
+        "10": "PID arrêté par l'utilisateur",
+        "11": "Débit supérieur à la capacité de la machine"
+      }
+    },
+    "ErrorCount": {
+      "description": "Compteur d'erreurs de dosage"
+    },
+    "LastError": {
+      "description": "Dernière erreur de dosage",
+      "bits": {
+        "0": "Débit instantané > maximum admissible",
+        "1": "Débit instantané < minimum admissible",
+        "2": "Sortie de régulation de débit > maximum admissible",
+        "3": "Sortie de régulation de débit < minimum admissible",
+        "4": "Pas de variation de poids pendant le remplissage",
+        "5": "Remplissage trop long",
+        "6": "Trémie vide",
+        "7": "Dépassement de la sortie du totalisateur externe",
+        "8": "Lot trop long",
+        "9": "Trémie pleine",
+        "10": "PID arrêté par l'utilisateur",
+        "11": "Débit supérieur à la capacité de la machine"
+      }
+    },
+    "Quality": {
+      "description": "Indicateur de qualité du dosage"
+    },
+    "TotalFlow": {
+      "description": "Débit de totalisation"
+    },
+    "GrandTotal": {
+      "description": "Grand total (unité de poids × 1000)"
+    },
+    "GeneralTotal": {
+      "description": "Total général (unité de poids × 1000)"
+    },
+    "ExtractTime": {
+      "description": "Temps d'extraction"
+    },
+    "Version": {
+      "description": "Version du programme et du produit"
+    },
+    "ZeroFn": {
+      "description": "Fonctions de zéro"
+    },
+    "StabDec": {
+      "description": "Critère de stabilité (octet bas) et position du point décimal (octet haut)"
+    },
+    "Capacity": {
+      "description": "Capacité maximale"
+    },
+    "Segments": {
+      "description": "Nombre de segments d'étalonnage"
+    },
+    "Load1": {
+      "description": "Charge d'étalonnage, segment 1"
+    },
+    "Load2": {
+      "description": "Charge d'étalonnage, segment 2"
+    },
+    "Load3": {
+      "description": "Charge d'étalonnage, segment 3"
+    },
+    "Sensitivity": {
+      "description": "Sensibilité du capteur"
+    },
+    "Division": {
+      "description": "Échelon (division)"
+    },
+    "CalZero": {
+      "description": "Zéro d'étalonnage"
+    },
+    "Slope1": {
+      "description": "Coefficient de pente 1"
+    },
+    "Slope2": {
+      "description": "Coefficient de pente 2"
+    },
+    "Slope3": {
+      "description": "Coefficient de pente 3"
+    },
+    "ZeroOffset": {
+      "description": "Décalage du zéro"
+    },
+    "PresetTare": {
+      "description": "Tare prédéterminée"
+    },
+    "AdFreq": {
+      "description": "Fréquence du convertisseur A/N"
+    },
+    "FilterOrder": {
+      "description": "Activation du filtre (octet bas) et ordre du passe-bas (octet haut)"
+    },
+    "Cutoff": {
+      "description": "Fréquence de coupure du filtre passe-bas"
+    },
+    "AvgDepth": {
+      "description": "Profondeur de la moyenne glissante du poids"
+    },
+    "Clipping": {
+      "description": "Tolérance du filtre d'écrêtage du débit instantané"
+    },
+    "FlowTime": {
+      "description": "Temps de détermination du débit instantané"
+    },
+    "FlowAvgDepth": {
+      "description": "Profondeur du débit moyen"
+    },
+    "FlowTimeUnit": {
+      "description": "Unité de temps du débit"
+    },
+    "NominalFlow": {
+      "description": "Débit nominal (consigne)"
+    },
+    "CycleOptions": {
+      "description": "Options de cycle et alarmes"
+    },
+    "RefillStart": {
+      "description": "Niveau de début du remplissage"
+    },
+    "RefillEnd": {
+      "description": "Niveau de fin du remplissage"
+    },
+    "RefillThrow": {
+      "description": "Queue de chute du remplissage"
+    },
+    "RefillFlow": {
+      "description": "Débit imposé pendant le remplissage"
+    },
+    "EmptyLevel": {
+      "description": "Niveau de trémie vide"
+    },
+    "FullLevel": {
+      "description": "Niveau de trémie pleine"
+    },
+    "RefillMaxStart": {
+      "description": "Temps maximal de démarrage du remplissage"
+    },
+    "RefillCheck": {
+      "description": "Intervalle de contrôle de variation de poids au remplissage"
+    },
+    "RefillMax": {
+      "description": "Temps maximal de remplissage"
+    },
+    "FlowMin": {
+      "description": "Débit instantané minimum admissible"
+    },
+    "FlowMax": {
+      "description": "Débit instantané maximum admissible"
+    },
+    "OutMin": {
+      "description": "Sortie de régulation de débit minimum admissible"
+    },
+    "OutMax": {
+      "description": "Sortie de régulation de débit maximum admissible"
+    },
+    "InhibitStart": {
+      "description": "Inhibition des alarmes de débit au démarrage"
+    },
+    "InhibitRun": {
+      "description": "Inhibition des alarmes de débit en service"
+    },
+    "BatchMax": {
+      "description": "Temps maximal du lot"
+    },
+    "BatchWeight": {
+      "description": "Poids à totaliser (unité de poids × 1000)"
+    },
+    "BatchCompl": {
+      "description": "Poids à totaliser, partie complémentaire"
+    },
+    "BatchInflight": {
+      "description": "Queue de chute du poids à totaliser"
+    },
+    "MaxFlow": {
+      "description": "Débit maximal"
+    },
+    "Kp": {
+      "description": "PID : Kp"
+    },
+    "Ti": {
+      "description": "PID : Ti"
+    },
+    "Td": {
+      "description": "PID : Td"
+    },
+    "PidBehavior": {
+      "description": "PID : comportement",
+      "options": {
+        "0": "Stable",
+        "1": "Rapide",
+        "2": "Lent"
+      }
+    },
+    "PidTuneFlow": {
+      "description": "PID : débit pour l'autoréglage"
+    },
+    "PidTuneCycles": {
+      "description": "PID : cycles de l'autoréglage"
+    },
+    "RampUp": {
+      "description": "Rampe de montée de la sortie analogique"
+    },
+    "RampDown": {
+      "description": "Rampe de descente de la sortie analogique"
+    },
+    "InFn12": {
+      "description": "Fonction des entrées 1 (octet bas) et 2 (octet haut)"
+    },
+    "HoldTime": {
+      "description": "Temps de maintien"
+    },
+    "OutFn12": {
+      "description": "Fonction des sorties 1 (octet bas) et 2 (octet haut)"
+    },
+    "OutFn34": {
+      "description": "Fonction des sorties 3 (octet bas) et 4 (octet haut)"
+    },
+    "High1": {
+      "description": "Seuil haut 1"
+    },
+    "Low1": {
+      "description": "Seuil bas 1"
+    },
+    "High2": {
+      "description": "Seuil haut 2"
+    },
+    "Low2": {
+      "description": "Seuil bas 2"
+    },
+    "High3": {
+      "description": "Seuil haut 3"
+    },
+    "Low3": {
+      "description": "Seuil bas 3"
+    },
+    "High4": {
+      "description": "Seuil haut 4"
+    },
+    "Low4": {
+      "description": "Seuil bas 4"
+    },
+    "ThresholdFn": {
+      "description": "Fonctions des seuils 1-2 (octet bas) et 3-4 (octet haut)"
+    }
+  },
+  "commands": {
+    "Cero": {
+      "text": "Zéro"
+    },
+    "Tara": {
+      "text": "Tare"
+    },
+    "Anular la tara": {
+      "text": "Annuler la tare"
+    },
+    "Arrancar la dosificación": {
+      "text": "Démarrer le dosage"
+    },
+    "Parar la dosificación": {
+      "text": "Arrêter le dosage"
+    },
+    "Empezar el relleno": {
+      "text": "Démarrer le remplissage"
+    },
+    "Parar el relleno": {
+      "text": "Arrêter le remplissage"
+    },
+    "Borrar errores": {
+      "text": "Effacer les erreurs"
+    },
+    "Guardar en EEPROM": {
+      "text": "Enregistrer en EEPROM"
+    }
+  }
+}

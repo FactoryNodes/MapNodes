@@ -1,0 +1,372 @@
+{
+  "schemaVersion": 1,
+  "translationOf": {
+    "brand": "Bluebelt",
+    "model": "Bluebelt v1.9"
+  },
+  "language": "ca",
+  "version": 1,
+  "author": "",
+  "kind": "Regulador de cinta pesadora",
+  "groups": {
+    "1": "Marxa",
+    "2": "Set points",
+    "3": "Regulació",
+    "4": "Posada a zero de la cinta",
+    "5": "Calibratge del pes",
+    "6": "Velocitat i cabal",
+    "7": "Funcionament",
+    "8": "Entrades, sortides i comunicació",
+    "9": "Sortida analògica",
+    "10": "Sortida de cada set point"
+  },
+  "parameters": {
+    "Flow": {
+      "description": "Cabal instantani"
+    },
+    "Total": {
+      "description": "Total transportat"
+    },
+    "State": {
+      "description": "Estat de marxa",
+      "bits": {
+        "0": "Marxa",
+        "1": "Manual",
+        "2": "Regulació",
+        "3": "AL1",
+        "4": "AL2",
+        "5": "AL3",
+        "6": "AL4",
+        "7": "AL5",
+        "8": "Alarma de desviació",
+        "9": "Sortida SET",
+        "10": "Sortida PRE-SET"
+      }
+    },
+    "SetpointNo": {
+      "description": "Número de set point activat"
+    },
+    "Mode": {
+      "description": "Funcionament",
+      "options": {
+        "0": "Automàtic",
+        "1": "Manual"
+      }
+    },
+    "ManualOut": {
+      "description": "Sortida analògica en manual"
+    },
+    "OutPct": {
+      "description": "Sortida analògica instantània"
+    },
+    "Speed": {
+      "description": "Velocitat instantània de la cinta"
+    },
+    "RunInput": {
+      "description": "Entrada de marxa per Modbus",
+      "bits": {
+        "0": "Marxa (entrada tancada)",
+        "15": "Mana el registre, no l'entrada 1"
+      }
+    },
+    "SP1": {
+      "description": "Set point 1 de cabal"
+    },
+    "SP2": {
+      "description": "Set point 2 de cabal"
+    },
+    "SP3": {
+      "description": "Set point 3 de cabal"
+    },
+    "SP4": {
+      "description": "Set point 4 de cabal"
+    },
+    "SP5": {
+      "description": "Set point 5 de cabal"
+    },
+    "SP6": {
+      "description": "Set point 6 de cabal"
+    },
+    "SP7": {
+      "description": "Set point 7 de cabal"
+    },
+    "SP8": {
+      "description": "Set point 8 de cabal"
+    },
+    "SP9": {
+      "description": "Set point 9 de cabal"
+    },
+    "SP10": {
+      "description": "Set point 10 de cabal"
+    },
+    "SP11": {
+      "description": "Set point 11 de cabal"
+    },
+    "SP12": {
+      "description": "Set point 12 de cabal"
+    },
+    "SP13": {
+      "description": "Set point 13 de cabal"
+    },
+    "SP14": {
+      "description": "Set point 14 de cabal"
+    },
+    "SP15": {
+      "description": "Set point 15 de cabal"
+    },
+    "StartOutPct": {
+      "description": "Sortida analògica en arrencar (set 15)"
+    },
+    "TotalSet": {
+      "description": "Set de total transportat"
+    },
+    "Kp": {
+      "description": "Constant proporcional"
+    },
+    "Ki": {
+      "description": "Constant integral"
+    },
+    "DeadBand": {
+      "description": "Banda morta"
+    },
+    "Tolerance": {
+      "description": "Tolerància del set"
+    },
+    "MaxCapacity": {
+      "description": "Capacitat màxima del sistema"
+    },
+    "KK": {
+      "description": "Coeficient de correcció KK"
+    },
+    "ZeroTurns": {
+      "description": "Voltes de la posada a zero de la cinta"
+    },
+    "ZeroMode": {
+      "description": "Posada a zero per",
+      "options": {
+        "0": "Temps",
+        "1": "Longitud"
+      }
+    },
+    "BeltTurnTime": {
+      "description": "Temps d'una volta de la cinta"
+    },
+    "BeltTurnLength": {
+      "description": "Longitud d'una volta de la cinta"
+    },
+    "AutoZero": {
+      "description": "Autozero de la cinta",
+      "options": {
+        "0": "No",
+        "1": "Sí"
+      }
+    },
+    "CellCapacity": {
+      "description": "Capacitat de les cèl·lules de càrrega"
+    },
+    "CellSens": {
+      "description": "Sensibilitat de les cèl·lules de càrrega"
+    },
+    "WeightDivIndex": {
+      "description": "Índex del valor de divisió del pes"
+    },
+    "WeightDiv": {
+      "description": "Valor de divisió del pes"
+    },
+    "WeightDec": {
+      "description": "Decimals del pes"
+    },
+    "WeightZeros": {
+      "description": "Zeros fixos del pes"
+    },
+    "MaxWeightDiv": {
+      "description": "Pes màxim en divisions"
+    },
+    "ZeroCal": {
+      "description": "Calibratge del zero del pes"
+    },
+    "SpanCal": {
+      "description": "Calibratge del fons d'escala del pes"
+    },
+    "WeightFilter": {
+      "description": "Filtre del pes"
+    },
+    "Encoder": {
+      "description": "Velocitat de la cinta",
+      "options": {
+        "1": "Constant",
+        "2": "Encoder"
+      }
+    },
+    "RollerDiam": {
+      "description": "Diàmetre del corró de l'encoder"
+    },
+    "EncoderRes": {
+      "description": "Impulsos per volta de l'encoder"
+    },
+    "BeltSpeed": {
+      "description": "Velocitat predeterminada de la cinta"
+    },
+    "RollerDist": {
+      "description": "Distància entre corrons"
+    },
+    "MaxFlow": {
+      "description": "Cabal màxim del sistema"
+    },
+    "FlowDiv": {
+      "description": "Valor de divisió del cabal"
+    },
+    "FlowDec": {
+      "description": "Decimals del cabal"
+    },
+    "FlowRatio": {
+      "description": "Relació unitat de cabal / unitat de pes"
+    },
+    "FlowUnit": {
+      "description": "Unitat del cabal"
+    },
+    "FlowFilter": {
+      "description": "Filtre del cabal"
+    },
+    "WeightTimeout": {
+      "description": "Temps màxim amb el pes fix (alarma 5)"
+    },
+    "K": {
+      "description": "Coeficient K"
+    },
+    "BeltZero": {
+      "description": "Valor de zero de la cinta"
+    },
+    "TestTime": {
+      "description": "Temps de prova"
+    },
+    "MinWeight": {
+      "description": "Pes mínim"
+    },
+    "PulseValue": {
+      "description": "Valor de l'impuls del totalitzador"
+    },
+    "MinAnalog": {
+      "description": "Valor mínim de la sortida analògica"
+    },
+    "OperMode": {
+      "description": "Tipus de funcionament"
+    },
+    "OutLockTime": {
+      "description": "Bloqueig de la sortida en arrencar"
+    },
+    "TolInitTime": {
+      "description": "Retard inicial de l'alarma de tolerància"
+    },
+    "TolDelay": {
+      "description": "Retard de l'alarma de tolerància"
+    },
+    "Out4Logic": {
+      "description": "Lògica de la sortida 4 (alarma fatal)"
+    },
+    "Out5Logic": {
+      "description": "Lògica de la sortida 5 (fora de tolerància)"
+    },
+    "In6Func": {
+      "description": "Funció de l'entrada 6"
+    },
+    "AL3Enable": {
+      "description": "Alarma 3 habilitada"
+    },
+    "Language": {
+      "description": "Idioma del visor i de la impressora"
+    },
+    "TolMode": {
+      "description": "Tolerància absoluta o en percentatge"
+    },
+    "Baud1": {
+      "description": "Velocitat de COM1"
+    },
+    "Baud2": {
+      "description": "Velocitat de COM2"
+    },
+    "Periph1": {
+      "description": "Perifèric de COM1"
+    },
+    "Periph2": {
+      "description": "Perifèric de COM2"
+    },
+    "SerialAddr": {
+      "description": "Adreça sèrie"
+    },
+    "AoFullScale": {
+      "description": "Fons d'escala de la sortida analògica"
+    },
+    "AoZeroCal": {
+      "description": "Calibratge del zero de la sortida analògica"
+    },
+    "AoSpanCal": {
+      "description": "Calibratge del fons d'escala de la sortida analògica"
+    },
+    "AoRange": {
+      "description": "Rang de la sortida analògica"
+    },
+    "SP1Out": {
+      "description": "Sortida analògica del set point 1"
+    },
+    "SP2Out": {
+      "description": "Sortida analògica del set point 2"
+    },
+    "SP3Out": {
+      "description": "Sortida analògica del set point 3"
+    },
+    "SP4Out": {
+      "description": "Sortida analògica del set point 4"
+    },
+    "SP5Out": {
+      "description": "Sortida analògica del set point 5"
+    },
+    "SP6Out": {
+      "description": "Sortida analògica del set point 6"
+    },
+    "SP7Out": {
+      "description": "Sortida analògica del set point 7"
+    },
+    "SP8Out": {
+      "description": "Sortida analògica del set point 8"
+    },
+    "SP9Out": {
+      "description": "Sortida analògica del set point 9"
+    },
+    "SP10Out": {
+      "description": "Sortida analògica del set point 10"
+    },
+    "SP11Out": {
+      "description": "Sortida analògica del set point 11"
+    },
+    "SP12Out": {
+      "description": "Sortida analògica del set point 12"
+    },
+    "SP13Out": {
+      "description": "Sortida analògica del set point 13"
+    },
+    "SP14Out": {
+      "description": "Sortida analògica del set point 14"
+    },
+    "SP15Out": {
+      "description": "Sortida analògica del set point 15"
+    }
+  },
+  "commands": {
+    "Automático": {
+      "text": "Automàtic"
+    },
+    "Manual": {
+      "text": "Manual"
+    },
+    "Marcha por Modbus": {
+      "text": "Marxa per Modbus"
+    },
+    "Paro por Modbus": {
+      "text": "Aturada per Modbus"
+    },
+    "Marcha por la entrada": {
+      "text": "Marxa per l'entrada"
+    }
+  }
+}

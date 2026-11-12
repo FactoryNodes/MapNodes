@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "translationOf": {
+    "brand": "Omron",
+    "model": "MX2"
+  },
+  "language": "pt",
+  "version": 1,
+  "author": "",
+  "kind": "Variador",
+  "groups": {
+    "1": "Dados do motor",
+    "2": "Rampas e velocidades",
+    "3": "Comando",
+    "4": "Entradas e saídas",
+    "5": "Ajustes do controlo",
+    "10": "Monitores"
+  },
+  "parameters": {
+    "H003": {
+      "description": "Potência do motor (código da tabela do manual)"
+    },
+    "H004": {
+      "description": "Polos do motor (código da tabela do manual)"
+    },
+    "A003": {
+      "description": "Frequência base"
+    },
+    "A004": {
+      "description": "Frequência máxima"
+    },
+    "A082": {
+      "description": "Tensão do motor (AVR, código)"
+    },
+    "b012": {
+      "description": "Nível térmico eletrónico (unidades do manual)"
+    },
+    "b013": {
+      "description": "Característica térmica",
+      "options": {
+        "0": "Binário reduzido",
+        "1": "Binário constante",
+        "2": "Livre"
+      }
+    },
+    "F002": {
+      "description": "Tempo de aceleração 1"
+    },
+    "F003": {
+      "description": "Tempo de desaceleração 1"
+    },
+    "A020": {
+      "description": "Multivelocidade 0"
+    },
+    "A061": {
+      "description": "Limite superior de frequência"
+    },
+    "A062": {
+      "description": "Limite inferior de frequência"
+    },
+    "A093": {
+      "description": "Tempo de desaceleração 2"
+    },
+    "A001": {
+      "description": "Origem do setpoint de frequência",
+      "options": {
+        "0": "Potenciómetro",
+        "1": "Bornes",
+        "2": "Operador (F001)",
+        "3": "Modbus",
+        "4": "Placa opcional",
+        "6": "Trem de impulsos",
+        "7": "Sequência (Drive Programming)",
+        "10": "Resultado de cálculo"
+      }
+    },
+    "A002": {
+      "description": "Origem do comando de marcha",
+      "options": {
+        "1": "Bornes",
+        "2": "Operador",
+        "3": "Modbus",
+        "4": "Placa opcional"
+      }
+    },
+    "F004": {
+      "description": "Sentido de rotação com a tecla RUN",
+      "options": {
+        "0": "Para a frente",
+        "1": "Para trás"
+      }
+    },
+    "b091": {
+      "description": "Modo de paragem",
+      "options": {
+        "0": "Desaceleração",
+        "1": "Livre"
+      }
+    },
+    "b001": {
+      "description": "Modo de rearranque após falha (código)"
+    },
+    "C001": {
+      "description": "Função da entrada 1 (código)"
+    },
+    "C002": {
+      "description": "Função da entrada 2 (código)"
+    },
+    "C021": {
+      "description": "Função da saída 11 (código)"
+    },
+    "C036": {
+      "description": "Relé de alarme: contacto em repouso (código)"
+    },
+    "A044": {
+      "description": "Característica V/f",
+      "options": {
+        "0": "Binário constante",
+        "1": "Binário reduzido",
+        "2": "V/f livre",
+        "3": "Vetorial sem sensor"
+      }
+    },
+    "A045": {
+      "description": "Ganho da tensão de saída"
+    },
+    "b083": {
+      "description": "Frequência portadora"
+    },
+    "H001": {
+      "description": "Autoajuste (código)"
+    },
+    "H002": {
+      "description": "Dados do motor utilizados (código)"
+    },
+    "F001": {
+      "description": "Setpoint de frequência"
+    },
+    "d001": {
+      "description": "Frequência de saída"
+    },
+    "d002": {
+      "description": "Corrente de saída"
+    },
+    "d013": {
+      "description": "Tensão de saída"
+    },
+    "d014": {
+      "description": "Potência de entrada"
+    },
+    "d015": {
+      "description": "Energia acumulada"
+    },
+    "d016": {
+      "description": "Horas em marcha"
+    },
+    "d017": {
+      "description": "Horas sob tensão"
+    },
+    "d018": {
+      "description": "Temperatura do dissipador"
+    },
+    "d080": {
+      "description": "Número de falhas"
+    },
+    "d102": {
+      "description": "Tensão do barramento CC"
+    },
+    "d104": {
+      "description": "Carga térmica eletrónica"
+    }
+  },
+  "commands": {}
+}

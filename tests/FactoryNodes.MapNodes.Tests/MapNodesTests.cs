@@ -37,7 +37,8 @@ public class MapNodesTests
     public static TheoryData<string> CatalogFiles()
     {
         var data = new TheoryData<string>();
-        foreach (var file in Directory.EnumerateFiles(DevicesFolder(), "*.json", SearchOption.AllDirectories)) data.Add(Path.GetRelativePath(DevicesFolder(), file));
+        foreach (var file in Directory.EnumerateFiles(DevicesFolder(), "*.json", SearchOption.AllDirectories))
+            if (!DeviceTranslation.Looks(File.ReadAllText(file))) data.Add(Path.GetRelativePath(DevicesFolder(), file));   // las traducciones, aparte
         return data;
     }
 

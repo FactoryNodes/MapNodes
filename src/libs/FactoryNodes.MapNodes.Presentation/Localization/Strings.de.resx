@@ -50,12 +50,6 @@
   <data name="El modelo (es el nombre del fichero). Marca y modelo juntos identifican el dispositivo en los proyectos y en las copias." xml:space="preserve">
     <value>Das Modell (das ist der Dateiname). Marke und Modell zusammen kennzeichnen das Gerät in den Projekten und Sicherungen.</value>
   </data>
-  <data name="Tipo de equipo" xml:space="preserve">
-    <value>Gerätetyp</value>
-  </data>
-  <data name="Variador, visor de peso, arrancador…" xml:space="preserve">
-    <value>Umrichter, Wägeanzeige, Starter…</value>
-  </data>
   <data name="Descripción" xml:space="preserve">
     <value>Beschreibung</value>
   </data>
@@ -70,9 +64,6 @@
   </data>
   <data name="Solo si se han leído las direcciones en un equipo de verdad. Sin marcar, el programa avisa antes de restaurar una copia." xml:space="preserve">
     <value>Nur wenn die Adressen an einem echten Gerät gelesen wurden. Ohne Haken warnt das Programm vor dem Wiederherstellen einer Sicherung.</value>
-  </data>
-  <data name="Lleva el dibujo del equipo (se conserva al guardar)." xml:space="preserve">
-    <value>Enthält die Zeichnung des Geräts (bleibt beim Speichern erhalten).</value>
   </data>
   <data name="Protocolo" xml:space="preserve">
     <value>Protokoll</value>
@@ -373,5 +364,239 @@
   </data>
   <data name="En vivo" xml:space="preserve">
     <value>Live</value>
+  </data>
+  <data name="Otros" xml:space="preserve">
+    <value>Andere</value>
+  </data>
+  <data name="{0} no es un dibujo SVG." xml:space="preserve">
+    <value>{0} ist keine SVG-Zeichnung.</value>
+  </data>
+  <data name="Dibujo cargado de {0}." xml:space="preserve">
+    <value>Zeichnung aus {0} geladen.</value>
+  </data>
+  <data name="Dibujo quitado." xml:space="preserve">
+    <value>Zeichnung entfernt.</value>
+  </data>
+  <data name="Pon la IP del equipo, el puerto (502) y el número de esclavo (0 a 255)." xml:space="preserve">
+    <value>IP des Geräts, Port (502) und Slave-Nummer (0 bis 255) eingeben.</value>
+  </data>
+  <data name="Antes hay que arreglar los problemas del fichero: {0}" xml:space="preserve">
+    <value>Zuerst müssen die Probleme der Datei behoben werden: {0}</value>
+  </data>
+  <data name="Este programa no puede conectarse a un equipo." xml:space="preserve">
+    <value>Dieses Programm kann sich nicht mit einem Gerät verbinden.</value>
+  </data>
+  <data name="Leyendo de {0}…" xml:space="preserve">
+    <value>Lesen von {0}…</value>
+  </data>
+  <data name="Leídos los {0} parámetros." xml:space="preserve">
+    <value>Alle {0} Parameter gelesen.</value>
+  </data>
+  <data name="Leídos {0} de {1} parámetros: los demás dicen por qué en su fila." xml:space="preserve">
+    <value>{0} von {1} Parametern gelesen: Die übrigen nennen den Grund in ihrer Zeile.</value>
+  </data>
+  <data name="No se pudo leer de {0}: {1}" xml:space="preserve">
+    <value>Lesen von {0} nicht möglich: {1}</value>
+  </data>
+  <data name="Abierto {0} de la web: {1} parámetros. Guárdalo donde quieras." xml:space="preserve">
+    <value>{0} aus dem Web geöffnet: {1} Parameter. Speichern Sie es, wo Sie möchten.</value>
+  </data>
+  <data name="Antes de compartirlo hay que arreglar los problemas del fichero (abajo)." xml:space="preserve">
+    <value>Vor dem Teilen müssen die Probleme der Datei (unten) behoben werden.</value>
+  </data>
+  <data name="Guardado en {0}. En la página que se ha abierto, entra con tu cuenta y sube ese fichero: lo revisamos antes de publicarlo (licencia CC-BY 4.0)." xml:space="preserve">
+    <value>Gespeichert in {0}. Melden Sie sich auf der geöffneten Seite mit Ihrem Konto an und laden Sie diese Datei hoch: Wir prüfen sie vor der Veröffentlichung (Lizenz CC-BY 4.0).</value>
+  </data>
+  <data name="Todos los tipos" xml:space="preserve">
+    <value>Alle Typen</value>
+  </data>
+  <data name="Todas las marcas" xml:space="preserve">
+    <value>Alle Marken</value>
+  </data>
+  <data name="Este programa no puede conectarse a la web." xml:space="preserve">
+    <value>Dieses Programm kann sich nicht mit dem Web verbinden.</value>
+  </data>
+  <data name="Leyendo la lista de la web…" xml:space="preserve">
+    <value>Liste wird aus dem Web gelesen…</value>
+  </data>
+  <data name="{0} modelos publicados. Elige uno y pulsa «Abrir»." xml:space="preserve">
+    <value>{0} veröffentlichte Modelle. Eines wählen und „Öffnen“ drücken.</value>
+  </data>
+  <data name="Bajando {0}…" xml:space="preserve">
+    <value>{0} wird heruntergeladen…</value>
+  </data>
+  <data name="No se llega a la web de FactoryNodes: {0}" xml:space="preserve">
+    <value>Die FactoryNodes-Website ist nicht erreichbar: {0}</value>
+  </data>
+  <data name="La lista de la web no lleva la firma de FactoryNodes: no se usa." xml:space="preserve">
+    <value>Die Liste aus dem Web trägt nicht die Signatur von FactoryNodes: Sie wird nicht verwendet.</value>
+  </data>
+  <data name="El fichero de {0} no es el que dice la lista firmada: no se usa." xml:space="preserve">
+    <value>Die Datei von {0} ist nicht die aus der signierten Liste: Sie wird nicht verwendet.</value>
+  </data>
+  <data name="Probado en un equipo" xml:space="preserve">
+    <value>An einem Gerät getestet</value>
+  </data>
+  <data name="Sin probar en un equipo" xml:space="preserve">
+    <value>Nicht an einem Gerät getestet</value>
+  </data>
+  <data name="Abrir de la web…: los ficheros de dispositivo publicados por FactoryNodes, por tipo y marca" xml:space="preserve">
+    <value>Aus dem Web öffnen…: die von FactoryNodes veröffentlichten Gerätedateien, nach Typ und Marke</value>
+  </data>
+  <data name="Compartir…: guarda el fichero y abre la página donde se sube con tu cuenta. Lo revisamos antes de publicarlo; los ficheros compartidos llevan la licencia CC-BY 4.0." xml:space="preserve">
+    <value>Teilen…: speichert die Datei und öffnet die Seite, auf der man sie mit seinem Konto hochlädt. Wir prüfen sie vor der Veröffentlichung; geteilte Dateien stehen unter der Lizenz CC-BY 4.0.</value>
+  </data>
+  <data name="El tipo, de la lista: por él se elige el dispositivo en el programa, antes que por la marca" xml:space="preserve">
+    <value>Der Typ aus der Liste: Nach ihm wird das Gerät im Programm gewählt, vor der Marke</value>
+  </data>
+  <data name="Qué es" xml:space="preserve">
+    <value>Was es ist</value>
+  </data>
+  <data name="En palabras, al lado del modelo: transmisor de pesaje, regulador LED…" xml:space="preserve">
+    <value>In Worten, neben dem Modell: Wägetransmitter, LED-Regler…</value>
+  </data>
+  <data name="Versión" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="La versión de este fichero (1, 2, 3…): súbela con cada corrección que compartas" xml:space="preserve">
+    <value>Die Version dieser Datei (1, 2, 3…): mit jeder geteilten Korrektur erhöhen</value>
+  </data>
+  <data name="Autor" xml:space="preserve">
+    <value>Autor</value>
+  </data>
+  <data name="Quién ha hecho el fichero: se cita al compartirlo (CC-BY 4.0)" xml:space="preserve">
+    <value>Wer die Datei erstellt hat: wird beim Teilen genannt (CC-BY 4.0)</value>
+  </data>
+  <data name="Dibujo del equipo" xml:space="preserve">
+    <value>Zeichnung des Geräts</value>
+  </data>
+  <data name="Cargar el dibujo de un fichero SVG" xml:space="preserve">
+    <value>Zeichnung aus einer SVG-Datei laden</value>
+  </data>
+  <data name="Quitar el dibujo" xml:space="preserve">
+    <value>Zeichnung entfernen</value>
+  </data>
+  <data name="Probar con el equipo" xml:space="preserve">
+    <value>Mit dem Gerät testen</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="La IP del equipo, o la de su pasarela Modbus TCP/RTU" xml:space="preserve">
+    <value>Die IP des Geräts oder die seines Modbus-TCP/RTU-Gateways</value>
+  </data>
+  <data name="Puerto" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Esclavo" xml:space="preserve">
+    <value>Slave</value>
+  </data>
+  <data name="Lee del equipo todos los parámetros con dirección Modbus y pone lo leído en la columna «Leído», para ver que las direcciones cuadran. Solo lee: no escribe nada." xml:space="preserve">
+    <value>Liest vom Gerät alle Parameter mit Modbus-Adresse und trägt das Gelesene in die Spalte „Gelesen“ ein, um die Adressen zu prüfen. Nur Lesen: Es wird nichts geschrieben.</value>
+  </data>
+  <data name="Decimales de" xml:space="preserve">
+    <value>Dezimalstellen von</value>
+  </data>
+  <data name="Si los decimales los da otro parámetro (un peso): su código y, si hace falta, el desplazamiento, la máscara y la tabla. «StabDec &gt;&gt;8 &amp;255» (el byte alto) o «DspDiv: 0=3; 5=2» (según su valor). Vacío: solo la escala." xml:space="preserve">
+    <value>Wenn ein anderer Parameter die Dezimalstellen liefert (ein Gewicht): sein Code und bei Bedarf Verschiebung, Maske und Tabelle. „StabDec &gt;&gt;8 &amp;255“ (das High-Byte) oder „DspDiv: 0=3; 5=2“ (nach seinem Wert). Leer: nur die Skalierung.</value>
+  </data>
+  <data name="Leído" xml:space="preserve">
+    <value>Gelesen</value>
+  </data>
+  <data name="Abrir de la web" xml:space="preserve">
+    <value>Aus dem Web öffnen</value>
+  </data>
+  <data name="Cerrar" xml:space="preserve">
+    <value>Schließen</value>
+  </data>
+  <data name="Abrir" xml:space="preserve">
+    <value>Öffnen</value>
+  </data>
+  <data name="Probado" xml:space="preserve">
+    <value>Getestet</value>
+  </data>
+  <data name="(sin indicar)" xml:space="preserve">
+    <value>(nicht angegeben)</value>
+  </data>
+  <data name="Idioma de los textos" xml:space="preserve">
+    <value>Sprache der Texte</value>
+  </data>
+  <data name="Traducción" xml:space="preserve">
+    <value>Übersetzung</value>
+  </data>
+  <data name="Traducción ({0} de {1})" xml:space="preserve">
+    <value>Übersetzung ({0} von {1})</value>
+  </data>
+  <data name="Guardar en EEPROM" xml:space="preserve">
+    <value>Im EEPROM speichern</value>
+  </data>
+  <data name="Grupo {0}" xml:space="preserve">
+    <value>Gruppe {0}</value>
+  </data>
+  <data name="{0} · unidad" xml:space="preserve">
+    <value>{0} · Einheit</value>
+  </data>
+  <data name="{0} · opción {1}" xml:space="preserve">
+    <value>{0} · Option {1}</value>
+  </data>
+  <data name="{0} · bit {1}" xml:space="preserve">
+    <value>{0} · Bit {1}</value>
+  </data>
+  <data name="{0} · nota" xml:space="preserve">
+    <value>{0} · Hinweis</value>
+  </data>
+  <data name="Orden «{0}»" xml:space="preserve">
+    <value>Befehl „{0}“</value>
+  </data>
+  <data name="Orden «{0}» · nota" xml:space="preserve">
+    <value>Befehl „{0}“ · Hinweis</value>
+  </data>
+  <data name="{0} textos para traducir al {1}. Lo que dejes vacío se verá en el idioma del fichero." xml:space="preserve">
+    <value>{0} Texte zum Übersetzen in {1}. Leer Gelassenes wird in der Sprache der Datei angezeigt.</value>
+  </data>
+  <data name="Antes de guardar la traducción, pon la marca y el modelo del fichero." xml:space="preserve">
+    <value>Vor dem Speichern der Übersetzung Marke und Modell der Datei eingeben.</value>
+  </data>
+  <data name="Guardada la traducción en {0}: solo textos; el fichero del dispositivo no cambia." xml:space="preserve">
+    <value>Übersetzung in {0} gespeichert: nur Texte; die Gerätedatei ändert sich nicht.</value>
+  </data>
+  <data name="no lleva «translationOf»" xml:space="preserve">
+    <value>sie enthält kein „translationOf“</value>
+  </data>
+  <data name="{0} no es un fichero de traducción: {1}" xml:space="preserve">
+    <value>{0} ist keine Übersetzungsdatei: {1}</value>
+  </data>
+  <data name="{0} es la traducción de {1}, y el fichero abierto es {2}." xml:space="preserve">
+    <value>{0} ist die Übersetzung von {1}, geöffnet ist aber {2}.</value>
+  </data>
+  <data name="Abierta la traducción {0}: {1} de {2} textos traducidos." xml:space="preserve">
+    <value>Übersetzung {0} geöffnet: {1} von {2} Texten übersetzt.</value>
+  </data>
+  <data name="En qué idioma están escritos los textos de este fichero. Las traducciones a otros idiomas van en ficheros aparte (pestaña «Traducción»)." xml:space="preserve">
+    <value>In welcher Sprache die Texte dieser Datei geschrieben sind. Übersetzungen stehen in eigenen Dateien (Registerkarte „Übersetzung“).</value>
+  </data>
+  <data name="Traducir al" xml:space="preserve">
+    <value>Übersetzen in</value>
+  </data>
+  <data name="Poner en la lista los textos del fichero abierto para traducirlos (lo ya traducido se conserva). No hace falta haber guardado el fichero." xml:space="preserve">
+    <value>Die Texte der geöffneten Datei zum Übersetzen in die Liste setzen (bereits Übersetztes bleibt erhalten). Die Datei muss nicht gespeichert sein.</value>
+  </data>
+  <data name="Abrir una traducción ya hecha de este modelo, para seguir con ella" xml:space="preserve">
+    <value>Eine vorhandene Übersetzung dieses Modells öffnen, um daran weiterzuarbeiten</value>
+  </data>
+  <data name="Guardar la traducción en su propio fichero (modelo.idioma.json): solo lleva textos, sin direcciones ni parámetros; el fichero del dispositivo no cambia" xml:space="preserve">
+    <value>Die Übersetzung in ihrer eigenen Datei speichern (modell.sprache.json): nur Texte, keine Adressen oder Parameter; die Gerätedatei ändert sich nicht</value>
+  </data>
+  <data name="Qué" xml:space="preserve">
+    <value>Was</value>
+  </data>
+  <data name="En el fichero" xml:space="preserve">
+    <value>In der Datei</value>
+  </data>
+  <data name="Vacío: se ve como en el fichero" xml:space="preserve">
+    <value>Leer: wird wie in der Datei angezeigt</value>
+  </data>
+  <data name="Idiomas" xml:space="preserve">
+    <value>Sprachen</value>
   </data>
 </root>

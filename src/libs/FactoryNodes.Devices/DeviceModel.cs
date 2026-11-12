@@ -203,8 +203,29 @@ public sealed class DeviceModel
     public string Brand { get; set; } = "";
     public string Model { get; set; } = "";
 
-    /// <summary>«Variador», «Visor de peso», «Arrancador»…</summary>
+    /// <summary>
+    /// El tipo, de la lista cerrada (<see cref="DeviceTypes"/>: «drive», «weighing»…; PENDIENTES 200): por él se elige, antes que la marca. Vacío
+    /// o uno que la lista no tiene = «Otros».
+    /// </summary>
+    public string Type { get; set; } = "";
+
+    /// <summary>Qué es, en palabras («Transmisor de pesaje», «Regulador LED»): texto libre, al lado del modelo.</summary>
     public string Kind { get; set; } = "";
+
+    /// <summary>
+    /// La versión de este fichero (1, 2, 3…): sube con cada corrección que se publica. Con ella se sabe si el de la web es más nuevo que el que
+    /// tiene el programa o el que guarda un proyecto.
+    /// </summary>
+    public int Version { get; set; } = 1;
+
+    /// <summary>Quién ha hecho el fichero (los compartidos son CC-BY 4.0: se cita). Vacío = FactoryNodes.</summary>
+    public string Author { get; set; } = "";
+
+    /// <summary>
+    /// El idioma de los textos de este fichero («es», «en»…; autor, 2026-11-12: «un campo interno indicando el idioma de los parámetros»).
+    /// Las traducciones a otros idiomas van aparte, en ficheros que solo llevan textos (<see cref="DeviceTranslation"/>). Vacío = no lo dice.
+    /// </summary>
+    public string Language { get; set; } = "";
 
     public string Description { get; set; } = "";
 
@@ -317,6 +338,7 @@ public sealed class DeviceModel
         if (model is null) return (null, ["Vacío."]);
         var problems = new List<string>();
         if (model.Brand.Trim().Length == 0 || model.Model.Trim().Length == 0) problems.Add("Faltan la marca o el modelo.");
+        if (model.Version < 1) problems.Add("La versión del fichero, de 1 en adelante.");
         if (model.Protocol.RegisterBase is not (0 or 1)) problems.Add("registerBase tiene que ser 0 o 1.");
         if (model.Protocol.MaxRegistersPerRead is < 1 or > 125) problems.Add("maxRegistersPerRead, entre 1 y 125.");
         foreach (var duplicate in model.Parameters.GroupBy(p => p.Code, StringComparer.OrdinalIgnoreCase).Where(g => g.Count() > 1))

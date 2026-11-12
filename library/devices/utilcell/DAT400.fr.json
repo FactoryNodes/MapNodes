@@ -1,0 +1,255 @@
+{
+  "schemaVersion": 1,
+  "translationOf": {
+    "brand": "Utilcell",
+    "model": "DAT 400"
+  },
+  "language": "fr",
+  "version": 1,
+  "author": "",
+  "kind": "Transmetteur de pesage",
+  "groups": {
+    "1": "Identification",
+    "2": "Étalonnage",
+    "3": "Pesage",
+    "6": "Consignes",
+    "7": "Sortie analogique",
+    "10": "Mesure",
+    "12": "Commandes",
+    "13": "Entrées, sorties et touches",
+    "14": "Vérification de la communication"
+  },
+  "parameters": {
+    "Status": {
+      "description": "Registre d'état",
+      "bits": {
+        "0": "Centre de zéro",
+        "1": "Poids stable",
+        "2": "Dans la bande de zéro",
+        "3": "Tare active",
+        "4": "Sous-charge",
+        "5": "Surcharge",
+        "6": "Hors plage (capteur déconnecté ou signal hors plage)",
+        "8": "Clavier verrouillé",
+        "9": "Modifications non enregistrées (commande 0x0020)",
+        "10": "Entrée 1",
+        "11": "Entrée 2",
+        "12": "Sortie 1",
+        "13": "Sortie 2"
+      }
+    },
+    "Gross": {
+      "description": "Poids brut"
+    },
+    "Net": {
+      "description": "Poids net"
+    },
+    "Peak": {
+      "description": "Valeur de crête"
+    },
+    "Signal": {
+      "description": "Signal des capteurs"
+    },
+    "Inputs": {
+      "description": "Entrées logiques",
+      "bits": {
+        "0": "Entrée 1",
+        "1": "Entrée 2"
+      }
+    },
+    "Outputs": {
+      "description": "Sorties logiques",
+      "bits": {
+        "0": "Sortie 1",
+        "1": "Sortie 2"
+      }
+    },
+    "Keys": {
+      "description": "Touches enfoncées",
+      "bits": {
+        "0": "SET",
+        "1": "FUN",
+        "2": "0",
+        "3": "PRG"
+      }
+    },
+    "Firmware": {
+      "description": "Code et version du firmware"
+    },
+    "Set1": {
+      "description": "Consigne 1"
+    },
+    "Set2": {
+      "description": "Consigne 2"
+    },
+    "Data": {
+      "description": "Donnée pour la commande (p. ex. le poids d'étalonnage)"
+    },
+    "Command": {
+      "description": "Registre de commandes",
+      "options": {
+        "0": "Aucune commande",
+        "1": "Zéro semi-automatique",
+        "2": "Tare automatique",
+        "3": "Effacer la crête",
+        "16": "Étalonnage du zéro (0x0010)",
+        "17": "Étalonnage de la pleine échelle avec le poids de la donnée (0x0011)",
+        "32": "Enregistrer en mémoire permanente (0x0020)",
+        "32767": "Accès direct à la mémoire (0x7FFF, fieldbus)"
+      }
+    },
+    "CapaC": {
+      "description": "Capacité des capteurs (somme des nominales)"
+    },
+    "SEnsit": {
+      "description": "Sensibilité des capteurs"
+    },
+    "DspDiv": {
+      "description": "Valeur de division",
+      "options": {
+        "0": "0,001",
+        "1": "0,002",
+        "2": "0,005",
+        "3": "0,01",
+        "4": "0,02",
+        "5": "0,05",
+        "6": "0,1",
+        "7": "0,2",
+        "8": "0,5",
+        "9": "1",
+        "10": "2",
+        "11": "5",
+        "12": "10",
+        "13": "20",
+        "14": "50"
+      }
+    },
+    "DeadL": {
+      "description": "Tare du système (poids fixe)"
+    },
+    "NEtCap": {
+      "description": "Capacité du système (nette)"
+    },
+    "F1LtEr": {
+      "description": "Filtre de poids",
+      "options": {
+        "0": "50 Hz / réponse 25 Hz",
+        "1": "50 Hz / 16 Hz",
+        "2": "25 Hz / 8 Hz",
+        "3": "25 Hz / 5 Hz",
+        "4": "25 Hz / 2,5 Hz",
+        "5": "10 Hz / 1,5 Hz",
+        "6": "10 Hz / 1 Hz",
+        "7": "10 Hz / 0,7 Hz",
+        "8": "5 Hz / 0,4 Hz",
+        "9": "5 Hz / 0,2 Hz"
+      }
+    },
+    "Not1on": {
+      "description": "Stabilité du poids",
+      "options": {
+        "0": "Toujours stable",
+        "1": "Rapide",
+        "2": "Moyenne",
+        "3": "Précise",
+        "4": "Précision maximale"
+      }
+    },
+    "Auto0": {
+      "description": "Zéro automatique à la mise sous tension (poids maximal)"
+    },
+    "0trAc": {
+      "description": "Suivi de zéro",
+      "options": {
+        "0": "Désactivé",
+        "1": "0,5 div/s",
+        "2": "1 div/s",
+        "3": "2 div/s",
+        "4": "3 div/s"
+      }
+    },
+    "0band": {
+      "description": "Bande de zéro (divisions)"
+    },
+    "NodE1": {
+      "description": "Mode de la consigne 1",
+      "bits": {
+        "2": "Contact normalement fermé",
+        "3": "Avec poids négatif",
+        "4": "Uniquement avec poids stable"
+      }
+    },
+    "Hyst-1": {
+      "description": "Hystérésis de la consigne 1"
+    },
+    "t1NEr1": {
+      "description": "Temporisation de la consigne 1"
+    },
+    "dELay1": {
+      "description": "Retard de la consigne 1"
+    },
+    "NodE2": {
+      "description": "Mode de la consigne 2",
+      "bits": {
+        "2": "Contact normalement fermé",
+        "3": "Avec poids négatif",
+        "4": "Uniquement avec poids stable"
+      }
+    },
+    "Hyst-2": {
+      "description": "Hystérésis de la consigne 2"
+    },
+    "t1NEr2": {
+      "description": "Temporisation de la consigne 2"
+    },
+    "dELay2": {
+      "description": "Retard de la consigne 2"
+    },
+    "F-SCaL": {
+      "description": "Pleine échelle de la sortie analogique"
+    },
+    "AnaMode": {
+      "description": "Poids de la sortie analogique",
+      "options": {
+        "0": "Net",
+        "1": "Brut",
+        "2": "Crête"
+      }
+    },
+    "ranGE": {
+      "description": "Plage de la sortie analogique",
+      "options": {
+        "0": "0-20 mA",
+        "1": "4-20 mA",
+        "2": "0-10 V",
+        "3": "0-5 V"
+      }
+    },
+    "AnaOut": {
+      "description": "Valeur de la sortie analogique (points)"
+    },
+    "MonW": {
+      "description": "Registre de moniteur (écriture)"
+    },
+    "MonR": {
+      "description": "Registre de moniteur (lecture)"
+    }
+  },
+  "commands": {
+    "Cero": {
+      "text": "Zéro"
+    },
+    "Tara": {
+      "text": "Tare"
+    },
+    "Borrar el pico": {
+      "text": "Effacer la crête"
+    },
+    "Calibrar el cero": {
+      "text": "Étalonner le zéro"
+    },
+    "Guardar en memoria": {
+      "text": "Enregistrer en mémoire"
+    }
+  }
+}

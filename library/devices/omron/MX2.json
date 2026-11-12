@@ -2,6 +2,8 @@
   "schemaVersion": 1,
   "brand": "Omron",
   "model": "MX2",
+  "type": "drive",
+  "language": "es",
   "kind": "Variador",
   "description": "Variador Omron MX2 (3G3MX2). Modbus RTU por RS-485 de serie: por Modbus TCP, con una pasarela TCP/RTU (el número de esclavo es el C072 del variador).",
   "source": "Tabla de registros del manual del MX2 (I570, apéndice B-4), según la librería pymx2 (MIT, V. Paeder). Escalas de b012, H003, H004 y los códigos: a comprobar.",

@@ -1,0 +1,255 @@
+{
+  "schemaVersion": 1,
+  "translationOf": {
+    "brand": "Utilcell",
+    "model": "DAT 400"
+  },
+  "language": "de",
+  "version": 1,
+  "author": "",
+  "kind": "Wägetransmitter",
+  "groups": {
+    "1": "Identifikation",
+    "2": "Kalibrierung",
+    "3": "Wägen",
+    "6": "Sollwerte",
+    "7": "Analogausgang",
+    "10": "Messung",
+    "12": "Befehle",
+    "13": "Eingänge, Ausgänge und Tasten",
+    "14": "Kommunikationsprüfung"
+  },
+  "parameters": {
+    "Status": {
+      "description": "Statusregister",
+      "bits": {
+        "0": "Nullmitte",
+        "1": "Gewicht stabil",
+        "2": "Im Nullbereich",
+        "3": "Tara aktiv",
+        "4": "Unterlast",
+        "5": "Überlast",
+        "6": "Außerhalb des Bereichs (Wägezelle nicht angeschlossen oder Signal außerhalb des Bereichs)",
+        "8": "Tastatur gesperrt",
+        "9": "Nicht gespeicherte Änderungen (Befehl 0x0020)",
+        "10": "Eingang 1",
+        "11": "Eingang 2",
+        "12": "Ausgang 1",
+        "13": "Ausgang 2"
+      }
+    },
+    "Gross": {
+      "description": "Bruttogewicht"
+    },
+    "Net": {
+      "description": "Nettogewicht"
+    },
+    "Peak": {
+      "description": "Spitzenwert"
+    },
+    "Signal": {
+      "description": "Wägezellensignal"
+    },
+    "Inputs": {
+      "description": "Logische Eingänge",
+      "bits": {
+        "0": "Eingang 1",
+        "1": "Eingang 2"
+      }
+    },
+    "Outputs": {
+      "description": "Logische Ausgänge",
+      "bits": {
+        "0": "Ausgang 1",
+        "1": "Ausgang 2"
+      }
+    },
+    "Keys": {
+      "description": "Gedrückte Tasten",
+      "bits": {
+        "0": "SET",
+        "1": "FUN",
+        "2": "0",
+        "3": "PRG"
+      }
+    },
+    "Firmware": {
+      "description": "Firmware-Code und -Version"
+    },
+    "Set1": {
+      "description": "Sollwert 1"
+    },
+    "Set2": {
+      "description": "Sollwert 2"
+    },
+    "Data": {
+      "description": "Datenwert für den Befehl (z. B. das Kalibriergewicht)"
+    },
+    "Command": {
+      "description": "Befehlsregister",
+      "options": {
+        "0": "Kein Befehl",
+        "1": "Halbautomatisches Nullstellen",
+        "2": "Automatische Tara",
+        "3": "Spitzenwert löschen",
+        "16": "Nullpunktkalibrierung (0x0010)",
+        "17": "Endwertkalibrierung mit dem Gewicht des Datenwerts (0x0011)",
+        "32": "Im Permanentspeicher sichern (0x0020)",
+        "32767": "Direkter Speicherzugriff (0x7FFF, Feldbus)"
+      }
+    },
+    "CapaC": {
+      "description": "Nennlast der Wägezellen (Summe der Nennlasten)"
+    },
+    "SEnsit": {
+      "description": "Empfindlichkeit der Wägezellen"
+    },
+    "DspDiv": {
+      "description": "Teilungswert",
+      "options": {
+        "0": "0,001",
+        "1": "0,002",
+        "2": "0,005",
+        "3": "0,01",
+        "4": "0,02",
+        "5": "0,05",
+        "6": "0,1",
+        "7": "0,2",
+        "8": "0,5",
+        "9": "1",
+        "10": "2",
+        "11": "5",
+        "12": "10",
+        "13": "20",
+        "14": "50"
+      }
+    },
+    "DeadL": {
+      "description": "Systemtara (festes Gewicht)"
+    },
+    "NEtCap": {
+      "description": "Systemkapazität (netto)"
+    },
+    "F1LtEr": {
+      "description": "Gewichtsfilter",
+      "options": {
+        "0": "50 Hz / Antwort 25 Hz",
+        "1": "50 Hz / 16 Hz",
+        "2": "25 Hz / 8 Hz",
+        "3": "25 Hz / 5 Hz",
+        "4": "25 Hz / 2,5 Hz",
+        "5": "10 Hz / 1,5 Hz",
+        "6": "10 Hz / 1 Hz",
+        "7": "10 Hz / 0,7 Hz",
+        "8": "5 Hz / 0,4 Hz",
+        "9": "5 Hz / 0,2 Hz"
+      }
+    },
+    "Not1on": {
+      "description": "Gewichtsstabilität",
+      "options": {
+        "0": "Immer stabil",
+        "1": "Schnell",
+        "2": "Mittel",
+        "3": "Genau",
+        "4": "Höchste Genauigkeit"
+      }
+    },
+    "Auto0": {
+      "description": "Auto-Null beim Einschalten (Höchstgewicht)"
+    },
+    "0trAc": {
+      "description": "Nullnachführung",
+      "options": {
+        "0": "Aus",
+        "1": "0,5 div/s",
+        "2": "1 div/s",
+        "3": "2 div/s",
+        "4": "3 div/s"
+      }
+    },
+    "0band": {
+      "description": "Nullbereich (Teilungen)"
+    },
+    "NodE1": {
+      "description": "Modus von Sollwert 1",
+      "bits": {
+        "2": "Öffnerkontakt",
+        "3": "Bei negativem Gewicht",
+        "4": "Nur bei stabilem Gewicht"
+      }
+    },
+    "Hyst-1": {
+      "description": "Hysterese von Sollwert 1"
+    },
+    "t1NEr1": {
+      "description": "Zeitsteuerung von Sollwert 1"
+    },
+    "dELay1": {
+      "description": "Verzögerung von Sollwert 1"
+    },
+    "NodE2": {
+      "description": "Modus von Sollwert 2",
+      "bits": {
+        "2": "Öffnerkontakt",
+        "3": "Bei negativem Gewicht",
+        "4": "Nur bei stabilem Gewicht"
+      }
+    },
+    "Hyst-2": {
+      "description": "Hysterese von Sollwert 2"
+    },
+    "t1NEr2": {
+      "description": "Zeitsteuerung von Sollwert 2"
+    },
+    "dELay2": {
+      "description": "Verzögerung von Sollwert 2"
+    },
+    "F-SCaL": {
+      "description": "Endwert des Analogausgangs"
+    },
+    "AnaMode": {
+      "description": "Gewicht für den Analogausgang",
+      "options": {
+        "0": "Netto",
+        "1": "Brutto",
+        "2": "Spitzenwert"
+      }
+    },
+    "ranGE": {
+      "description": "Bereich des Analogausgangs",
+      "options": {
+        "0": "0-20 mA",
+        "1": "4-20 mA",
+        "2": "0-10 V",
+        "3": "0-5 V"
+      }
+    },
+    "AnaOut": {
+      "description": "Wert des Analogausgangs (Punkte)"
+    },
+    "MonW": {
+      "description": "Monitorregister (Schreiben)"
+    },
+    "MonR": {
+      "description": "Monitorregister (Lesen)"
+    }
+  },
+  "commands": {
+    "Cero": {
+      "text": "Nullstellen"
+    },
+    "Tara": {
+      "text": "Tara"
+    },
+    "Borrar el pico": {
+      "text": "Spitzenwert löschen"
+    },
+    "Calibrar el cero": {
+      "text": "Nullpunkt kalibrieren"
+    },
+    "Guardar en memoria": {
+      "text": "Im Speicher sichern"
+    }
+  }
+}

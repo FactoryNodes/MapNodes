@@ -1,0 +1,47 @@
+<Window x:Class="MapNodes.WebWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:l="clr-namespace:MapNodes"
+        Title="{l:T 'Abrir de la web'}" Width="860" Height="520" MinWidth="640" MinHeight="360"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False" Background="{StaticResource PaperBrush}">
+
+    <!-- «Abrir de la web» (DataContext = MapNodesWebViewModel; PENDIENTES 200): los ficheros de dispositivo publicados, por tipo y marca; el
+         elegido se baja (índice firmado, huella comprobada) y se abre en el editor. Solo pinta. -->
+
+    <DockPanel>
+        <Border DockPanel.Dock="Bottom" Background="White" BorderBrush="{StaticResource MistBrush}" BorderThickness="0,1,0,0" Padding="12,8">
+            <DockPanel>
+                <Button DockPanel.Dock="Right" Content="{l:T 'Cerrar'}" Command="{Binding CloseCommand}" Padding="14,4" Margin="8,0,0,0" IsCancel="True" />
+                <Button DockPanel.Dock="Right" Style="{StaticResource PrimaryButton}" Content="{l:T 'Abrir'}" Command="{Binding OpenCommand}" Padding="14,4" IsDefault="True" />
+                <TextBlock Text="{Binding Status}" Foreground="{StaticResource GrayBrush}" TextWrapping="Wrap" VerticalAlignment="Center" Margin="0,0,12,0" />
+            </DockPanel>
+        </Border>
+
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="12,12,12,8">
+            <TextBlock Text="{l:T 'Tipo'}" VerticalAlignment="Center" Margin="0,0,8,0" />
+            <ComboBox ItemsSource="{Binding TypeOptions}" DisplayMemberPath="Text" SelectedValuePath="Value" SelectedValue="{Binding Type}" MinWidth="180" />
+            <TextBlock Text="{l:T 'Marca'}" VerticalAlignment="Center" Margin="16,0,8,0" />
+            <ComboBox ItemsSource="{Binding BrandOptions}" DisplayMemberPath="Text" SelectedValuePath="Value" SelectedValue="{Binding Brand}" MinWidth="180" />
+        </StackPanel>
+
+        <DataGrid ItemsSource="{Binding Rows}" SelectedItem="{Binding Selected}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                  IsReadOnly="True" HeadersVisibility="Column" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="{StaticResource MistBrush}"
+                  Margin="12,0,12,12" Background="White" BorderBrush="{StaticResource MistBrush}" SelectionMode="Single" MouseDoubleClick="OnRowDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{l:T 'Tipo'}" Binding="{Binding TypeText}" Width="110" />
+                <DataGridTextColumn Header="{l:T 'Marca'}" Binding="{Binding Brand}" Width="130" />
+                <DataGridTextColumn Header="{l:T 'Modelo'}" Binding="{Binding Model}" Width="160" />
+                <DataGridTextColumn Header="{l:T 'Qué es'}" Binding="{Binding Kind}" Width="*" />
+                <DataGridTextColumn Header="{l:T 'Versión'}" Binding="{Binding VersionText}" Width="60" />
+                <DataGridTextColumn Header="{l:T 'Idiomas'}" Binding="{Binding Languages}" Width="80" />
+                <DataGridTextColumn Header="{l:T 'Probado'}" Binding="{Binding VerifiedText}" Width="150" />
+                <DataGridTextColumn Header="{l:T 'Autor'}" Binding="{Binding Author}" Width="110" />
+            </DataGrid.Columns>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="ToolTip" Value="{Binding Description}" />
+                </Style>
+            </DataGrid.RowStyle>
+        </DataGrid>
+    </DockPanel>
+</Window>

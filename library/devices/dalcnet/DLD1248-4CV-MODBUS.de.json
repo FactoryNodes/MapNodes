@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "translationOf": {
+    "brand": "Dalcnet",
+    "model": "DLD1248-4CV-MODBUS"
+  },
+  "language": "de",
+  "version": 1,
+  "author": "",
+  "kind": "LED-Dimmer",
+  "groups": {
+    "1": "Kanäle",
+    "2": "Farb- und Effektvariablen"
+  },
+  "parameters": {
+    "Var0": {
+      "description": "Variable 0 (Kanal 1 bei Weiß)"
+    },
+    "Var1": {
+      "description": "Variable 1 (Kanal 2 bei Weiß)"
+    },
+    "Var2": {
+      "description": "Variable 2 (Kanal 3 bei Weiß)"
+    },
+    "Var3": {
+      "description": "Variable 3 (Kanal 4 bei Weiß)"
+    },
+    "Var4": {
+      "description": "Variable 4"
+    },
+    "Var5": {
+      "description": "Variable 5"
+    }
+  },
+  "commands": {}
+}

@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "translationOf": {
+    "brand": "Omron",
+    "model": "MX2"
+  },
+  "language": "fr",
+  "version": 1,
+  "author": "",
+  "kind": "Variateur",
+  "groups": {
+    "1": "Données du moteur",
+    "2": "Rampes et vitesses",
+    "3": "Commande",
+    "4": "Entrées et sorties",
+    "5": "Réglages du contrôle",
+    "10": "Moniteurs"
+  },
+  "parameters": {
+    "H003": {
+      "description": "Puissance du moteur (code du tableau du manuel)"
+    },
+    "H004": {
+      "description": "Pôles du moteur (code du tableau du manuel)"
+    },
+    "A003": {
+      "description": "Fréquence de base"
+    },
+    "A004": {
+      "description": "Fréquence maximale"
+    },
+    "A082": {
+      "description": "Tension du moteur (AVR, code)"
+    },
+    "b012": {
+      "description": "Niveau thermique électronique (unités du manuel)"
+    },
+    "b013": {
+      "description": "Caractéristique thermique",
+      "options": {
+        "0": "Couple réduit",
+        "1": "Couple constant",
+        "2": "Libre"
+      }
+    },
+    "F002": {
+      "description": "Temps d'accélération 1"
+    },
+    "F003": {
+      "description": "Temps de décélération 1"
+    },
+    "A020": {
+      "description": "Multivitesse 0"
+    },
+    "A061": {
+      "description": "Limite supérieure de fréquence"
+    },
+    "A062": {
+      "description": "Limite inférieure de fréquence"
+    },
+    "A093": {
+      "description": "Temps de décélération 2"
+    },
+    "A001": {
+      "description": "Origine de la consigne de fréquence",
+      "options": {
+        "0": "Potentiomètre",
+        "1": "Bornier",
+        "2": "Console (F001)",
+        "3": "Modbus",
+        "4": "Carte optionnelle",
+        "6": "Train d'impulsions",
+        "7": "Séquence (Drive Programming)",
+        "10": "Résultat de calcul"
+      }
+    },
+    "A002": {
+      "description": "Origine de l'ordre de marche",
+      "options": {
+        "1": "Bornier",
+        "2": "Console",
+        "3": "Modbus",
+        "4": "Carte optionnelle"
+      }
+    },
+    "F004": {
+      "description": "Sens de rotation avec la touche RUN",
+      "options": {
+        "0": "Avant",
+        "1": "Arrière"
+      }
+    },
+    "b091": {
+      "description": "Mode d'arrêt",
+      "options": {
+        "0": "Décélération",
+        "1": "Libre"
+      }
+    },
+    "b001": {
+      "description": "Mode de redémarrage après défaut (code)"
+    },
+    "C001": {
+      "description": "Fonction de l'entrée 1 (code)"
+    },
+    "C002": {
+      "description": "Fonction de l'entrée 2 (code)"
+    },
+    "C021": {
+      "description": "Fonction de la sortie 11 (code)"
+    },
+    "C036": {
+      "description": "Relais d'alarme : contact au repos (code)"
+    },
+    "A044": {
+      "description": "Caractéristique V/f",
+      "options": {
+        "0": "Couple constant",
+        "1": "Couple réduit",
+        "2": "V/f libre",
+        "3": "Vectoriel sans capteur"
+      }
+    },
+    "A045": {
+      "description": "Gain de la tension de sortie"
+    },
+    "b083": {
+      "description": "Fréquence de découpage"
+    },
+    "H001": {
+      "description": "Autoréglage (code)"
+    },
+    "H002": {
+      "description": "Données du moteur utilisées (code)"
+    },
+    "F001": {
+      "description": "Consigne de fréquence"
+    },
+    "d001": {
+      "description": "Fréquence de sortie"
+    },
+    "d002": {
+      "description": "Courant de sortie"
+    },
+    "d013": {
+      "description": "Tension de sortie"
+    },
+    "d014": {
+      "description": "Puissance d'entrée"
+    },
+    "d015": {
+      "description": "Énergie cumulée"
+    },
+    "d016": {
+      "description": "Heures de marche"
+    },
+    "d017": {
+      "description": "Heures sous tension"
+    },
+    "d018": {
+      "description": "Température du dissipateur"
+    },
+    "d080": {
+      "description": "Nombre de défauts"
+    },
+    "d102": {
+      "description": "Tension du bus continu"
+    },
+    "d104": {
+      "description": "Charge thermique électronique"
+    }
+  },
+  "commands": {}
+}

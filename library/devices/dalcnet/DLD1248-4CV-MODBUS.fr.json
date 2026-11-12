@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "translationOf": {
+    "brand": "Dalcnet",
+    "model": "DLD1248-4CV-MODBUS"
+  },
+  "language": "fr",
+  "version": 1,
+  "author": "",
+  "kind": "Variateur LED",
+  "groups": {
+    "1": "Canaux",
+    "2": "Variables de couleur et d'effets"
+  },
+  "parameters": {
+    "Var0": {
+      "description": "Variable 0 (canal 1 en blanc)"
+    },
+    "Var1": {
+      "description": "Variable 1 (canal 2 en blanc)"
+    },
+    "Var2": {
+      "description": "Variable 2 (canal 3 en blanc)"
+    },
+    "Var3": {
+      "description": "Variable 3 (canal 4 en blanc)"
+    },
+    "Var4": {
+      "description": "Variable 4"
+    },
+    "Var5": {
+      "description": "Variable 5"
+    }
+  },
+  "commands": {}
+}

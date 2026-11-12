@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- El cliente Modbus TCP (funciones 03 y 16) y el equipo simulado de las pruebas, aparte de FactoryNodes.Modbus (PENDIENTES 200): solo
+       dependen de FactoryNodes.Devices, así que MapNodes (MIT, publicado) los usa para «Probar con el equipo» sin arrastrar nada más.
+       El espacio de nombres sigue siendo FactoryNodes.Modbus. Licencia MIT, como FactoryNodes.Devices. -->
+  <PropertyGroup>
+    <RootNamespace>FactoryNodes.Modbus</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FactoryNodes.Devices\FactoryNodes.Devices.csproj" />
+  </ItemGroup>
+
+</Project>

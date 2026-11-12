@@ -24,6 +24,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\libs\FactoryNodes.MapNodes.Presentation\FactoryNodes.MapNodes.Presentation.csproj" />
+    <!-- El cliente Modbus TCP de «Probar con el equipo» (MIT, solo depende de FactoryNodes.Devices) -->
+    <ProjectReference Include="..\..\libs\FactoryNodes.Modbus.Tcp\FactoryNodes.Modbus.Tcp.csproj" />
   </ItemGroup>
 
   <ItemGroup>

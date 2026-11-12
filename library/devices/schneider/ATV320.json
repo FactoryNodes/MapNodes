@@ -2,6 +2,8 @@
   "schemaVersion": 1,
   "brand": "Schneider Electric",
   "model": "ATV320",
+  "type": "drive",
+  "language": "es",
   "kind": "Variador",
   "description": "Variador Altivar 320. Modbus TCP con la tarjeta Ethernet (VW3A3616); por RS-485 (Modbus RTU), con una pasarela TCP/RTU.",
   "source": "Schneider NVE41316 V3.5 (Communication Parameters), generado con Tools/devices/altivar_xlsx.py.",

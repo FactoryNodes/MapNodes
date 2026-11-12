@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "translationOf": {
+    "brand": "Omron",
+    "model": "MX2"
+  },
+  "language": "de",
+  "version": 1,
+  "author": "",
+  "kind": "Frequenzumrichter",
+  "groups": {
+    "1": "Motordaten",
+    "2": "Rampen und Drehzahlen",
+    "3": "Steuerung",
+    "4": "Ein- und Ausgänge",
+    "5": "Regelungseinstellungen",
+    "10": "Monitorwerte"
+  },
+  "parameters": {
+    "H003": {
+      "description": "Motorleistung (Code aus der Handbuchtabelle)"
+    },
+    "H004": {
+      "description": "Motorpolzahl (Code aus der Handbuchtabelle)"
+    },
+    "A003": {
+      "description": "Eckfrequenz"
+    },
+    "A004": {
+      "description": "Maximalfrequenz"
+    },
+    "A082": {
+      "description": "Motorspannung (AVR, Code)"
+    },
+    "b012": {
+      "description": "Elektronischer Thermoschutz, Pegel (Einheiten laut Handbuch)"
+    },
+    "b013": {
+      "description": "Thermische Kennlinie",
+      "options": {
+        "0": "Reduziertes Drehmoment",
+        "1": "Konstantes Drehmoment",
+        "2": "Frei"
+      }
+    },
+    "F002": {
+      "description": "Hochlaufzeit 1"
+    },
+    "F003": {
+      "description": "Runterlaufzeit 1"
+    },
+    "A020": {
+      "description": "Festfrequenz 0"
+    },
+    "A061": {
+      "description": "Obere Frequenzgrenze"
+    },
+    "A062": {
+      "description": "Untere Frequenzgrenze"
+    },
+    "A093": {
+      "description": "Runterlaufzeit 2"
+    },
+    "A001": {
+      "description": "Quelle des Frequenzsollwerts",
+      "options": {
+        "0": "Potentiometer",
+        "1": "Klemmen",
+        "2": "Bedienfeld (F001)",
+        "3": "Modbus",
+        "4": "Optionskarte",
+        "6": "Impulsfolge",
+        "7": "Ablaufprogramm (Drive Programming)",
+        "10": "Rechenergebnis"
+      }
+    },
+    "A002": {
+      "description": "Quelle des Startbefehls",
+      "options": {
+        "1": "Klemmen",
+        "2": "Bedienfeld",
+        "3": "Modbus",
+        "4": "Optionskarte"
+      }
+    },
+    "F004": {
+      "description": "Drehrichtung mit der RUN-Taste",
+      "options": {
+        "0": "Vorwärts",
+        "1": "Rückwärts"
+      }
+    },
+    "b091": {
+      "description": "Stoppmodus",
+      "options": {
+        "0": "Runterlauf",
+        "1": "Frei"
+      }
+    },
+    "b001": {
+      "description": "Wiederanlaufmodus nach Fehler (Code)"
+    },
+    "C001": {
+      "description": "Funktion von Eingang 1 (Code)"
+    },
+    "C002": {
+      "description": "Funktion von Eingang 2 (Code)"
+    },
+    "C021": {
+      "description": "Funktion von Ausgang 11 (Code)"
+    },
+    "C036": {
+      "description": "Alarmrelais: Kontakt in Ruhestellung (Code)"
+    },
+    "A044": {
+      "description": "U/f-Kennlinie",
+      "options": {
+        "0": "Konstantes Drehmoment",
+        "1": "Reduziertes Drehmoment",
+        "2": "U/f frei",
+        "3": "Sensorlose Vektorregelung"
+      }
+    },
+    "A045": {
+      "description": "Verstärkung der Ausgangsspannung"
+    },
+    "b083": {
+      "description": "Taktfrequenz"
+    },
+    "H001": {
+      "description": "Autotuning (Code)"
+    },
+    "H002": {
+      "description": "Verwendete Motordaten (Code)"
+    },
+    "F001": {
+      "description": "Frequenzsollwert"
+    },
+    "d001": {
+      "description": "Ausgangsfrequenz"
+    },
+    "d002": {
+      "description": "Ausgangsstrom"
+    },
+    "d013": {
+      "description": "Ausgangsspannung"
+    },
+    "d014": {
+      "description": "Eingangsleistung"
+    },
+    "d015": {
+      "description": "Kumulierte Energie"
+    },
+    "d016": {
+      "description": "Betriebsstunden"
+    },
+    "d017": {
+      "description": "Einschaltstunden"
+    },
+    "d018": {
+      "description": "Kühlkörpertemperatur"
+    },
+    "d080": {
+      "description": "Anzahl der Fehler"
+    },
+    "d102": {
+      "description": "Zwischenkreisspannung"
+    },
+    "d104": {
+      "description": "Elektronische thermische Last"
+    }
+  },
+  "commands": {}
+}

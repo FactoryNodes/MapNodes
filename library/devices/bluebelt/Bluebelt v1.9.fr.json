@@ -1,0 +1,372 @@
+{
+  "schemaVersion": 1,
+  "translationOf": {
+    "brand": "Bluebelt",
+    "model": "Bluebelt v1.9"
+  },
+  "language": "fr",
+  "version": 1,
+  "author": "",
+  "kind": "Régulateur de bande peseuse",
+  "groups": {
+    "1": "Marche",
+    "2": "Consignes",
+    "3": "Régulation",
+    "4": "Mise à zéro de la bande",
+    "5": "Étalonnage du poids",
+    "6": "Vitesse et débit",
+    "7": "Fonctionnement",
+    "8": "Entrées, sorties et communication",
+    "9": "Sortie analogique",
+    "10": "Sortie de chaque consigne"
+  },
+  "parameters": {
+    "Flow": {
+      "description": "Débit instantané"
+    },
+    "Total": {
+      "description": "Total transporté"
+    },
+    "State": {
+      "description": "État de marche",
+      "bits": {
+        "0": "Marche",
+        "1": "Manuel",
+        "2": "Régulation",
+        "3": "AL1",
+        "4": "AL2",
+        "5": "AL3",
+        "6": "AL4",
+        "7": "AL5",
+        "8": "Alarme d'écart",
+        "9": "Sortie SET",
+        "10": "Sortie PRE-SET"
+      }
+    },
+    "SetpointNo": {
+      "description": "Numéro de la consigne activée"
+    },
+    "Mode": {
+      "description": "Fonctionnement",
+      "options": {
+        "0": "Automatique",
+        "1": "Manuel"
+      }
+    },
+    "ManualOut": {
+      "description": "Sortie analogique en manuel"
+    },
+    "OutPct": {
+      "description": "Sortie analogique instantanée"
+    },
+    "Speed": {
+      "description": "Vitesse instantanée de la bande"
+    },
+    "RunInput": {
+      "description": "Entrée de marche par Modbus",
+      "bits": {
+        "0": "Marche (entrée fermée)",
+        "15": "Le registre commande, pas l'entrée 1"
+      }
+    },
+    "SP1": {
+      "description": "Consigne 1 de débit"
+    },
+    "SP2": {
+      "description": "Consigne 2 de débit"
+    },
+    "SP3": {
+      "description": "Consigne 3 de débit"
+    },
+    "SP4": {
+      "description": "Consigne 4 de débit"
+    },
+    "SP5": {
+      "description": "Consigne 5 de débit"
+    },
+    "SP6": {
+      "description": "Consigne 6 de débit"
+    },
+    "SP7": {
+      "description": "Consigne 7 de débit"
+    },
+    "SP8": {
+      "description": "Consigne 8 de débit"
+    },
+    "SP9": {
+      "description": "Consigne 9 de débit"
+    },
+    "SP10": {
+      "description": "Consigne 10 de débit"
+    },
+    "SP11": {
+      "description": "Consigne 11 de débit"
+    },
+    "SP12": {
+      "description": "Consigne 12 de débit"
+    },
+    "SP13": {
+      "description": "Consigne 13 de débit"
+    },
+    "SP14": {
+      "description": "Consigne 14 de débit"
+    },
+    "SP15": {
+      "description": "Consigne 15 de débit"
+    },
+    "StartOutPct": {
+      "description": "Sortie analogique au démarrage (set 15)"
+    },
+    "TotalSet": {
+      "description": "Consigne de total transporté"
+    },
+    "Kp": {
+      "description": "Constante proportionnelle"
+    },
+    "Ki": {
+      "description": "Constante intégrale"
+    },
+    "DeadBand": {
+      "description": "Bande morte"
+    },
+    "Tolerance": {
+      "description": "Tolérance de la consigne"
+    },
+    "MaxCapacity": {
+      "description": "Capacité maximale du système"
+    },
+    "KK": {
+      "description": "Coefficient de correction KK"
+    },
+    "ZeroTurns": {
+      "description": "Tours de la mise à zéro de la bande"
+    },
+    "ZeroMode": {
+      "description": "Mise à zéro par",
+      "options": {
+        "0": "Temps",
+        "1": "Longueur"
+      }
+    },
+    "BeltTurnTime": {
+      "description": "Temps d'un tour de la bande"
+    },
+    "BeltTurnLength": {
+      "description": "Longueur d'un tour de la bande"
+    },
+    "AutoZero": {
+      "description": "Zéro automatique de la bande",
+      "options": {
+        "0": "Non",
+        "1": "Oui"
+      }
+    },
+    "CellCapacity": {
+      "description": "Capacité des capteurs de pesage"
+    },
+    "CellSens": {
+      "description": "Sensibilité des capteurs de pesage"
+    },
+    "WeightDivIndex": {
+      "description": "Indice de la valeur de division du poids"
+    },
+    "WeightDiv": {
+      "description": "Valeur de division du poids"
+    },
+    "WeightDec": {
+      "description": "Décimales du poids"
+    },
+    "WeightZeros": {
+      "description": "Zéros fixes du poids"
+    },
+    "MaxWeightDiv": {
+      "description": "Poids maximal en divisions"
+    },
+    "ZeroCal": {
+      "description": "Étalonnage du zéro du poids"
+    },
+    "SpanCal": {
+      "description": "Étalonnage de la pleine échelle du poids"
+    },
+    "WeightFilter": {
+      "description": "Filtre du poids"
+    },
+    "Encoder": {
+      "description": "Vitesse de la bande",
+      "options": {
+        "1": "Constante",
+        "2": "Codeur"
+      }
+    },
+    "RollerDiam": {
+      "description": "Diamètre du rouleau du codeur"
+    },
+    "EncoderRes": {
+      "description": "Impulsions par tour du codeur"
+    },
+    "BeltSpeed": {
+      "description": "Vitesse prédéfinie de la bande"
+    },
+    "RollerDist": {
+      "description": "Distance entre rouleaux"
+    },
+    "MaxFlow": {
+      "description": "Débit maximal du système"
+    },
+    "FlowDiv": {
+      "description": "Valeur de division du débit"
+    },
+    "FlowDec": {
+      "description": "Décimales du débit"
+    },
+    "FlowRatio": {
+      "description": "Rapport unité de débit / unité de poids"
+    },
+    "FlowUnit": {
+      "description": "Unité du débit"
+    },
+    "FlowFilter": {
+      "description": "Filtre du débit"
+    },
+    "WeightTimeout": {
+      "description": "Temps maximal à poids fixe (alarme 5)"
+    },
+    "K": {
+      "description": "Coefficient K"
+    },
+    "BeltZero": {
+      "description": "Valeur de zéro de la bande"
+    },
+    "TestTime": {
+      "description": "Temps de test"
+    },
+    "MinWeight": {
+      "description": "Poids minimal"
+    },
+    "PulseValue": {
+      "description": "Valeur de l'impulsion du totalisateur"
+    },
+    "MinAnalog": {
+      "description": "Valeur minimale de la sortie analogique"
+    },
+    "OperMode": {
+      "description": "Type de fonctionnement"
+    },
+    "OutLockTime": {
+      "description": "Blocage de la sortie au démarrage"
+    },
+    "TolInitTime": {
+      "description": "Retard initial de l'alarme de tolérance"
+    },
+    "TolDelay": {
+      "description": "Retard de l'alarme de tolérance"
+    },
+    "Out4Logic": {
+      "description": "Logique de la sortie 4 (alarme fatale)"
+    },
+    "Out5Logic": {
+      "description": "Logique de la sortie 5 (hors tolérance)"
+    },
+    "In6Func": {
+      "description": "Fonction de l'entrée 6"
+    },
+    "AL3Enable": {
+      "description": "Alarme 3 activée"
+    },
+    "Language": {
+      "description": "Langue de l'afficheur et de l'imprimante"
+    },
+    "TolMode": {
+      "description": "Tolérance absolue ou en pourcentage"
+    },
+    "Baud1": {
+      "description": "Vitesse de COM1"
+    },
+    "Baud2": {
+      "description": "Vitesse de COM2"
+    },
+    "Periph1": {
+      "description": "Périphérique de COM1"
+    },
+    "Periph2": {
+      "description": "Périphérique de COM2"
+    },
+    "SerialAddr": {
+      "description": "Adresse série"
+    },
+    "AoFullScale": {
+      "description": "Pleine échelle de la sortie analogique"
+    },
+    "AoZeroCal": {
+      "description": "Étalonnage du zéro de la sortie analogique"
+    },
+    "AoSpanCal": {
+      "description": "Étalonnage de la pleine échelle de la sortie analogique"
+    },
+    "AoRange": {
+      "description": "Plage de la sortie analogique"
+    },
+    "SP1Out": {
+      "description": "Sortie analogique de la consigne 1"
+    },
+    "SP2Out": {
+      "description": "Sortie analogique de la consigne 2"
+    },
+    "SP3Out": {
+      "description": "Sortie analogique de la consigne 3"
+    },
+    "SP4Out": {
+      "description": "Sortie analogique de la consigne 4"
+    },
+    "SP5Out": {
+      "description": "Sortie analogique de la consigne 5"
+    },
+    "SP6Out": {
+      "description": "Sortie analogique de la consigne 6"
+    },
+    "SP7Out": {
+      "description": "Sortie analogique de la consigne 7"
+    },
+    "SP8Out": {
+      "description": "Sortie analogique de la consigne 8"
+    },
+    "SP9Out": {
+      "description": "Sortie analogique de la consigne 9"
+    },
+    "SP10Out": {
+      "description": "Sortie analogique de la consigne 10"
+    },
+    "SP11Out": {
+      "description": "Sortie analogique de la consigne 11"
+    },
+    "SP12Out": {
+      "description": "Sortie analogique de la consigne 12"
+    },
+    "SP13Out": {
+      "description": "Sortie analogique de la consigne 13"
+    },
+    "SP14Out": {
+      "description": "Sortie analogique de la consigne 14"
+    },
+    "SP15Out": {
+      "description": "Sortie analogique de la consigne 15"
+    }
+  },
+  "commands": {
+    "Automático": {
+      "text": "Automatique"
+    },
+    "Manual": {
+      "text": "Manuel"
+    },
+    "Marcha por Modbus": {
+      "text": "Marche par Modbus"
+    },
+    "Paro por Modbus": {
+      "text": "Arrêt par Modbus"
+    },
+    "Marcha por la entrada": {
+      "text": "Marche par l'entrée"
+    }
+  }
+}

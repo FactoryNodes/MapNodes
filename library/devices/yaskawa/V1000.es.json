@@ -1,0 +1,2622 @@
+{
+  "schemaVersion": 1,
+  "translationOf": {
+    "brand": "Yaskawa",
+    "model": "V1000"
+  },
+  "language": "es",
+  "version": 1,
+  "author": "",
+  "kind": "Variador",
+  "description": "V1000: variador vectorial compacto (CIMR-VC), de 0,1 a 18,5 kW. MEMOBUS/Modbus RTU esclavo por RS-422/RS-485; no tiene Modbus TCP: hace falta una pasarela TCP/RTU. Trae el mando y los monitores de comunicaciones (estado, medidas, fallos y alarmas) y la lista de parámetros del variador (grupos A a o) con sus monitores U. Los nombres de los parámetros y sus opciones van en inglés, como en el manual.",
+  "restoreNotes": "Restaurar con el variador parado. Con H5-11 = 0 lo escrito no vale hasta la orden Enter (0900H = 0, que además lo guarda en la EEPROM; se manda al acabar; esperar 5 s antes de quitar tensión); con H5-11 = 1 (de fábrica) vale al escribirlo y Enter lo guarda. Como mucho 100 000 escrituras en la EEPROM. No se restauran: las contraseñas y el nivel de acceso (A1-03 a A1-06, A2), la comunicación (H5: cortaría el Modbus; de fábrica esclavo 1FH, 9600 bps, sin paridad), el modelo del variador (o2-04), guardar valores de usuario (o2-03), la copia (o3) y los contadores de mantenimiento (o4). Los datos del motor (E2, E4, E5) son del motor: en otro motor, autoajuste. Muchos parámetros dependen de otros (A1-02, el método de control, cambia los valores de fábrica de varios; o1-03 y C1-10 cambian unidades): restaurar en un variador del mismo modelo y potencia. El valor se guarda en crudo: una escala mal puesta en este fichero solo afecta a cómo se enseña.",
+  "saveDescription": "Orden Enter: guarda los parámetros en la EEPROM",
+  "groups": {
+    "1": "Mando",
+    "2": "Estado",
+    "3": "Medidas",
+    "4": "Fallos",
+    "5": "Alarmas",
+    "6": "Comunicación e identificación",
+    "10": "A · Inicialización",
+    "11": "b · Aplicación",
+    "12": "C · Ajuste (rampas, compensaciones, portadora)",
+    "13": "d · Consignas",
+    "14": "E · Motor",
+    "15": "F · Opciones",
+    "16": "H · Bornes y comunicación",
+    "17": "L · Protección",
+    "18": "n · Ajustes especiales",
+    "19": "o · Operador",
+    "20": "U · Monitores"
+  },
+  "parameters": {
+    "RunCmd": {
+      "description": "Órdenes de marcha y entradas multifunción",
+      "bits": {
+        "0": "Marcha adelante (H5-12 = 1: marcha)",
+        "1": "Marcha atrás (H5-12 = 1: sentido inverso)",
+        "2": "Fallo externo (EF0)",
+        "3": "Reset de fallo",
+        "4": "Entrada multifunción 1",
+        "5": "Entrada multifunción 2",
+        "6": "Entrada multifunción 3",
+        "7": "Entrada multifunción 4",
+        "8": "Entrada multifunción 5",
+        "9": "Entrada multifunción 6"
+      }
+    },
+    "FreqRef": {
+      "description": "Consigna de frecuencia"
+    },
+    "VoltGain": {
+      "description": "Ganancia de la tensión de salida"
+    },
+    "PidTarget": {
+      "description": "Consigna del PID"
+    },
+    "AoAM": {
+      "description": "Salida analógica AM"
+    },
+    "DoSet": {
+      "description": "Salidas digitales multifunción",
+      "bits": {
+        "0": "Salida de contacto (MA/MB-MC)",
+        "1": "Salida de fotoacoplador 1 (P1-PC)",
+        "2": "Salida de fotoacoplador 2 (P2-PC)"
+      }
+    },
+    "PulseOut": {
+      "description": "Salida de pulsos MP"
+    },
+    "CtrlSel": {
+      "description": "Selección de control",
+      "bits": {
+        "1": "Consigna del PID por Modbus",
+        "12": "Borne S5 para datos de difusión",
+        "13": "Borne S6 para datos de difusión"
+      }
+    },
+    "Status1": {
+      "description": "Estado del variador 1",
+      "bits": {
+        "0": "En marcha",
+        "1": "Marcha atrás",
+        "2": "Listo",
+        "3": "Fallo",
+        "4": "Error de ajuste de datos",
+        "5": "Salida de contacto (MA/MB-MC)",
+        "6": "Salida de fotoacoplador 1 (P1-PC)",
+        "7": "Salida de fotoacoplador 2 (P2-PC)",
+        "14": "ComRef",
+        "15": "NetRef"
+      }
+    },
+    "DataLink": {
+      "description": "Estado del enlace de datos",
+      "bits": {
+        "0": "Escribiendo datos o cambiando de motor",
+        "3": "Error de límite superior o inferior",
+        "4": "Error de coherencia de datos",
+        "5": "Escribiendo en la EEPROM"
+      }
+    },
+    "InTerm": {
+      "description": "Estado de los bornes de entrada",
+      "bits": {
+        "0": "S1 cerrado",
+        "1": "S2 cerrado",
+        "2": "S3 cerrado",
+        "3": "S4 cerrado",
+        "4": "S5 cerrado",
+        "5": "S6 cerrado"
+      }
+    },
+    "Status2": {
+      "description": "Estado del variador 2",
+      "bits": {
+        "0": "En marcha",
+        "1": "Velocidad cero",
+        "2": "Velocidad alcanzada",
+        "3": "Velocidad de usuario alcanzada",
+        "4": "Detección de frecuencia 1",
+        "5": "Detección de frecuencia 2",
+        "6": "Listo",
+        "7": "En subtensión",
+        "8": "En baseblock",
+        "9": "Consigna de frecuencia desde el teclado",
+        "10": "Orden de marcha desde el teclado",
+        "11": "Sobrepar o subpar 1, 2",
+        "12": "Pérdida de la consigna de frecuencia",
+        "13": "Reintentando tras un fallo",
+        "14": "Fallo",
+        "15": "Tiempo de comunicación agotado"
+      }
+    },
+    "OutTerm": {
+      "description": "Estado de los bornes de salida",
+      "bits": {
+        "0": "Salida de contacto (MA/MB-MC)",
+        "1": "Salida de fotoacoplador 1 (P1-PC)",
+        "2": "Salida de fotoacoplador 2 (P2-PC)"
+      }
+    },
+    "StatusU112": {
+      "description": "Estado del variador (U1-12)",
+      "bits": {
+        "0": "En marcha",
+        "1": "Velocidad cero",
+        "2": "Marcha atrás",
+        "3": "Señal de reset de fallo",
+        "4": "Velocidad alcanzada",
+        "5": "Listo",
+        "6": "Alarma",
+        "7": "Fallo",
+        "8": "Error de operación (oPE)",
+        "9": "Corte momentáneo de tensión",
+        "10": "Motor 2 elegido",
+        "14": "ComRef, NetRef",
+        "15": "ComCtrl, NetCtrl"
+      }
+    },
+    "FreqRefMon": {
+      "description": "Consigna de frecuencia (monitor)"
+    },
+    "OutFreq": {
+      "description": "Frecuencia de salida"
+    },
+    "OutVolt": {
+      "description": "Tensión de salida"
+    },
+    "OutCurrent": {
+      "description": "Intensidad de salida"
+    },
+    "OutPower": {
+      "description": "Potencia de salida"
+    },
+    "TorqueRef": {
+      "description": "Consigna de par (solo en vectorial de lazo abierto)"
+    },
+    "FreqBias": {
+      "description": "Desvío de la consigna de frecuencia (función Subir/Bajar 2)"
+    },
+    "DcBus": {
+      "description": "Tensión del bus de continua"
+    },
+    "Torque": {
+      "description": "Par"
+    },
+    "PidFeedback": {
+      "description": "Realimentación del PID"
+    },
+    "PidInput": {
+      "description": "Entrada del PID"
+    },
+    "PidOutput": {
+      "description": "Salida del PID"
+    },
+    "OutFreqRpm": {
+      "description": "Frecuencia de salida"
+    },
+    "OutFreqPct": {
+      "description": "Frecuencia de salida"
+    },
+    "RunTime": {
+      "description": "Tiempo acumulado de marcha (U4-01)"
+    },
+    "FanTime": {
+      "description": "Tiempo de marcha del ventilador (U4-03)"
+    },
+    "RatedCurrent": {
+      "description": "Intensidad nominal del variador"
+    },
+    "MotorSpeedRpm": {
+      "description": "Velocidad del motor (solo en vectorial de lazo abierto)"
+    },
+    "MotorSpeedPct": {
+      "description": "Velocidad del motor (solo en vectorial de lazo abierto)"
+    },
+    "SfsRefRpm": {
+      "description": "Consigna de frecuencia tras la rampa"
+    },
+    "SfsRefPct": {
+      "description": "Consigna de frecuencia tras la rampa"
+    },
+    "FreqRefRpm": {
+      "description": "Consigna de frecuencia"
+    },
+    "FreqRefPct": {
+      "description": "Consigna de frecuencia"
+    },
+    "OutCurrent2": {
+      "description": "Intensidad de salida"
+    },
+    "Fault1": {
+      "description": "Fallos 1",
+      "bits": {
+        "0": "Sobreintensidad (oC), fuga a tierra (GF), cortocircuito de IGBT (SC)",
+        "1": "Sobretensión (ov)",
+        "2": "Sobrecarga del variador (oL2)",
+        "3": "Sobretemperatura (oH1, oH2)",
+        "4": "Transistor de frenado (rr), resistencia de frenado (rH)",
+        "6": "Pérdida de la realimentación del PID (FbL/FbH)",
+        "7": "Fallo externo (EF0 a EF6)",
+        "8": "Fallo de hardware (CPF, oFA)",
+        "9": "Sobrecarga del motor (oL1), sobrepar o subpar (oL3/oL4, UL3/UL4)",
+        "10": "PG desconectado (PGo), sobrevelocidad (oS), desviación de velocidad (dEv)",
+        "11": "Subtensión del circuito principal (Uv)",
+        "12": "Subtensión (Uv1, Uv2), circuito de carga (Uv3)",
+        "13": "Falta de fase de salida (LF) o de entrada (PF)",
+        "14": "Error de comunicación Modbus (CE) o de la opción (bUS)",
+        "15": "Conexión del teclado (oPr)"
+      }
+    },
+    "Fault2": {
+      "description": "Fallos 2",
+      "bits": {
+        "0": "Cortocircuito de IGBT o fuga a tierra (SC)",
+        "1": "Fuga a tierra (GF)",
+        "2": "Falta de fase de entrada (PF)",
+        "3": "Falta de fase de salida (LF)",
+        "4": "Resistencia de frenado sobrecalentada (rH)",
+        "6": "Sobretemperatura del motor 2, entrada PTC (oH4)"
+      }
+    },
+    "Fault3": {
+      "description": "Fallos 3",
+      "bits": {
+        "1": "Subtensión (Uv1)",
+        "2": "Subtensión de la alimentación de control (Uv2)",
+        "3": "Circuito de carga (Uv3)",
+        "4": "Cortocircuito de IGBT o fuga a tierra (SC)",
+        "5": "Fuga a tierra (GF)",
+        "6": "Sobreintensidad (oC)",
+        "7": "Sobretensión (ov)",
+        "8": "Sobretemperatura del disipador (oH)",
+        "9": "Sobretemperatura del disipador (oH1)",
+        "10": "Sobrecarga del motor (oL1)",
+        "11": "Sobrecarga del variador (oL2)",
+        "12": "Sobrepar 1 (oL3)",
+        "13": "Sobrepar 2 (oL4)",
+        "14": "Transistor de frenado (rr)",
+        "15": "Resistencia de frenado sobrecalentada (rH)"
+      }
+    },
+    "Fault4": {
+      "description": "Fallos 4",
+      "bits": {
+        "0": "Fallo externo en S3 (EF3)",
+        "1": "Fallo externo en S4 (EF4)",
+        "2": "Fallo externo en S5 (EF5)",
+        "3": "Fallo externo en S6 (EF6)",
+        "7": "Sobrevelocidad (oS)",
+        "8": "Desviación de velocidad (dEv)",
+        "9": "PG desconectado (PGo)",
+        "10": "Falta de fase de entrada (PF)",
+        "11": "Falta de fase de salida (LF)",
+        "12": "Alarma de sobretemperatura del motor, PTC (oH3)",
+        "13": "Conexión del teclado (oPr)",
+        "14": "Error de escritura en la EEPROM (Err)",
+        "15": "Fallo de sobretemperatura del motor, PTC (oH4)"
+      }
+    },
+    "Fault5": {
+      "description": "Fallos 5",
+      "bits": {
+        "0": "Error de comunicación Modbus (CE)",
+        "1": "Error de comunicación de la opción (bUS)",
+        "4": "Fallo de control (CF)",
+        "6": "Fallo externo de la opción (EF0)",
+        "7": "Pérdida de la realimentación del PID (FbL)",
+        "8": "Subpar 1 (UL3)",
+        "9": "Subpar 2 (UL4)",
+        "10": "Sobrecarga del frenado de alto deslizamiento (oL7)",
+        "15": "Fallo de hardware (oFA)"
+      }
+    },
+    "Fault6": {
+      "description": "Fallos 6",
+      "bits": {
+        "5": "Desequilibrio de la intensidad de salida (LF2)",
+        "6": "Pérdida de sincronismo (STo)",
+        "7": "PG desconectado (PGo)",
+        "8": "Vigilancia de SI-T3/V (E5)",
+        "10": "Demasiados reintentos de búsqueda de velocidad (SEr)"
+      }
+    },
+    "Fault7": {
+      "description": "Fallos 7",
+      "bits": {
+        "0": "Pérdida de la realimentación del PID (FbH)",
+        "1": "Fallo externo 1, borne S1 (EF1)",
+        "2": "Fallo externo 2, borne S2 (EF2)",
+        "3": "Desgaste mecánico 1 (oL5)",
+        "4": "Desgaste mecánico 2 (UL5)",
+        "5": "Fallo del offset de intensidad (CoF)",
+        "8": "Fallo de DriveWorksEZ (dWFL)"
+      }
+    },
+    "Cpf1": {
+      "description": "Fallos de hardware (CPF) 1",
+      "bits": {
+        "2": "Conversión A/D (CPF02)",
+        "3": "Datos de PWM (CPF03)",
+        "6": "Variador que no coincide al cambiar la placa (CPF06)",
+        "7": "Comunicación con la placa de bornes (CPF07)",
+        "8": "Comunicación serie de la EEPROM (CPF08)",
+        "11": "RAM (CPF11)",
+        "12": "Memoria FLASH (CPF12)",
+        "13": "Vigilancia (CPF13)",
+        "14": "Circuito de control (CPF14)"
+      }
+    },
+    "Cpf2": {
+      "description": "Fallos de hardware (CPF) 2",
+      "bits": {
+        "0": "Reloj (CPF16)",
+        "1": "Temporización (CPF17)",
+        "2": "Circuito de control (CPF18)",
+        "3": "Circuito de control (CPF19)",
+        "4": "Hardware al dar tensión (CPF20)",
+        "5": "Hardware al arrancar la comunicación (CPF21)",
+        "6": "Conversión A/D (CPF22)",
+        "7": "Realimentación de PWM (CPF23)",
+        "8": "Señal de capacidad del variador (CPF24)",
+        "9": "Placa de bornes mal conectada (CPF25)"
+      }
+    },
+    "OptFault": {
+      "description": "Fallos de la tarjeta opcional",
+      "bits": {
+        "0": "Opción no compatible (oFA00)",
+        "1": "Opción mal conectada (oFA01)",
+        "3": "Error de autodiagnóstico de la opción (oFA03)",
+        "4": "Error del modo de escritura Flash de la opción (oFA04)"
+      }
+    },
+    "OpeNumber": {
+      "description": "Número de error de operación (oPE)"
+    },
+    "Alarm1": {
+      "description": "Alarmas 1",
+      "bits": {
+        "2": "Error de la orden de marcha (EF)",
+        "3": "Baseblock (bb)",
+        "4": "Sobrepar 1 (oL3)",
+        "5": "Sobretemperatura del disipador (oH)",
+        "6": "Sobretensión (ov)",
+        "7": "Subtensión (Uv)",
+        "9": "Error de comunicación Modbus (CE)",
+        "10": "Error de comunicación de la opción (bUS)",
+        "11": "Subpar 1/2 (UL3/UL4)",
+        "12": "Sobretemperatura del motor (oH3)",
+        "13": "Pérdida de la realimentación del PID (FbL, FbH)",
+        "15": "Error de transmisión serie (CALL)"
+      }
+    },
+    "Alarm2": {
+      "description": "Alarmas 2",
+      "bits": {
+        "0": "Subtensión (Uv)",
+        "1": "Sobretensión (ov)",
+        "2": "Sobretemperatura del disipador (oH)",
+        "3": "Sobretemperatura del variador (oH2)",
+        "4": "Sobrepar 1 (oL3)",
+        "5": "Sobrepar 2 (oL4)",
+        "6": "Error de las órdenes de marcha (EF)",
+        "7": "Baseblock (bb)",
+        "8": "Fallo externo 3, borne S3 (EF3)",
+        "9": "Fallo externo 4, borne S4 (EF4)",
+        "10": "Fallo externo 5, borne S5 (EF5)",
+        "11": "Fallo externo 6, borne S6 (EF6)",
+        "15": "Sobrevelocidad (oS)"
+      }
+    },
+    "Alarm3": {
+      "description": "Alarmas 3",
+      "bits": {
+        "0": "Desviación de velocidad (dEv)",
+        "1": "PG desconectado (PGo)",
+        "2": "Conexión del teclado (oPr)",
+        "3": "Error de comunicación Modbus (CE)",
+        "4": "Error de comunicación de la opción (bUS)",
+        "5": "Error de transmisión serie (CALL)",
+        "6": "Sobrecarga del motor (oL1)",
+        "7": "Sobrecarga del variador (oL2)",
+        "9": "Fallo externo de la tarjeta opcional (EF0)",
+        "10": "Cambio al motor 2 pedido en marcha (rUn)",
+        "12": "Error de transmisión serie (CALL)",
+        "13": "Subpar 1 (UL3)",
+        "14": "Subpar 2 (UL4)",
+        "15": "Fallo del modo de prueba Modbus (SE)"
+      }
+    },
+    "Alarm4": {
+      "description": "Alarmas 4",
+      "bits": {
+        "1": "Sobretemperatura del motor 1, PTC (oH3)",
+        "6": "Pérdida de la realimentación del PID (FbL)",
+        "7": "Pérdida de la realimentación del PID (FbH)",
+        "9": "Variador deshabilitado (dnE)"
+      }
+    },
+    "Alarm5": {
+      "description": "Alarmas 5",
+      "bits": {
+        "0": "Vigilancia de SI-T3/V (E5)",
+        "2": "Error del ciclo de comunicación de SI-T3/V (CyC)",
+        "3": "Alarma de intensidad alta (HCA)",
+        "4": "Mantenimiento del ventilador (LT-1)",
+        "5": "Mantenimiento del relé de carga (LT-2)",
+        "7": "Error de EEPROM de SI-S/V (EEP)",
+        "8": "Fallo externo 1, borne S1 (EF1)",
+        "9": "Fallo externo 2, borne S2 (EF2)",
+        "10": "Entrada de desconexión segura (HbbF)",
+        "11": "Entrada de desconexión segura (Hbb)",
+        "12": "Desgaste mecánico 1 (oL5)",
+        "13": "Desgaste mecánico 2 (UL5)"
+      }
+    },
+    "AlarmCode": {
+      "description": "Código de la alarma"
+    },
+    "ComErrLog": {
+      "description": "Registro de errores de comunicación",
+      "bits": {
+        "0": "Error de CRC",
+        "1": "Error de longitud de datos",
+        "3": "Error de paridad",
+        "4": "Desbordamiento",
+        "5": "Error de trama",
+        "6": "Tiempo agotado"
+      }
+    },
+    "ProductCode1": {
+      "description": "Código de producto 1 (ASCII: «V0» en el V1000)"
+    },
+    "ProductCode2": {
+      "description": "Código de producto 2 (ASCII: región)"
+    },
+    "OptionCode": {
+      "description": "Código de la opción de comunicación"
+    },
+    "A1-00": {
+      "description": "Selección de idioma",
+      "options": {
+        "0": "Inglés",
+        "1": "Japonés",
+        "2": "Alemán",
+        "3": "Francés",
+        "4": "Italiano",
+        "5": "Español",
+        "6": "Portugués",
+        "7": "Chino"
+      }
+    },
+    "A1-01": {
+      "description": "Selección del nivel de acceso",
+      "options": {
+        "0": "Solo operación",
+        "1": "Parámetros de usuario (acceso a un conjunto de parámetros elegido por el usuario)",
+        "2": "Nivel de acceso avanzado"
+      }
+    },
+    "A1-02": {
+      "description": "Selección del método de control",
+      "options": {
+        "0": "Control V/f sin PG",
+        "2": "Vectorial de lazo abierto (OLV)",
+        "5": "Vectorial de lazo abierto para motor PM (PM)"
+      }
+    },
+    "A1-03": {
+      "description": "Inicializar parámetros",
+      "options": {
+        "0": "No inicializar",
+        "1110": "Inicialización de usuario (antes hay que guardar los valores de usuario con o2-03)",
+        "2220": "Inicialización a 2 hilos",
+        "3330": "Inicialización a 3 hilos",
+        "5550": "Reset del error oPE04"
+      }
+    },
+    "A1-04": {
+      "description": "Contraseña 1"
+    },
+    "A1-05": {
+      "description": "Contraseña 2"
+    },
+    "A1-06": {
+      "description": "Aplicación predefinida",
+      "options": {
+        "0": "Uso general (los parámetros A2 no cambian)",
+        "1": "Bomba de suministro de agua",
+        "2": "Cinta transportadora",
+        "3": "Ventilador de extracción",
+        "4": "Ventilador de climatización",
+        "5": "Compresor de aire",
+        "6": "Ascensor",
+        "7": "Polipasto",
+        "8": "Cinta transportadora"
+      }
+    },
+    "A1-07": {
+      "description": "Selección de la función DriveWorksEZ",
+      "options": {
+        "0": "Deshabilitado",
+        "1": "Habilitado",
+        "2": "Entrada multifunción (habilitado cuando H1-oo = 9F)"
+      }
+    },
+    "A2-01": {
+      "description": "Parámetro de usuario 1"
+    },
+    "A2-33": {
+      "description": "Selección automática de parámetros de usuario"
+    },
+    "b1-01": {
+      "description": "Selección de la consigna de frecuencia 1",
+      "options": {
+        "0": "Operador: velocidades digitales d1-01 a d1-17",
+        "1": "Bornes: entrada analógica A1 o A2",
+        "2": "Comunicaciones MEMOBUS",
+        "3": "Tarjeta opcional",
+        "4": "Entrada de pulsos (borne RP)"
+      }
+    },
+    "b1-02": {
+      "description": "Selección de la orden de marcha 1",
+      "options": {
+        "0": "Operador: teclas RUN y STOP del operador digital",
+        "1": "Bornes de entrada digital",
+        "2": "Comunicaciones MEMOBUS",
+        "3": "Tarjeta opcional"
+      }
+    },
+    "b1-03": {
+      "description": "Selección del método de parada",
+      "options": {
+        "0": "Parada por rampa",
+        "1": "Parada por inercia",
+        "2": "Parada con frenado por inyección de CC",
+        "3": "Parada por inercia con temporizador (una orden de marcha antes de que acabe se ignora)",
+        "9": "Posicionamiento simple"
+      }
+    },
+    "b1-04": {
+      "description": "Selección de la marcha inversa",
+      "options": {
+        "0": "Marcha inversa habilitada",
+        "1": "Marcha inversa deshabilitada"
+      }
+    },
+    "b1-07": {
+      "description": "Selección de marcha LOCAL/REMOTO",
+      "options": {
+        "0": "La orden de marcha externa tiene que quitarse y volver a darse en el nuevo origen",
+        "1": "La orden de marcha externa del nuevo origen se acepta enseguida"
+      }
+    },
+    "b1-08": {
+      "description": "Orden de marcha en modo de programación",
+      "options": {
+        "0": "La orden de marcha solo se acepta en el menú de operación",
+        "1": "La orden de marcha se acepta en todos los menús",
+        "2": "Prohibido entrar en el modo de programación en marcha"
+      }
+    },
+    "b1-14": {
+      "description": "Selección del orden de fases"
+    },
+    "b1-15": {
+      "description": "Selección de la consigna de frecuencia 2",
+      "options": {
+        "0": "Operador: velocidades digitales d1-01 a d1-17",
+        "1": "Bornes: entrada analógica A1 o A2",
+        "2": "Comunicaciones MEMOBUS",
+        "3": "Tarjeta opcional",
+        "4": "Entrada de pulsos (borne RP)"
+      }
+    },
+    "b1-16": {
+      "description": "Origen de la orden de marcha 2",
+      "options": {
+        "0": "Operador: teclas RUN y STOP del operador digital",
+        "1": "Bornes de entrada digital",
+        "2": "Comunicaciones MEMOBUS",
+        "3": "Tarjeta opcional"
+      }
+    },
+    "b1-17": {
+      "description": "Orden de marcha al dar tensión",
+      "options": {
+        "0": "No se da la orden de marcha: hay que quitarla y volver a darla",
+        "1": "Se da la orden de marcha: el motor arranca"
+      }
+    },
+    "b2-01": {
+      "description": "Frecuencia de inicio del frenado por inyección de CC"
+    },
+    "b2-02": {
+      "description": "Corriente del frenado por inyección de CC"
+    },
+    "b2-03": {
+      "description": "Tiempo de frenado por inyección de CC / de excitación de CC al arrancar"
+    },
+    "b2-04": {
+      "description": "Tiempo de frenado por inyección de CC al parar"
+    },
+    "b2-08": {
+      "description": "Valor de compensación del flujo magnético"
+    },
+    "b2-12": {
+      "description": "Tiempo de freno por cortocircuito al arrancar"
+    },
+    "b2-13": {
+      "description": "Tiempo de freno por cortocircuito al parar"
+    },
+    "b3-01": {
+      "description": "Selección de la búsqueda de velocidad al arrancar",
+      "options": {
+        "0": "Deshabilitada: la búsqueda de velocidad no se hace sola al arrancar",
+        "1": "Habilitada: la búsqueda de velocidad se hace sola al arrancar"
+      }
+    },
+    "b3-02": {
+      "description": "Corriente de desactivación de la búsqueda de velocidad"
+    },
+    "b3-03": {
+      "description": "Tiempo de deceleración de la búsqueda de velocidad"
+    },
+    "b3-05": {
+      "description": "Retardo de la búsqueda de velocidad"
+    },
+    "b3-06": {
+      "description": "Corriente de salida 1 durante la búsqueda de velocidad"
+    },
+    "b3-10": {
+      "description": "Ganancia de compensación de la detección de la búsqueda de velocidad"
+    },
+    "b3-14": {
+      "description": "Selección de la búsqueda de velocidad en los dos sentidos",
+      "options": {
+        "0": "Deshabilitada: se usa el sentido de la consigna de frecuencia",
+        "1": "Habilitada: se usa el sentido detectado"
+      }
+    },
+    "b3-17": {
+      "description": "Nivel de corriente para reiniciar la búsqueda de velocidad"
+    },
+    "b3-18": {
+      "description": "Tiempo de detección para reiniciar la búsqueda de velocidad"
+    },
+    "b3-19": {
+      "description": "Número de reinicios de la búsqueda de velocidad"
+    },
+    "b3-24": {
+      "description": "Selección del método de búsqueda de velocidad",
+      "options": {
+        "0": "Tipo de detección de corriente",
+        "1": "Tipo de estimación de velocidad"
+      }
+    },
+    "b3-25": {
+      "description": "Intervalo entre reintentos de la búsqueda de velocidad"
+    },
+    "b3-29": {
+      "description": "Nivel de tensión inducida de la búsqueda de velocidad"
+    },
+    "b4-01": {
+      "description": "Retardo a la conexión del temporizador"
+    },
+    "b4-02": {
+      "description": "Retardo a la desconexión del temporizador"
+    },
+    "b5-01": {
+      "description": "Ajuste de la función PID",
+      "options": {
+        "0": "Deshabilitado",
+        "1": "Habilitado (salida del PID = consigna de frecuencia; D sobre la entrada del PID)",
+        "2": "Habilitado (salida del PID = consigna de frecuencia; D sobre la realimentación)",
+        "3": "Habilitado (salida del PID sumada a la consigna; D sobre la entrada del PID)",
+        "4": "Habilitado (salida del PID sumada a la consigna; D sobre la realimentación)"
+      }
+    },
+    "b5-02": {
+      "description": "Ganancia proporcional (P)"
+    },
+    "b5-03": {
+      "description": "Tiempo integral (I)"
+    },
+    "b5-04": {
+      "description": "Límite integral"
+    },
+    "b5-05": {
+      "description": "Tiempo derivativo (D)"
+    },
+    "b5-06": {
+      "description": "Límite de la salida del PID"
+    },
+    "b5-07": {
+      "description": "Ajuste del offset del PID"
+    },
+    "b5-08": {
+      "description": "Constante de tiempo del retardo primario del PID"
+    },
+    "b5-09": {
+      "description": "Selección del nivel de la salida del PID",
+      "options": {
+        "0": "Salida normal (acción directa)",
+        "1": "Salida inversa (acción inversa)"
+      }
+    },
+    "b5-10": {
+      "description": "Ganancia de la salida del PID"
+    },
+    "b5-11": {
+      "description": "Selección de la inversión de la salida del PID"
+    },
+    "b5-12": {
+      "description": "Referencia de la realimentación del PID",
+      "options": {
+        "0": "Solo salida digital",
+        "3": "Detección de pérdida de realimentación aunque el PID esté deshabilitado por entrada digital. Sin salida de alarma ni de fallo"
+      }
+    },
+    "b5-13": {
+      "description": "Nivel de detección de pérdida de la realimentación del PID"
+    },
+    "b5-14": {
+      "description": "Tiempo de detección de pérdida de la realimentación del PID"
+    },
+    "b5-15": {
+      "description": "Nivel de inicio de la función de reposo del PID"
+    },
+    "b5-16": {
+      "description": "Retardo del reposo del PID"
+    },
+    "b5-17": {
+      "description": "Tiempo de aceleración/deceleración del PID"
+    },
+    "b5-18": {
+      "description": "Selección de la consigna del PID",
+      "options": {
+        "0": "Deshabilitado",
+        "1": "Habilitado: b5-19 pasa a ser la consigna del PID"
+      }
+    },
+    "b5-19": {
+      "description": "Valor de la consigna del PID"
+    },
+    "b5-20": {
+      "description": "Escalado de la consigna del PID",
+      "options": {
+        "0": "Unidades de 0,01 Hz",
+        "1": "Unidades de 0,01 % (100 % = frecuencia máxima de salida)",
+        "2": "r/min (hay que poner el número de polos del motor)",
+        "3": "Definido por el usuario (b5-38 y b5-39)"
+      }
+    },
+    "b5-34": {
+      "description": "Límite inferior de la salida del PID"
+    },
+    "b5-35": {
+      "description": "Límite de la entrada del PID"
+    },
+    "b5-36": {
+      "description": "Nivel de detección de realimentación alta del PID"
+    },
+    "b5-37": {
+      "description": "Tiempo de detección de realimentación alta del PID"
+    },
+    "b5-38": {
+      "description": "Consigna del PID / visualización del usuario"
+    },
+    "b5-39": {
+      "description": "Dígitos de la visualización de la consigna del PID",
+      "options": {
+        "0": "Sin decimales",
+        "1": "Un decimal",
+        "2": "Dos decimales",
+        "3": "Tres decimales"
+      }
+    },
+    "b5-40": {
+      "description": "Contenido del monitor de la consigna de frecuencia con PID",
+      "options": {
+        "0": "Muestra la consigna de frecuencia (U1-01) después de sumar la compensación del PID",
+        "1": "Muestra la consigna de frecuencia (U1-01) antes de sumar la compensación del PID"
+      }
+    },
+    "b5-47": {
+      "description": "Selección de la marcha inversa 2 por la salida del PID"
+    },
+    "b6-01": {
+      "description": "Referencia de mantenimiento al arrancar"
+    },
+    "b6-02": {
+      "description": "Tiempo de mantenimiento al arrancar"
+    },
+    "b6-03": {
+      "description": "Frecuencia de mantenimiento al parar"
+    },
+    "b6-04": {
+      "description": "Tiempo de mantenimiento al parar"
+    },
+    "b8-01": {
+      "description": "Selección del control de ahorro de energía",
+      "options": {
+        "0": "Deshabilitado",
+        "1": "Habilitado"
+      }
+    },
+    "b8-02": {
+      "description": "Ganancia del ahorro de energía"
+    },
+    "b8-03": {
+      "description": "Constante de tiempo del filtro del control de ahorro de energía"
+    },
+    "b8-04": {
+      "description": "Coeficiente del ahorro de energía"
+    },
+    "b8-05": {
+      "description": "Tiempo del filtro de detección de potencia"
+    },
+    "b8-06": {
+      "description": "Límite de tensión de la operación de búsqueda"
+    },
+    "C1-01": {
+      "description": "Tiempo de aceleración 1"
+    },
+    "C1-02": {
+      "description": "Tiempo de deceleración 1"
+    },
+    "C1-03": {
+      "description": "Tiempo de aceleración 2"
+    },
+    "C1-04": {
+      "description": "Tiempo de deceleración 2"
+    },
+    "C1-05": {
+      "description": "Tiempo de aceleración 3 (aceleración 1 del motor 2)"
+    },
+    "C1-06": {
+      "description": "Tiempo de deceleración 3 (deceleración 1 del motor 2)"
+    },
+    "C1-07": {
+      "description": "Tiempo de aceleración 4 (aceleración 2 del motor 2)"
+    },
+    "C1-08": {
+      "description": "Tiempo de deceleración 4 (deceleración 2 del motor 2)"
+    },
+    "C1-09": {
+      "description": "Tiempo de parada rápida"
+    },
+    "C1-10": {
+      "description": "Unidades de los tiempos de aceleración/deceleración",
+      "options": {
+        "0": "0,01 s (0,00 a 600,00 s)",
+        "1": "0,1 s (0,0 a 6000,0 s)"
+      }
+    },
+    "C1-11": {
+      "description": "Frecuencia de cambio de los tiempos de aceleración/deceleración"
+    },
+    "C1-14": {
+      "description": "Frecuencia base de la aceleración/deceleración"
+    },
+    "C2-01": {
+      "description": "Característica de la curva S al empezar la aceleración"
+    },
+    "C2-02": {
+      "description": "Característica de la curva S al acabar la aceleración"
+    },
+    "C2-03": {
+      "description": "Característica de la curva S al empezar la deceleración"
+    },
+    "C2-04": {
+      "description": "Característica de la curva S al acabar la deceleración"
+    },
+    "C3-01": {
+      "description": "Ganancia de la compensación de deslizamiento"
+    },
+    "C3-02": {
+      "description": "Retardo primario de la compensación de deslizamiento"
+    },
+    "C3-03": {
+      "description": "Límite de la compensación de deslizamiento"
+    },
+    "C3-04": {
+      "description": "Selección de la compensación de deslizamiento en regeneración"
+    },
+    "C3-05": {
+      "description": "Selección de la limitación de la tensión de salida",
+      "options": {
+        "0": "Deshabilitado",
+        "1": "Habilitado"
+      }
+    },
+    "C4-01": {
+      "description": "Ganancia de la compensación de par"
+    },
+    "C4-02": {
+      "description": "Retardo primario de la compensación de par"
+    },
+    "C4-03": {
+      "description": "Compensación de par al arrancar adelante"
+    },
+    "C4-04": {
+      "description": "Compensación de par al arrancar atrás"
+    },
+    "C4-05": {
+      "description": "Constante de tiempo de la compensación de par"
+    },
+    "C4-06": {
+      "description": "Retardo primario 2 de la compensación de par"
+    },
+    "C5-01": {
+      "description": "Ganancia proporcional 1 del ASR"
+    },
+    "C5-02": {
+      "description": "Tiempo integral 1 del ASR"
+    },
+    "C5-03": {
+      "description": "Ganancia proporcional 2 del ASR"
+    },
+    "C5-04": {
+      "description": "Tiempo integral 2 del ASR"
+    },
+    "C5-05": {
+      "description": "Límite del ASR"
+    },
+    "C6-01": {
+      "description": "Selección del régimen de trabajo del variador"
+    },
+    "C6-02": {
+      "description": "Selección de la frecuencia portadora"
+    },
+    "C6-03": {
+      "description": "Límite superior de la frecuencia portadora"
+    },
+    "C6-04": {
+      "description": "Límite inferior de la frecuencia portadora"
+    },
+    "C6-05": {
+      "description": "Ganancia proporcional de la frecuencia portadora"
+    },
+    "d1-01": {
+      "description": "Consigna de frecuencia 1"
+    },
+    "d1-02": {
+      "description": "Selección de la consigna de frecuencia 2"
+    },
+    "d1-03": {
+      "description": "Consigna de frecuencia 3"
+    },
+    "d1-04": {
+      "description": "Consigna de frecuencia 4"
+    },
+    "d1-05": {
+      "description": "Consigna de frecuencia 5"
+    },
+    "d1-06": {
+      "description": "Consigna de frecuencia 6"
+    },
+    "d1-07": {
+      "description": "Consigna de frecuencia 7"
+    },
+    "d1-08": {
+      "description": "Consigna de frecuencia 8"
+    },
+    "d1-09": {
+      "description": "Consigna de frecuencia 9"
+    },
+    "d1-10": {
+      "description": "Consigna de frecuencia 10"
+    },
+    "d1-11": {
+      "description": "Consigna de frecuencia 11"
+    },
+    "d1-12": {
+      "description": "Consigna de frecuencia 12"
+    },
+    "d1-13": {
+      "description": "Consigna de frecuencia 13"
+    },
+    "d1-14": {
+      "description": "Consigna de frecuencia 14"
+    },
+    "d1-15": {
+      "description": "Consigna de frecuencia 15"
+    },
+    "d1-16": {
+      "description": "Consigna de frecuencia 16"
+    },
+    "d1-17": {
+      "description": "Consigna de frecuencia de avance lento (Jog)"
+    },
+    "d2-01": {
+      "description": "Límite superior de la consigna de frecuencia"
+    },
+    "d2-02": {
+      "description": "Límite inferior de la consigna de frecuencia"
+    },
+    "d2-03": {
+      "description": "Límite inferior de la consigna de velocidad principal"
+    },
+    "d3-01": {
+      "description": "Frecuencia de salto 1"
+    },
+    "d3-02": {
+      "description": "Frecuencia de salto 2"
+    },
+    "d3-03": {
+      "description": "Frecuencia de salto 3"
+    },
+    "d3-04": {
+      "description": "Ancho de la frecuencia de salto"
+    },
+    "d4-01": {
+      "description": "Selección de la retención de la consigna de frecuencia"
+    },
+    "d4-03": {
+      "description": "Paso del desvío de la consigna de frecuencia (Subir/Bajar 2)"
+    },
+    "d4-04": {
+      "description": "Aceleración/deceleración del desvío de la consigna de frecuencia (Subir/Bajar 2)",
+      "options": {
+        "0": "Usar el tiempo de aceleración/deceleración elegido",
+        "1": "Usar el tiempo de aceleración/deceleración 4 (C1-07 y C1-08)"
+      }
+    },
+    "d4-05": {
+      "description": "Modo de operación del desvío de la consigna de frecuencia (Subir/Bajar 2)"
+    },
+    "d4-06": {
+      "description": "Desvío de la consigna de frecuencia (Subir/Bajar 2)"
+    },
+    "d4-07": {
+      "description": "Límite de fluctuación de la consigna de frecuencia analógica (Subir/Bajar 2)"
+    },
+    "d4-08": {
+      "description": "Límite superior del desvío de la consigna de frecuencia (Subir/Bajar 2)"
+    },
+    "d4-09": {
+      "description": "Límite inferior del desvío de la consigna de frecuencia (Subir/Bajar 2)"
+    },
+    "d4-10": {
+      "description": "Selección del límite de la consigna de frecuencia Subir/Bajar"
+    },
+    "d4-11": {
+      "description": "Selección de la salida en los dos sentidos"
+    },
+    "d4-12": {
+      "description": "Ganancia de la posición de parada"
+    },
+    "d7-01": {
+      "description": "Frecuencia de offset 1"
+    },
+    "d7-02": {
+      "description": "Frecuencia de offset 2"
+    },
+    "d7-03": {
+      "description": "Frecuencia de offset 3"
+    },
+    "E1-01": {
+      "description": "Tensión de entrada"
+    },
+    "E1-03": {
+      "description": "Selección de la curva V/f",
+      "options": {
+        "0": "50 Hz, par constante",
+        "1": "60 Hz, par constante",
+        "2": "60 Hz, par constante 3 (base de 50 Hz)",
+        "3": "72 Hz, par constante 4 (base de 60 Hz)",
+        "4": "50 Hz, par variable",
+        "5": "50 Hz, par variable",
+        "6": "60 Hz, par variable",
+        "7": "60 Hz, par variable",
+        "8": "50 Hz, par de arranque alto"
+      }
+    },
+    "E1-04": {
+      "description": "Frecuencia máxima de salida"
+    },
+    "E1-05": {
+      "description": "Tensión máxima"
+    },
+    "E1-06": {
+      "description": "Frecuencia base"
+    },
+    "E1-07": {
+      "description": "Frecuencia media de salida"
+    },
+    "E1-08": {
+      "description": "Tensión de la frecuencia media de salida"
+    },
+    "E1-09": {
+      "description": "Frecuencia mínima de salida"
+    },
+    "E1-10": {
+      "description": "Tensión de la frecuencia mínima de salida"
+    },
+    "E1-11": {
+      "description": "Frecuencia media de salida 2"
+    },
+    "E1-12": {
+      "description": "Tensión de la frecuencia media de salida 2"
+    },
+    "E1-13": {
+      "description": "Tensión base"
+    },
+    "E2-01": {
+      "description": "Corriente nominal del motor"
+    },
+    "E2-02": {
+      "description": "Deslizamiento nominal del motor"
+    },
+    "E2-03": {
+      "description": "Corriente en vacío del motor"
+    },
+    "E2-04": {
+      "description": "Número de polos del motor"
+    },
+    "E2-05": {
+      "description": "Resistencia entre fases del motor"
+    },
+    "E2-06": {
+      "description": "Inductancia de fuga del motor"
+    },
+    "E2-07": {
+      "description": "Coeficiente de saturación del núcleo del motor 1"
+    },
+    "E2-08": {
+      "description": "Coeficiente de saturación del núcleo del motor 2"
+    },
+    "E2-09": {
+      "description": "Pérdidas mecánicas del motor"
+    },
+    "E2-10": {
+      "description": "Pérdidas en el hierro del motor para la compensación de par"
+    },
+    "E2-11": {
+      "description": "Potencia nominal del motor"
+    },
+    "E2-12": {
+      "description": "Coeficiente de saturación del núcleo del motor 3"
+    },
+    "E3-01": {
+      "description": "Método de control del motor 2",
+      "options": {
+        "0": "Control V/f",
+        "2": "Vectorial de lazo abierto (OLV)"
+      }
+    },
+    "E3-04": {
+      "description": "Frecuencia máxima de salida del motor 2"
+    },
+    "E3-05": {
+      "description": "Tensión máxima del motor 2"
+    },
+    "E3-06": {
+      "description": "Frecuencia base del motor 2"
+    },
+    "E3-07": {
+      "description": "Frecuencia media de salida del motor 2"
+    },
+    "E3-08": {
+      "description": "Tensión de la frecuencia media de salida del motor 2"
+    },
+    "E3-09": {
+      "description": "Frecuencia mínima de salida del motor 2"
+    },
+    "E3-10": {
+      "description": "Tensión de la frecuencia mínima de salida del motor 2"
+    },
+    "E3-11": {
+      "description": "Frecuencia media de salida 2 del motor 2"
+    },
+    "E3-12": {
+      "description": "Tensión de la frecuencia media de salida 2 del motor 2"
+    },
+    "E3-13": {
+      "description": "Tensión base del motor 2"
+    },
+    "E4-01": {
+      "description": "Corriente nominal del motor 2"
+    },
+    "E4-02": {
+      "description": "Deslizamiento nominal del motor 2"
+    },
+    "E4-03": {
+      "description": "Corriente en vacío del motor 2"
+    },
+    "E4-04": {
+      "description": "Número de polos del motor 2"
+    },
+    "E4-05": {
+      "description": "Resistencia entre fases del motor 2"
+    },
+    "E4-06": {
+      "description": "Inductancia de fuga del motor 2"
+    },
+    "E4-07": {
+      "description": "Coeficiente de saturación del núcleo 1 del motor 2"
+    },
+    "E4-08": {
+      "description": "Coeficiente de saturación del núcleo 2 del motor 2"
+    },
+    "E4-09": {
+      "description": "Pérdidas mecánicas del motor 2"
+    },
+    "E4-10": {
+      "description": "Pérdidas en el hierro del motor 2"
+    },
+    "E4-11": {
+      "description": "Potencia nominal del motor 2"
+    },
+    "E4-12": {
+      "description": "Coeficiente de saturación del núcleo 3 del motor 2"
+    },
+    "E4-14": {
+      "description": "Ganancia de la compensación de deslizamiento del motor 2"
+    },
+    "E5-01": {
+      "description": "Selección del código del motor (motor PM)",
+      "options": {
+        "0": "Serie de 1800 r/min",
+        "1": "Serie de 3600 r/min",
+        "2": "Serie de 1750 r/min",
+        "3": "Serie de 1450 r/min",
+        "4": "Serie de 1150 r/min"
+      }
+    },
+    "E5-02": {
+      "description": "Potencia nominal del motor (motor PM)"
+    },
+    "E5-03": {
+      "description": "Corriente nominal del motor"
+    },
+    "E5-04": {
+      "description": "Número de polos del motor"
+    },
+    "E5-05": {
+      "description": "Resistencia del motor"
+    },
+    "E5-06": {
+      "description": "Inductancia del eje d del motor"
+    },
+    "E5-07": {
+      "description": "Inductancia del eje q del motor"
+    },
+    "E5-09": {
+      "description": "Constante de tensión inducida del motor 1"
+    },
+    "E5-24": {
+      "description": "Constante de tensión inducida del motor 2"
+    },
+    "F1-02": {
+      "description": "Operación con el PG en circuito abierto (PGo)",
+      "options": {
+        "0": "Parada por rampa: decelera con el tiempo de deceleración activo",
+        "1": "Parada por inercia",
+        "2": "Parada rápida: decelera con el tiempo de C1-09",
+        "3": "Solo alarma: el variador sigue en marcha"
+      }
+    },
+    "F1-03": {
+      "description": "Operación con sobrevelocidad (oS)",
+      "options": {
+        "0": "Parada por rampa: decelera con el tiempo de deceleración activo",
+        "1": "Parada por inercia",
+        "2": "Parada rápida: decelera con el tiempo de C1-09",
+        "3": "Solo alarma: el variador sigue en marcha"
+      }
+    },
+    "F1-04": {
+      "description": "Operación con desviación de velocidad",
+      "options": {
+        "0": "Parada por rampa: decelera con el tiempo de deceleración activo",
+        "1": "Parada por inercia",
+        "2": "Parada rápida: decelera con el tiempo de C1-09",
+        "3": "Solo alarma: el variador sigue en marcha"
+      }
+    },
+    "F1-08": {
+      "description": "Nivel de detección de sobrevelocidad"
+    },
+    "F1-09": {
+      "description": "Retardo de la detección de sobrevelocidad"
+    },
+    "F1-10": {
+      "description": "Nivel de detección de desviación excesiva de velocidad"
+    },
+    "F1-11": {
+      "description": "Retardo de la detección de desviación excesiva de velocidad"
+    },
+    "F1-14": {
+      "description": "Tiempo de detección del PG en circuito abierto"
+    },
+    "F6-01": {
+      "description": "Operación con error de comunicaciones",
+      "options": {
+        "0": "Parada por rampa con el tiempo de aceleración/deceleración actual",
+        "1": "Parada por inercia",
+        "2": "Parada rápida con C1-09",
+        "3": "Solo alarma"
+      }
+    },
+    "F6-02": {
+      "description": "Operación con fallo externo de la opción de comunicaciones",
+      "options": {
+        "0": "Se detecta siempre",
+        "1": "Se detecta solo en marcha"
+      }
+    },
+    "F6-03": {
+      "description": "Operación con fallo externo de la opción de comunicaciones",
+      "options": {
+        "0": "Parada por rampa con el tiempo de aceleración/deceleración actual",
+        "1": "Parada por inercia",
+        "2": "Parada rápida con C1-09",
+        "3": "Solo alarma"
+      }
+    },
+    "F6-04": {
+      "description": "Tiempo de detección del error de bus"
+    },
+    "F6-07": {
+      "description": "Selección de la función NetRef/ComRef",
+      "options": {
+        "0": "Consigna multipaso deshabilitada (como el F7)",
+        "1": "Consigna multipaso habilitada (como el V7)"
+      }
+    },
+    "F6-08": {
+      "description": "Restablecer los parámetros de comunicación"
+    },
+    "F6-10": {
+      "description": "Dirección de nodo CC-Link"
+    },
+    "F6-11": {
+      "description": "Velocidad de comunicaciones CC-Link",
+      "options": {
+        "0": "156 kbps",
+        "1": "625 kbps",
+        "2": "2,5 Mbps",
+        "3": "5 Mbps",
+        "4": "10 Mbps"
+      }
+    },
+    "F6-14": {
+      "description": "Reset automático del error de bus",
+      "options": {
+        "0": "Deshabilitado",
+        "1": "Habilitado"
+      }
+    },
+    "F6-20": {
+      "description": "Dirección de estación MECHATROLINK"
+    },
+    "F6-21": {
+      "description": "Tamaño de trama MECHATROLINK",
+      "options": {
+        "0": "32 bytes",
+        "1": "17 bytes"
+      }
+    },
+    "F6-22": {
+      "description": "Velocidad del enlace MECHATROLINK",
+      "options": {
+        "0": "10 Mbps",
+        "1": "4 Mbps"
+      }
+    },
+    "F6-23": {
+      "description": "Selección del monitor MECHATROLINK (E)"
+    },
+    "F6-24": {
+      "description": "Selección del monitor MECHATROLINK (F)"
+    },
+    "F6-25": {
+      "description": "Operación con error del temporizador de vigilancia (E5)",
+      "options": {
+        "0": "Parada por rampa: decelera con el tiempo de C1-02",
+        "1": "Parada por inercia",
+        "2": "Parada rápida: decelera con el tiempo de C1-09",
+        "3": "Solo alarma"
+      }
+    },
+    "F6-26": {
+      "description": "Errores bUS de MECHATROLINK detectados"
+    },
+    "F6-30": {
+      "description": "Dirección de nodo PROFIBUS"
+    },
+    "F6-31": {
+      "description": "Selección del modo Clear de PROFIBUS",
+      "options": {
+        "0": "Reinicia la operación del variador",
+        "1": "Mantiene el estado de operación anterior"
+      }
+    },
+    "F6-32": {
+      "description": "Selección del formato de datos de PROFIBUS",
+      "options": {
+        "0": "Tipo PPO",
+        "1": "Convencional"
+      }
+    },
+    "F6-35": {
+      "description": "Selección del ID de nodo CANopen"
+    },
+    "F6-36": {
+      "description": "Velocidad de comunicaciones CANopen",
+      "options": {
+        "0": "Ajuste automático",
+        "1": "10 kbps",
+        "2": "20 kbps",
+        "3": "50 kbps",
+        "4": "125 kbps",
+        "5": "250 kbps",
+        "6": "500 kbps",
+        "7": "800 kbps",
+        "8": "1 Mbps"
+      }
+    },
+    "F6-40": {
+      "description": "ID de nodo CompoNet"
+    },
+    "F6-41": {
+      "description": "Velocidad CompoNet",
+      "options": {
+        "0": "93,75 kbps",
+        "1": "Reservado",
+        "2": "1,5 Mbps",
+        "3": "3 Mbps",
+        "4": "4 Mbps"
+      }
+    },
+    "F6-50": {
+      "description": "Dirección MAC DeviceNet"
+    },
+    "F6-51": {
+      "description": "Velocidad de comunicaciones DeviceNet",
+      "options": {
+        "0": "125 kbps",
+        "1": "250 kbps",
+        "2": "500 kbps",
+        "3": "Ajustable desde la red",
+        "4": "Detección automática"
+      }
+    },
+    "F6-52": {
+      "description": "Ajuste PCA de DeviceNet (instancia de datos consumidos por sondeo)"
+    },
+    "F6-53": {
+      "description": "Ajuste PPA de DeviceNet (instancia de datos producidos por sondeo)"
+    },
+    "F6-54": {
+      "description": "Detección de fallo en modo inactivo de DeviceNet",
+      "options": {
+        "0": "Detección habilitada",
+        "1": "Sin detección"
+      }
+    },
+    "F6-55": {
+      "description": "Velocidad en baudios de DeviceNet",
+      "options": {
+        "0": "125 kbps",
+        "1": "250 kbps",
+        "2": "500 kbps"
+      }
+    },
+    "F6-56": {
+      "description": "Factor de escala de velocidad de DeviceNet"
+    },
+    "F6-57": {
+      "description": "Factor de escala de corriente de DeviceNet"
+    },
+    "F6-58": {
+      "description": "Factor de escala de par de DeviceNet"
+    },
+    "F6-59": {
+      "description": "Factor de escala de potencia de DeviceNet"
+    },
+    "F6-60": {
+      "description": "Factor de escala de tensión de DeviceNet"
+    },
+    "F6-61": {
+      "description": "Factor de escala de tiempo de DeviceNet"
+    },
+    "F6-62": {
+      "description": "Intervalo de latido de DeviceNet"
+    },
+    "F6-63": {
+      "description": "Parámetro 1 del ensamblado de salida dinámico 109"
+    },
+    "H1-01": {
+      "description": "Función de la entrada digital multifunción S1"
+    },
+    "H1-02": {
+      "description": "Función de la entrada digital multifunción S2"
+    },
+    "H1-03": {
+      "description": "Función de la entrada digital multifunción S3"
+    },
+    "H1-04": {
+      "description": "Función de la entrada digital multifunción S4"
+    },
+    "H1-05": {
+      "description": "Función de la entrada digital multifunción S5"
+    },
+    "H1-06": {
+      "description": "Función de la entrada digital multifunción S6"
+    },
+    "H2-01": {
+      "description": "Función de los bornes MA, MB y MC (relé)"
+    },
+    "H2-02": {
+      "description": "Función del borne P1 (colector abierto)"
+    },
+    "H2-03": {
+      "description": "Función del borne P2 (colector abierto)"
+    },
+    "H2-06": {
+      "description": "Unidad de la salida de vatios hora",
+      "options": {
+        "0": "Unidades de 0,1 kWh",
+        "1": "Unidades de 1 kWh",
+        "2": "Unidades de 10 kWh",
+        "3": "Unidades de 100 kWh",
+        "4": "Unidades de 1000 kWh"
+      }
+    },
+    "H3-01": {
+      "description": "Selección del nivel de señal del borne A1",
+      "options": {
+        "0": "0 a +10 V (con límite inferior)",
+        "1": "0 a +10 V (sin límite inferior)"
+      }
+    },
+    "H3-02": {
+      "description": "Función del borne A1"
+    },
+    "H3-03": {
+      "description": "Ganancia del borne A1"
+    },
+    "H3-04": {
+      "description": "Desvío del borne A1"
+    },
+    "H3-09": {
+      "description": "Selección del nivel de señal del borne A2",
+      "options": {
+        "0": "0 a +10 V (con límite inferior)",
+        "1": "0 a +10 V (sin límite inferior)",
+        "2": "4 a 20 mA",
+        "3": "0 a 20 mA"
+      }
+    },
+    "H3-10": {
+      "description": "Función del borne A2"
+    },
+    "H3-11": {
+      "description": "Ganancia del borne A2"
+    },
+    "H3-12": {
+      "description": "Desvío del borne A2"
+    },
+    "H3-13": {
+      "description": "Constante de tiempo del filtro de las entradas analógicas"
+    },
+    "H3-14": {
+      "description": "Selección de los bornes de entrada analógica habilitados",
+      "options": {
+        "1": "Solo el borne A1",
+        "2": "Solo el borne A2",
+        "7": "Todos los bornes habilitados"
+      }
+    },
+    "H3-16": {
+      "description": "Offset del borne A1"
+    },
+    "H3-17": {
+      "description": "Offset del borne A2"
+    },
+    "H4-01": {
+      "description": "Salida analógica multifunción AM"
+    },
+    "H4-02": {
+      "description": "Ganancia de la salida analógica multifunción AM"
+    },
+    "H4-03": {
+      "description": "Desvío de la salida analógica multifunción AM"
+    },
+    "H5-01": {
+      "description": "Dirección de nodo del variador"
+    },
+    "H5-02": {
+      "description": "Selección de la velocidad de comunicación"
+    },
+    "H5-03": {
+      "description": "Selección de la paridad de comunicación",
+      "options": {
+        "0": "Sin paridad",
+        "1": "Paridad par",
+        "2": "Paridad impar"
+      }
+    },
+    "H5-04": {
+      "description": "Método de parada tras un error de comunicación",
+      "options": {
+        "0": "Parada por rampa",
+        "1": "Parada por inercia",
+        "2": "Parada rápida",
+        "3": "Solo alarma"
+      }
+    },
+    "H5-05": {
+      "description": "Selección de la detección de fallo de comunicación",
+      "options": {
+        "0": "Deshabilitado",
+        "1": "Habilitada: si se pierde la comunicación más de dos segundos, salta un fallo CE"
+      }
+    },
+    "H5-06": {
+      "description": "Tiempo de espera de transmisión del variador"
+    },
+    "H5-07": {
+      "description": "Selección del control RTS",
+      "options": {
+        "0": "Deshabilitado: RTS siempre activo",
+        "1": "Habilitado: RTS se activa solo al enviar"
+      }
+    },
+    "H5-09": {
+      "description": "Tiempo de detección de CE"
+    },
+    "H5-10": {
+      "description": "Unidad del registro MEMOBUS/Modbus 0025H",
+      "options": {
+        "0": "Unidades de 0,1 V",
+        "1": "Unidades de 1 V"
+      }
+    },
+    "H5-11": {
+      "description": "Selección de la función ENTER de comunicaciones"
+    },
+    "H5-12": {
+      "description": "Selección del método de la orden de marcha",
+      "options": {
+        "0": "Método ADELANTE/PARO, ATRÁS/PARO",
+        "1": "Método MARCHA/PARO, ADELANTE/ATRÁS"
+      }
+    },
+    "H6-01": {
+      "description": "Función del borne de entrada de tren de pulsos RP",
+      "options": {
+        "0": "Consigna de frecuencia",
+        "1": "Valor de la realimentación del PID",
+        "2": "Valor de la consigna del PID",
+        "3": "Control V/f con realimentación PG simple (solo con el motor 1 en control V/f)"
+      }
+    },
+    "H6-02": {
+      "description": "Escalado de la entrada de tren de pulsos"
+    },
+    "H6-03": {
+      "description": "Ganancia de la entrada de tren de pulsos"
+    },
+    "H6-04": {
+      "description": "Desvío de la entrada de tren de pulsos"
+    },
+    "H6-05": {
+      "description": "Tiempo del filtro de la entrada de tren de pulsos"
+    },
+    "H6-06": {
+      "description": "Selección del monitor de tren de pulsos"
+    },
+    "H6-07": {
+      "description": "Escalado del monitor de tren de pulsos"
+    },
+    "L1-01": {
+      "description": "Selección de la protección de sobrecarga del motor",
+      "options": {
+        "0": "Deshabilitado",
+        "1": "Motor de uso general (ventilación estándar)",
+        "2": "Motor para variador con rango de velocidad 1:10",
+        "3": "Motor vectorial con rango de velocidad 1:100",
+        "4": "Motor PM de par variable",
+        "6": "Motor de uso general (50 Hz)"
+      }
+    },
+    "L1-02": {
+      "description": "Tiempo de la protección de sobrecarga del motor"
+    },
+    "L1-03": {
+      "description": "Operación con alarma de sobretemperatura del motor (entrada PTC)",
+      "options": {
+        "0": "Parada por rampa",
+        "1": "Parada por inercia",
+        "2": "Parada rápida con C1-09",
+        "3": "Solo alarma («oH3» parpadea)"
+      }
+    },
+    "L1-04": {
+      "description": "Operación con fallo de sobretemperatura del motor (entrada PTC)",
+      "options": {
+        "0": "Parada por rampa",
+        "1": "Parada por inercia",
+        "2": "Parada rápida"
+      }
+    },
+    "L1-05": {
+      "description": "Tiempo del filtro de la entrada de temperatura del motor (entrada PTC)"
+    },
+    "L1-13": {
+      "description": "Selección de la operación electrotérmica continua",
+      "options": {
+        "0": "Deshabilitado",
+        "1": "Habilitado"
+      }
+    },
+    "L1-22": {
+      "description": "Constante de tiempo 1 del filtro de corriente de fuga"
+    },
+    "L1-23": {
+      "description": "Constante de tiempo 2 del filtro de corriente de fuga"
+    },
+    "L2-01": {
+      "description": "Operación con corte momentáneo de tensión",
+      "options": {
+        "0": "Deshabilitado: el variador da el fallo Uv1 al perder la tensión",
+        "2": "CPU con alimentación: el variador rearranca si vuelve la tensión mientras la CPU funcione"
+      }
+    },
+    "L2-02": {
+      "description": "Tiempo de continuidad ante un corte momentáneo de tensión"
+    },
+    "L2-03": {
+      "description": "Tiempo mínimo de baseblock ante un corte momentáneo de tensión"
+    },
+    "L2-04": {
+      "description": "Tiempo de la rampa de recuperación de tensión tras un corte momentáneo"
+    },
+    "L2-05": {
+      "description": "Nivel de detección de subtensión (Uv)"
+    },
+    "L2-06": {
+      "description": "Tiempo de deceleración KEB"
+    },
+    "L2-07": {
+      "description": "Tiempo de aceleración KEB"
+    },
+    "L2-08": {
+      "description": "Reducción de la frecuencia de salida al iniciar KEB"
+    },
+    "L2-11": {
+      "description": "Tensión deseada del bus de CC durante KEB"
+    },
+    "L3-01": {
+      "description": "Selección de la prevención de bloqueo en aceleración"
+    },
+    "L3-02": {
+      "description": "Nivel de la prevención de bloqueo en aceleración"
+    },
+    "L3-03": {
+      "description": "Límite de la prevención de bloqueo en aceleración"
+    },
+    "L3-04": {
+      "description": "Selección de la prevención de bloqueo en deceleración"
+    },
+    "L3-05": {
+      "description": "Selección de la prevención de bloqueo en marcha"
+    },
+    "L3-06": {
+      "description": "Nivel de la prevención de bloqueo en marcha"
+    },
+    "L3-11": {
+      "description": "Selección de la función de supresión de sobretensión (ov)"
+    },
+    "L3-17": {
+      "description": "Tensión deseada del bus de CC para la supresión de sobretensión y la prevención de bloqueo"
+    },
+    "L3-20": {
+      "description": "Ganancia del ajuste de la tensión del circuito principal"
+    },
+    "L3-21": {
+      "description": "Ganancia del cálculo de la tasa de aceleración/deceleración"
+    },
+    "L3-22": {
+      "description": "Tiempo de deceleración en la prevención de bloqueo durante la aceleración"
+    },
+    "L3-23": {
+      "description": "Selección de la reducción automática de la prevención de bloqueo en marcha"
+    },
+    "L3-24": {
+      "description": "Tiempo de aceleración del motor para el cálculo de la inercia"
+    },
+    "L3-25": {
+      "description": "Relación de inercia de la carga"
+    },
+    "L4-01": {
+      "description": "Nivel de detección de velocidad alcanzada"
+    },
+    "L4-02": {
+      "description": "Ancho de detección de velocidad alcanzada"
+    },
+    "L4-03": {
+      "description": "Nivel de detección de velocidad alcanzada (+/-)"
+    },
+    "L4-04": {
+      "description": "Ancho de detección de velocidad alcanzada (+/-)"
+    },
+    "L4-05": {
+      "description": "Selección de la detección de pérdida de la consigna de frecuencia"
+    },
+    "L4-06": {
+      "description": "Consigna de frecuencia al perder la consigna"
+    },
+    "L4-07": {
+      "description": "Condiciones de la detección de frecuencia",
+      "options": {
+        "0": "Sin detección durante el baseblock",
+        "1": "Detección siempre habilitada"
+      }
+    },
+    "L4-08": {
+      "description": "Condiciones de la detección de velocidad alcanzada",
+      "options": {
+        "0": "Compara la velocidad con la salida de la rampa",
+        "1": "Compara la consigna de frecuencia con la velocidad del motor"
+      }
+    },
+    "L5-01": {
+      "description": "Número de intentos de rearranque automático"
+    },
+    "L5-02": {
+      "description": "Selección de la operación de rearranque automático",
+      "options": {
+        "0": "Salida de fallo inactiva",
+        "1": "Salida de fallo activa durante el intento de rearranque"
+      }
+    },
+    "L5-04": {
+      "description": "Intervalo entre resets de fallo"
+    },
+    "L5-05": {
+      "description": "Selección de la operación de reset de fallo"
+    },
+    "L6-01": {
+      "description": "Selección de la detección de par 1"
+    },
+    "L6-02": {
+      "description": "Nivel de la detección de par 1"
+    },
+    "L6-03": {
+      "description": "Tiempo de la detección de par 1"
+    },
+    "L6-04": {
+      "description": "Selección de la detección de par 2"
+    },
+    "L6-05": {
+      "description": "Nivel de la detección de par 2"
+    },
+    "L6-06": {
+      "description": "Tiempo de la detección de par 2"
+    },
+    "L6-08": {
+      "description": "Operación de la detección de desgaste mecánico (oL5)",
+      "options": {
+        "0": "Detección de desgaste mecánico deshabilitada",
+        "1": "Sigue en marcha (solo alarma). Se detecta cuando la velocidad (con signo) es mayor que L6-09",
+        "2": "Sigue en marcha (solo alarma). Se detecta cuando la velocidad (sin signo) es mayor que L6-09",
+        "3": "Corta la salida del variador (fallo). Se detecta cuando la velocidad (con signo) es mayor que L6-09",
+        "4": "Corta la salida del variador (fallo). Se detecta cuando la velocidad (sin signo) es mayor que L6-09",
+        "5": "Sigue en marcha (solo alarma). Se detecta cuando la velocidad (con signo) es menor que L6-09",
+        "6": "Sigue en marcha (solo alarma). Se detecta cuando la velocidad (sin signo) es menor que L6-09",
+        "7": "Corta la salida del variador (fallo). Se detecta cuando la velocidad (con signo) es menor que L6-09",
+        "8": "Corta la salida del variador (fallo). Se detecta cuando la velocidad (sin signo) es menor que L6-09"
+      }
+    },
+    "L6-09": {
+      "description": "Nivel de velocidad de la detección de desgaste mecánico"
+    },
+    "L6-10": {
+      "description": "Tiempo de la detección de desgaste mecánico"
+    },
+    "L6-11": {
+      "description": "Tiempo de inicio de la detección de desgaste mecánico"
+    },
+    "L7-01": {
+      "description": "Límite de par en marcha adelante"
+    },
+    "L7-02": {
+      "description": "Límite de par en marcha atrás"
+    },
+    "L7-03": {
+      "description": "Límite de par regenerativo adelante"
+    },
+    "L7-04": {
+      "description": "Límite de par regenerativo atrás"
+    },
+    "L7-06": {
+      "description": "Constante de tiempo integral del límite de par"
+    },
+    "L7-07": {
+      "description": "Método de control del límite de par en aceleración/deceleración"
+    },
+    "L8-01": {
+      "description": "Protección de la resistencia de frenado dinámico interna (tipo ERF)",
+      "options": {
+        "0": "Protección de sobretemperatura de la resistencia deshabilitada",
+        "1": "Protección de sobretemperatura de la resistencia habilitada"
+      }
+    },
+    "L8-02": {
+      "description": "Nivel de la alarma de sobretemperatura"
+    },
+    "L8-03": {
+      "description": "Operación con prealarma de sobretemperatura",
+      "options": {
+        "0": "Parada por rampa con el tiempo de deceleración activo",
+        "1": "Parada por inercia",
+        "2": "Parada rápida con el tiempo de C1-09",
+        "3": "Solo alarma: el variador sigue en marcha y muestra una alarma"
+      }
+    },
+    "L8-05": {
+      "description": "Selección de la protección de falta de fase de entrada",
+      "options": {
+        "0": "Deshabilitado",
+        "1": "Habilitado"
+      }
+    },
+    "L8-07": {
+      "description": "Selección de la protección de falta de fase de salida",
+      "options": {
+        "0": "Deshabilitado",
+        "1": "Habilitada (salta con la falta de una sola fase)"
+      }
+    },
+    "L8-09": {
+      "description": "Selección de la detección de fuga a tierra en la salida",
+      "options": {
+        "0": "Deshabilitado",
+        "1": "Habilitado"
+      }
+    },
+    "L8-10": {
+      "description": "Selección del funcionamiento del ventilador del disipador"
+    },
+    "L8-11": {
+      "description": "Retardo del funcionamiento del ventilador del disipador"
+    },
+    "L8-12": {
+      "description": "Temperatura ambiente"
+    },
+    "L8-15": {
+      "description": "Características de oL2 a baja velocidad"
+    },
+    "L8-18": {
+      "description": "Selección de la limitación de corriente por software (CLA)",
+      "options": {
+        "0": "Deshabilitado",
+        "1": "Habilitado"
+      }
+    },
+    "L8-19": {
+      "description": "Tasa de reducción de frecuencia con prealarma oH"
+    },
+    "L8-29": {
+      "description": "Detección de desequilibrio de corriente (LF2)",
+      "options": {
+        "0": "Deshabilitado",
+        "1": "Habilitado"
+      }
+    },
+    "L8-35": {
+      "description": "Selección del método de instalación",
+      "options": {
+        "1": "Montaje lado a lado",
+        "2": "Variador NEMA tipo 1"
+      }
+    },
+    "L8-38": {
+      "description": "Selección de la reducción de la frecuencia portadora",
+      "options": {
+        "0": "Deshabilitado",
+        "1": "Habilitado por debajo de 6 Hz",
+        "2": "Habilitado en todo el rango de velocidad"
+      }
+    },
+    "L8-40": {
+      "description": "Tiempo de la reducción de la frecuencia portadora"
+    },
+    "L8-41": {
+      "description": "Selección de la alarma de corriente alta",
+      "options": {
+        "0": "Alarma deshabilitada",
+        "1": "Alarma habilitada"
+      }
+    },
+    "L8-51": {
+      "description": "Nivel de detección del fallo STo"
+    },
+    "L8-54": {
+      "description": "Detección de la desviación STo",
+      "options": {
+        "0": "Deshabilitado",
+        "1": "Habilitado"
+      }
+    },
+    "L8-56": {
+      "description": "Tiempo de operación continua de la prevención de bloqueo en aceleración"
+    },
+    "L8-57": {
+      "description": "Número de veces de la prevención de bloqueo en aceleración"
+    },
+    "n1-01": {
+      "description": "Selección de la prevención de oscilaciones",
+      "options": {
+        "0": "Deshabilitado",
+        "1": "Habilitado"
+      }
+    },
+    "n1-02": {
+      "description": "Ganancia de la prevención de oscilaciones"
+    },
+    "n1-03": {
+      "description": "Constante de tiempo de la prevención de oscilaciones"
+    },
+    "n1-05": {
+      "description": "Ganancia de la prevención de oscilaciones en marcha atrás"
+    },
+    "n2-01": {
+      "description": "Ganancia del control de detección de realimentación de velocidad (AFR)"
+    },
+    "n2-02": {
+      "description": "Constante de tiempo del control de detección de realimentación de velocidad (AFR)"
+    },
+    "n2-03": {
+      "description": "Constante de tiempo 2 del control de detección de realimentación de velocidad (AFR)"
+    },
+    "n3-01": {
+      "description": "Ancho de la frecuencia de deceleración del frenado de alto deslizamiento"
+    },
+    "n3-02": {
+      "description": "Límite de corriente del frenado de alto deslizamiento"
+    },
+    "n3-03": {
+      "description": "Tiempo de mantenimiento al parar del frenado de alto deslizamiento"
+    },
+    "n3-04": {
+      "description": "Tiempo de sobrecarga del frenado de alto deslizamiento"
+    },
+    "n3-13": {
+      "description": "Ganancia de la deceleración por sobreexcitación"
+    },
+    "n3-21": {
+      "description": "Nivel de corriente de la supresión de alto deslizamiento"
+    },
+    "n3-23": {
+      "description": "Selección de la operación de sobreexcitación",
+      "options": {
+        "0": "Habilitado en los dos sentidos",
+        "1": "Habilitado solo en marcha adelante",
+        "2": "Habilitado solo en marcha atrás"
+      }
+    },
+    "n6-01": {
+      "description": "Ajuste en línea de la resistencia entre fases del motor",
+      "options": {
+        "0": "Deshabilitado",
+        "1": "Habilitado"
+      }
+    },
+    "n8-45": {
+      "description": "Ganancia del control de detección de realimentación de velocidad"
+    },
+    "n8-47": {
+      "description": "Constante de tiempo de la compensación de la corriente de enganche"
+    },
+    "n8-48": {
+      "description": "Corriente de enganche"
+    },
+    "n8-49": {
+      "description": "Corriente del eje d para el control de alto rendimiento"
+    },
+    "n8-50": {
+      "description": "Nivel de corriente con carga pesada"
+    },
+    "n8-51": {
+      "description": "Corriente de enganche en aceleración"
+    },
+    "n8-54": {
+      "description": "Constante de tiempo de la compensación del error de tensión"
+    },
+    "n8-55": {
+      "description": "Inercia de la carga",
+      "options": {
+        "0": "menor que 1:10",
+        "1": "entre 1:10 y 1:30",
+        "2": "entre 1:30 y 1:50",
+        "3": "mayor que 1:50"
+      }
+    },
+    "n8-62": {
+      "description": "Límite de la tensión de salida"
+    },
+    "n8-63": {
+      "description": "Ganancia 1 del límite de la tensión de salida"
+    },
+    "n8-65": {
+      "description": "Ganancia del control de detección de realimentación de velocidad durante la supresión de ov"
+    },
+    "n8-68": {
+      "description": "Ganancia 2 del límite de la tensión de salida"
+    },
+    "n8-74": {
+      "description": "Nivel de corriente con carga ligera"
+    },
+    "n8-75": {
+      "description": "Nivel de corriente con carga media"
+    },
+    "n8-76": {
+      "description": "Constante de tiempo del filtro del cambio de corriente del eje d"
+    },
+    "n8-77": {
+      "description": "Nivel de cambio de la corriente de enganche con carga pesada"
+    },
+    "n8-78": {
+      "description": "Nivel de la corriente de enganche con carga media"
+    },
+    "n8-87": {
+      "description": "Selección del límite de la tensión de salida"
+    },
+    "n8-88": {
+      "description": "Nivel de corriente del cambio del límite de la tensión de salida"
+    },
+    "n8-89": {
+      "description": "Ancho de histéresis de la corriente del cambio del límite de la tensión de salida"
+    },
+    "n8-90": {
+      "description": "Velocidad del cambio del límite de la tensión de salida"
+    },
+    "n8-91": {
+      "description": "Límite de Id para el control del límite de la tensión de salida"
+    },
+    "o1-01": {
+      "description": "Selección del monitor en modo Drive"
+    },
+    "o1-02": {
+      "description": "Selección del monitor del usuario",
+      "options": {
+        "1": "Consigna de frecuencia (U1-01)",
+        "2": "Adelante/atrás",
+        "3": "Frecuencia de salida (U1-02)",
+        "4": "Corriente de salida (U1-03)",
+        "5": "Monitor del usuario (el de o1-01)"
+      }
+    },
+    "o1-03": {
+      "description": "Selección de la visualización del operador digital",
+      "options": {
+        "0": "Hz",
+        "1": "% (100 % = E1-04)",
+        "2": "r/min (poner el número de polos del motor en E2-04/E4-04/E5-04)",
+        "3": "Definido por el usuario con o1-10 y o1-11"
+      }
+    },
+    "o1-10": {
+      "description": "Ajuste de la consigna de frecuencia y visualización del usuario"
+    },
+    "o1-11": {
+      "description": "Ajuste de la consigna de frecuencia / decimales de la visualización"
+    },
+    "o2-01": {
+      "description": "Función de la tecla LO/RE",
+      "options": {
+        "0": "Deshabilitado",
+        "1": "Habilitado"
+      }
+    },
+    "o2-02": {
+      "description": "Función de la tecla STOP",
+      "options": {
+        "0": "Deshabilitado",
+        "1": "Habilitado"
+      }
+    },
+    "o2-03": {
+      "description": "Valor por defecto de los parámetros de usuario",
+      "options": {
+        "0": "Sin cambios",
+        "1": "Guardar: guarda los parámetros actuales como inicialización de usuario",
+        "2": "Borrar todo: borra la inicialización de usuario guardada"
+      }
+    },
+    "o2-04": {
+      "description": "Selección del modelo del variador"
+    },
+    "o2-05": {
+      "description": "Método de ajuste de la consigna de frecuencia"
+    },
+    "o2-06": {
+      "description": "Operación al desconectar el operador digital",
+      "options": {
+        "0": "El variador sigue en marcha",
+        "1": "El variador da un fallo (oPr) y el motor para por inercia"
+      }
+    },
+    "o2-07": {
+      "description": "Sentido del motor al dar tensión usando el operador",
+      "options": {
+        "0": "Adelante",
+        "1": "Atrás"
+      }
+    },
+    "o3-01": {
+      "description": "Selección de la función de copia",
+      "options": {
+        "0": "Sin acción",
+        "1": "LEER",
+        "2": "COPIAR",
+        "3": "VERIFICAR"
+      }
+    },
+    "o3-02": {
+      "description": "Selección del permiso de copia",
+      "options": {
+        "0": "Lectura prohibida",
+        "1": "Lectura permitida"
+      }
+    },
+    "o4-01": {
+      "description": "Ajuste del tiempo de operación acumulado"
+    },
+    "o4-02": {
+      "description": "Selección del tiempo de operación acumulado",
+      "options": {
+        "0": "Cuenta el tiempo con tensión",
+        "1": "Cuenta el tiempo con la salida del variador activa"
+      }
+    },
+    "o4-03": {
+      "description": "Ajuste del tiempo de funcionamiento del ventilador"
+    },
+    "o4-05": {
+      "description": "Ajuste del mantenimiento de los condensadores"
+    },
+    "o4-07": {
+      "description": "Ajuste del mantenimiento del relé de carga"
+    },
+    "o4-09": {
+      "description": "Ajuste del mantenimiento de los IGBT"
+    },
+    "o4-11": {
+      "description": "Selección de la inicialización de U2 y U3",
+      "options": {
+        "0": "Los monitores U2-oo y U3-oo no se borran al inicializar el variador con A1-03",
+        "1": "Los monitores U2-oo y U3-oo se borran al inicializar el variador con A1-03"
+      }
+    },
+    "o4-12": {
+      "description": "Inicialización del monitor de kWh",
+      "options": {
+        "0": "Los monitores U4-10 y U4-11 no se borran al inicializar el variador con A1-03",
+        "1": "Los monitores U4-10 y U4-11 se borran al inicializar el variador con A1-03"
+      }
+    },
+    "o4-13": {
+      "description": "Selección de la inicialización del número de órdenes de marcha",
+      "options": {
+        "0": "El monitor U4-02 no se borra al inicializar el variador con A1-03",
+        "1": "El monitor U4-02 se borra al inicializar el variador con A1-03"
+      }
+    },
+    "U1-01": {
+      "description": "Consigna de frecuencia"
+    },
+    "U1-02": {
+      "description": "Frecuencia de salida"
+    },
+    "U1-03": {
+      "description": "Corriente de salida"
+    },
+    "U1-04": {
+      "description": "Modo de control",
+      "options": {
+        "0": "V/f sin PG",
+        "2": "Vectorial de lazo abierto (OLV)",
+        "5": "Vectorial de lazo abierto para motor PM (PM)"
+      }
+    },
+    "U1-05": {
+      "description": "Velocidad del motor"
+    },
+    "U1-06": {
+      "description": "Consigna de la tensión de salida"
+    },
+    "U1-07": {
+      "description": "Tensión del bus de CC"
+    },
+    "U1-08": {
+      "description": "Potencia de salida"
+    },
+    "U1-09": {
+      "description": "Consigna de par"
+    },
+    "U1-10": {
+      "description": "Estado de los bornes de entrada"
+    },
+    "U1-11": {
+      "description": "Estado de los bornes de salida"
+    },
+    "U1-12": {
+      "description": "Estado del variador"
+    },
+    "U1-13": {
+      "description": "Nivel de la entrada del borne A1"
+    },
+    "U1-14": {
+      "description": "Nivel de la entrada del borne A2"
+    },
+    "U1-16": {
+      "description": "Frecuencia de salida tras la rampa"
+    },
+    "U1-18": {
+      "description": "Parámetro del fallo oPE"
+    },
+    "U1-19": {
+      "description": "Código de error MEMOBUS/Modbus"
+    },
+    "U1-24": {
+      "description": "Monitor de la entrada de pulsos"
+    },
+    "U1-25": {
+      "description": "Número de software (Flash)"
+    },
+    "U1-26": {
+      "description": "Número de software (ROM)"
+    },
+    "U1-27": {
+      "description": "ID del mensaje del operador"
+    },
+    "U1-28": {
+      "description": "ID del mensaje del variador"
+    },
+    "U2-01": {
+      "description": "Fallo actual"
+    },
+    "U2-02": {
+      "description": "Fallo anterior"
+    },
+    "U2-03": {
+      "description": "Consigna de frecuencia en el fallo anterior"
+    },
+    "U2-04": {
+      "description": "Frecuencia de salida en el fallo anterior"
+    },
+    "U2-05": {
+      "description": "Corriente de salida en el fallo anterior"
+    },
+    "U2-06": {
+      "description": "Velocidad del motor en el fallo anterior"
+    },
+    "U2-07": {
+      "description": "Tensión de salida en el fallo anterior"
+    },
+    "U2-08": {
+      "description": "Tensión del bus de CC en el fallo anterior"
+    },
+    "U2-09": {
+      "description": "Potencia de salida en el fallo anterior"
+    },
+    "U2-10": {
+      "description": "Consigna de par en el fallo anterior"
+    },
+    "U2-11": {
+      "description": "Estado de los bornes de entrada en el fallo anterior"
+    },
+    "U2-12": {
+      "description": "Estado de los bornes de salida en el fallo anterior"
+    },
+    "U2-13": {
+      "description": "Estado de operación del variador en el fallo anterior"
+    },
+    "U2-14": {
+      "description": "Tiempo de operación acumulado en el fallo anterior"
+    },
+    "U2-15": {
+      "description": "Consigna de velocidad tras la rampa en el fallo anterior"
+    },
+    "U2-16": {
+      "description": "Corriente del eje q del motor en el fallo anterior"
+    },
+    "U2-17": {
+      "description": "Corriente del eje d del motor en el fallo anterior"
+    },
+    "U3-01": {
+      "description": "Fallo más reciente"
+    },
+    "U3-02": {
+      "description": "2.º fallo más reciente"
+    },
+    "U3-03": {
+      "description": "3.er fallo más reciente"
+    },
+    "U3-04": {
+      "description": "4.º fallo más reciente"
+    },
+    "U3-05": {
+      "description": "5.º fallo más reciente"
+    },
+    "U3-06": {
+      "description": "6.º fallo más reciente"
+    },
+    "U3-07": {
+      "description": "7.º fallo más reciente"
+    },
+    "U3-08": {
+      "description": "8.º fallo más reciente"
+    },
+    "U3-09": {
+      "description": "9.º fallo más reciente"
+    },
+    "U3-10": {
+      "description": "10.º fallo más reciente"
+    },
+    "U3-11": {
+      "description": "Tiempo de operación acumulado en el fallo más reciente"
+    },
+    "U3-12": {
+      "description": "Tiempo de operación acumulado en el 2.º fallo más reciente"
+    },
+    "U3-13": {
+      "description": "Tiempo de operación acumulado en el 3.er fallo más reciente"
+    },
+    "U3-14": {
+      "description": "Tiempo de operación acumulado en el 4.º fallo más reciente"
+    },
+    "U3-15": {
+      "description": "Tiempo de operación acumulado en el 5.º fallo más reciente"
+    },
+    "U3-16": {
+      "description": "Tiempo de operación acumulado en el 6.º fallo más reciente"
+    },
+    "U3-17": {
+      "description": "Tiempo de operación acumulado en el 7.º fallo más reciente"
+    },
+    "U3-18": {
+      "description": "Tiempo de operación acumulado en el 8.º fallo más reciente"
+    },
+    "U3-19": {
+      "description": "Tiempo de operación acumulado en el 9.º fallo más reciente"
+    },
+    "U3-20": {
+      "description": "Tiempo de operación acumulado en el 10.º fallo más reciente"
+    },
+    "U4-01": {
+      "description": "Tiempo de operación acumulado"
+    },
+    "U4-02": {
+      "description": "Número de órdenes de marcha"
+    },
+    "U4-03": {
+      "description": "Tiempo de funcionamiento del ventilador"
+    },
+    "U4-04": {
+      "description": "Mantenimiento del ventilador"
+    },
+    "U4-05": {
+      "description": "Mantenimiento de los condensadores"
+    },
+    "U4-06": {
+      "description": "Mantenimiento del relé de carga"
+    },
+    "U4-07": {
+      "description": "Mantenimiento de los IGBT"
+    },
+    "U4-08": {
+      "description": "Temperatura del disipador"
+    },
+    "U4-09": {
+      "description": "Comprobación de los LED"
+    },
+    "U4-10": {
+      "description": "kWh, 4 dígitos inferiores"
+    },
+    "U4-11": {
+      "description": "kWh, 5 dígitos superiores"
+    },
+    "U4-13": {
+      "description": "Corriente de pico retenida"
+    },
+    "U4-14": {
+      "description": "Frecuencia de salida en el pico retenido"
+    },
+    "U4-16": {
+      "description": "Estimación de la sobrecarga del motor (oL1)"
+    },
+    "U4-18": {
+      "description": "Origen de la consigna de frecuencia"
+    },
+    "U4-19": {
+      "description": "Consigna de frecuencia por MEMOBUS/Modbus"
+    },
+    "U4-22": {
+      "description": "Referencia de las comunicaciones MEMOBUS/Modbus"
+    },
+    "U4-23": {
+      "description": "Referencia de la tarjeta opcional"
+    },
+    "U5-01": {
+      "description": "Realimentación del PID"
+    },
+    "U5-02": {
+      "description": "Entrada del PID"
+    },
+    "U5-03": {
+      "description": "Salida del PID"
+    },
+    "U5-04": {
+      "description": "Consigna del PID"
+    },
+    "U5-05": {
+      "description": "Realimentación diferencial del PID"
+    },
+    "U5-06": {
+      "description": "Realimentación ajustada del PID"
+    },
+    "U6-01": {
+      "description": "Corriente secundaria del motor (Iq)"
+    },
+    "U6-02": {
+      "description": "Corriente de excitación del motor (Id)"
+    },
+    "U6-03": {
+      "description": "Entrada del ASR"
+    },
+    "U6-04": {
+      "description": "Salida del ASR"
+    },
+    "U6-05": {
+      "description": "Consigna de la tensión de salida (Vq)"
+    },
+    "U6-06": {
+      "description": "Consigna de la tensión de salida (Vd)"
+    },
+    "U6-07": {
+      "description": "Salida del ACR del eje q"
+    },
+    "U6-08": {
+      "description": "Salida del ACR del eje d"
+    },
+    "U6-20": {
+      "description": "Desvío de la consigna de frecuencia (Subir/Bajar 2)"
+    },
+    "U6-21": {
+      "description": "Frecuencia de offset"
+    },
+    "U6-54": {
+      "description": "Integral de la desviación de Id del ACR"
+    },
+    "U6-55": {
+      "description": "Proporcional de la desviación de Id del ACR"
+    }
+  },
+  "commands": {
+    "Forward Run": {
+      "text": "Marcha adelante"
+    },
+    "Reverse Run": {
+      "text": "Marcha atrás"
+    },
+    "Stop": {
+      "text": "Paro"
+    },
+    "Fault Reset": {
+      "text": "Reset de fallo"
+    }
+  }
+}

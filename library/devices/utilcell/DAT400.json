@@ -2,6 +2,8 @@
   "schemaVersion": 1,
   "brand": "Utilcell",
   "model": "DAT 400",
+  "type": "weighing",
+  "language": "es",
   "kind": "Transmisor de pesaje",
   "description": "DAT 400: transmisor de pesaje con visor de 6 dígitos para carril DIN (24 VCC), 2 entradas, 2 salidas y pico (versiones /A analógica, /PROFIBUS, /DEVICENET). Modbus RTU esclavo por RS232 (COM1) o RS485 (COM2 si no lleva fieldbus); no tiene Modbus TCP: hace falta una pasarela TCP/RTU.",
   "source": "Utilcell, manual técnico DAT 400 (software PW13081, versiones analógica/Profibus/DeviceNet), «Protocolo Modbus RTU», páginas 41-45. Dirección = la del manual sin el 4 inicial (40001 → 1). Leídos todos los bloques en un equipo real (firmware 0x5105) por una pasarela Modbus TCP/RTU, 9600 8N1, esclavo 1, el 2026-10-16; escritura probada solo en el registro de monitor (funciones 06 y 16).",

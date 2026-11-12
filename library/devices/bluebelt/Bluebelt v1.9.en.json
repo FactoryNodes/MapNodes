@@ -1,0 +1,372 @@
+{
+  "schemaVersion": 1,
+  "translationOf": {
+    "brand": "Bluebelt",
+    "model": "Bluebelt v1.9"
+  },
+  "language": "en",
+  "version": 1,
+  "author": "",
+  "kind": "Belt weigher regulator",
+  "groups": {
+    "1": "Run",
+    "2": "Setpoints",
+    "3": "Regulation",
+    "4": "Belt zeroing",
+    "5": "Weight calibration",
+    "6": "Speed and flow rate",
+    "7": "Operation",
+    "8": "Inputs, outputs and communication",
+    "9": "Analog output",
+    "10": "Output of each setpoint"
+  },
+  "parameters": {
+    "Flow": {
+      "description": "Instantaneous flow rate"
+    },
+    "Total": {
+      "description": "Total conveyed"
+    },
+    "State": {
+      "description": "Run status",
+      "bits": {
+        "0": "Run",
+        "1": "Manual",
+        "2": "Regulation",
+        "3": "AL1",
+        "4": "AL2",
+        "5": "AL3",
+        "6": "AL4",
+        "7": "AL5",
+        "8": "Deviation alarm",
+        "9": "SET output",
+        "10": "PRE-SET output"
+      }
+    },
+    "SetpointNo": {
+      "description": "Number of the active setpoint"
+    },
+    "Mode": {
+      "description": "Operation",
+      "options": {
+        "0": "Automatic",
+        "1": "Manual"
+      }
+    },
+    "ManualOut": {
+      "description": "Analog output in manual"
+    },
+    "OutPct": {
+      "description": "Instantaneous analog output"
+    },
+    "Speed": {
+      "description": "Instantaneous belt speed"
+    },
+    "RunInput": {
+      "description": "Run input via Modbus",
+      "bits": {
+        "0": "Run (input closed)",
+        "15": "The register commands, not input 1"
+      }
+    },
+    "SP1": {
+      "description": "Flow rate setpoint 1"
+    },
+    "SP2": {
+      "description": "Flow rate setpoint 2"
+    },
+    "SP3": {
+      "description": "Flow rate setpoint 3"
+    },
+    "SP4": {
+      "description": "Flow rate setpoint 4"
+    },
+    "SP5": {
+      "description": "Flow rate setpoint 5"
+    },
+    "SP6": {
+      "description": "Flow rate setpoint 6"
+    },
+    "SP7": {
+      "description": "Flow rate setpoint 7"
+    },
+    "SP8": {
+      "description": "Flow rate setpoint 8"
+    },
+    "SP9": {
+      "description": "Flow rate setpoint 9"
+    },
+    "SP10": {
+      "description": "Flow rate setpoint 10"
+    },
+    "SP11": {
+      "description": "Flow rate setpoint 11"
+    },
+    "SP12": {
+      "description": "Flow rate setpoint 12"
+    },
+    "SP13": {
+      "description": "Flow rate setpoint 13"
+    },
+    "SP14": {
+      "description": "Flow rate setpoint 14"
+    },
+    "SP15": {
+      "description": "Flow rate setpoint 15"
+    },
+    "StartOutPct": {
+      "description": "Analog output at start (set 15)"
+    },
+    "TotalSet": {
+      "description": "Total conveyed setpoint"
+    },
+    "Kp": {
+      "description": "Proportional constant"
+    },
+    "Ki": {
+      "description": "Integral constant"
+    },
+    "DeadBand": {
+      "description": "Dead band"
+    },
+    "Tolerance": {
+      "description": "Setpoint tolerance"
+    },
+    "MaxCapacity": {
+      "description": "Maximum system capacity"
+    },
+    "KK": {
+      "description": "Correction coefficient KK"
+    },
+    "ZeroTurns": {
+      "description": "Belt turns for zeroing"
+    },
+    "ZeroMode": {
+      "description": "Zeroing by",
+      "options": {
+        "0": "Time",
+        "1": "Length"
+      }
+    },
+    "BeltTurnTime": {
+      "description": "Time of one belt turn"
+    },
+    "BeltTurnLength": {
+      "description": "Length of one belt turn"
+    },
+    "AutoZero": {
+      "description": "Belt auto-zero",
+      "options": {
+        "0": "No",
+        "1": "Yes"
+      }
+    },
+    "CellCapacity": {
+      "description": "Load cell capacity"
+    },
+    "CellSens": {
+      "description": "Load cell sensitivity"
+    },
+    "WeightDivIndex": {
+      "description": "Weight division value index"
+    },
+    "WeightDiv": {
+      "description": "Weight division value"
+    },
+    "WeightDec": {
+      "description": "Weight decimals"
+    },
+    "WeightZeros": {
+      "description": "Weight fixed zeros"
+    },
+    "MaxWeightDiv": {
+      "description": "Maximum weight in divisions"
+    },
+    "ZeroCal": {
+      "description": "Weight zero calibration"
+    },
+    "SpanCal": {
+      "description": "Weight full-scale calibration"
+    },
+    "WeightFilter": {
+      "description": "Weight filter"
+    },
+    "Encoder": {
+      "description": "Belt speed",
+      "options": {
+        "1": "Constant",
+        "2": "Encoder"
+      }
+    },
+    "RollerDiam": {
+      "description": "Encoder roller diameter"
+    },
+    "EncoderRes": {
+      "description": "Encoder pulses per revolution"
+    },
+    "BeltSpeed": {
+      "description": "Default belt speed"
+    },
+    "RollerDist": {
+      "description": "Distance between rollers"
+    },
+    "MaxFlow": {
+      "description": "Maximum system flow rate"
+    },
+    "FlowDiv": {
+      "description": "Flow rate division value"
+    },
+    "FlowDec": {
+      "description": "Flow rate decimals"
+    },
+    "FlowRatio": {
+      "description": "Flow rate unit / weight unit ratio"
+    },
+    "FlowUnit": {
+      "description": "Flow rate unit"
+    },
+    "FlowFilter": {
+      "description": "Flow rate filter"
+    },
+    "WeightTimeout": {
+      "description": "Maximum time with fixed weight (alarm 5)"
+    },
+    "K": {
+      "description": "Coefficient K"
+    },
+    "BeltZero": {
+      "description": "Belt zero value"
+    },
+    "TestTime": {
+      "description": "Test time"
+    },
+    "MinWeight": {
+      "description": "Minimum weight"
+    },
+    "PulseValue": {
+      "description": "Totalizer pulse value"
+    },
+    "MinAnalog": {
+      "description": "Minimum analog output value"
+    },
+    "OperMode": {
+      "description": "Operating mode"
+    },
+    "OutLockTime": {
+      "description": "Output lock at start"
+    },
+    "TolInitTime": {
+      "description": "Initial tolerance alarm delay"
+    },
+    "TolDelay": {
+      "description": "Tolerance alarm delay"
+    },
+    "Out4Logic": {
+      "description": "Output 4 logic (fatal alarm)"
+    },
+    "Out5Logic": {
+      "description": "Output 5 logic (out of tolerance)"
+    },
+    "In6Func": {
+      "description": "Input 6 function"
+    },
+    "AL3Enable": {
+      "description": "Alarm 3 enabled"
+    },
+    "Language": {
+      "description": "Display and printer language"
+    },
+    "TolMode": {
+      "description": "Absolute or percentage tolerance"
+    },
+    "Baud1": {
+      "description": "COM1 baud rate"
+    },
+    "Baud2": {
+      "description": "COM2 baud rate"
+    },
+    "Periph1": {
+      "description": "COM1 peripheral"
+    },
+    "Periph2": {
+      "description": "COM2 peripheral"
+    },
+    "SerialAddr": {
+      "description": "Serial address"
+    },
+    "AoFullScale": {
+      "description": "Analog output full scale"
+    },
+    "AoZeroCal": {
+      "description": "Analog output zero calibration"
+    },
+    "AoSpanCal": {
+      "description": "Analog output full-scale calibration"
+    },
+    "AoRange": {
+      "description": "Analog output range"
+    },
+    "SP1Out": {
+      "description": "Analog output of setpoint 1"
+    },
+    "SP2Out": {
+      "description": "Analog output of setpoint 2"
+    },
+    "SP3Out": {
+      "description": "Analog output of setpoint 3"
+    },
+    "SP4Out": {
+      "description": "Analog output of setpoint 4"
+    },
+    "SP5Out": {
+      "description": "Analog output of setpoint 5"
+    },
+    "SP6Out": {
+      "description": "Analog output of setpoint 6"
+    },
+    "SP7Out": {
+      "description": "Analog output of setpoint 7"
+    },
+    "SP8Out": {
+      "description": "Analog output of setpoint 8"
+    },
+    "SP9Out": {
+      "description": "Analog output of setpoint 9"
+    },
+    "SP10Out": {
+      "description": "Analog output of setpoint 10"
+    },
+    "SP11Out": {
+      "description": "Analog output of setpoint 11"
+    },
+    "SP12Out": {
+      "description": "Analog output of setpoint 12"
+    },
+    "SP13Out": {
+      "description": "Analog output of setpoint 13"
+    },
+    "SP14Out": {
+      "description": "Analog output of setpoint 14"
+    },
+    "SP15Out": {
+      "description": "Analog output of setpoint 15"
+    }
+  },
+  "commands": {
+    "Automático": {
+      "text": "Automatic"
+    },
+    "Manual": {
+      "text": "Manual"
+    },
+    "Marcha por Modbus": {
+      "text": "Run via Modbus"
+    },
+    "Paro por Modbus": {
+      "text": "Stop via Modbus"
+    },
+    "Marcha por la entrada": {
+      "text": "Run via the input"
+    }
+  }
+}

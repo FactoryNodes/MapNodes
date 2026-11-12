@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "translationOf": {
+    "brand": "Omron",
+    "model": "MX2"
+  },
+  "language": "en",
+  "version": 1,
+  "author": "",
+  "kind": "Drive",
+  "groups": {
+    "1": "Motor data",
+    "2": "Ramps and speeds",
+    "3": "Command",
+    "4": "Inputs and outputs",
+    "5": "Control settings",
+    "10": "Monitors"
+  },
+  "parameters": {
+    "H003": {
+      "description": "Motor power (code from the manual table)"
+    },
+    "H004": {
+      "description": "Motor poles (code from the manual table)"
+    },
+    "A003": {
+      "description": "Base frequency"
+    },
+    "A004": {
+      "description": "Maximum frequency"
+    },
+    "A082": {
+      "description": "Motor voltage (AVR, code)"
+    },
+    "b012": {
+      "description": "Electronic thermal level (manual units)"
+    },
+    "b013": {
+      "description": "Thermal characteristic",
+      "options": {
+        "0": "Reduced torque",
+        "1": "Constant torque",
+        "2": "Free"
+      }
+    },
+    "F002": {
+      "description": "Acceleration time 1"
+    },
+    "F003": {
+      "description": "Deceleration time 1"
+    },
+    "A020": {
+      "description": "Multi-speed 0"
+    },
+    "A061": {
+      "description": "Frequency upper limit"
+    },
+    "A062": {
+      "description": "Frequency lower limit"
+    },
+    "A093": {
+      "description": "Deceleration time 2"
+    },
+    "A001": {
+      "description": "Frequency setpoint source",
+      "options": {
+        "0": "Potentiometer",
+        "1": "Terminals",
+        "2": "Operator (F001)",
+        "3": "Modbus",
+        "4": "Option board",
+        "6": "Pulse train",
+        "7": "Sequence (Drive Programming)",
+        "10": "Calculation result"
+      }
+    },
+    "A002": {
+      "description": "Run command source",
+      "options": {
+        "1": "Terminals",
+        "2": "Operator",
+        "3": "Modbus",
+        "4": "Option board"
+      }
+    },
+    "F004": {
+      "description": "Rotation direction with the RUN key",
+      "options": {
+        "0": "Forward",
+        "1": "Reverse"
+      }
+    },
+    "b091": {
+      "description": "Stop mode",
+      "options": {
+        "0": "Deceleration",
+        "1": "Free"
+      }
+    },
+    "b001": {
+      "description": "Restart mode after fault (code)"
+    },
+    "C001": {
+      "description": "Input 1 function (code)"
+    },
+    "C002": {
+      "description": "Input 2 function (code)"
+    },
+    "C021": {
+      "description": "Output 11 function (code)"
+    },
+    "C036": {
+      "description": "Alarm relay: contact at rest (code)"
+    },
+    "A044": {
+      "description": "V/f characteristic",
+      "options": {
+        "0": "Constant torque",
+        "1": "Reduced torque",
+        "2": "Free V/f",
+        "3": "Sensorless vector"
+      }
+    },
+    "A045": {
+      "description": "Output voltage gain"
+    },
+    "b083": {
+      "description": "Carrier frequency"
+    },
+    "H001": {
+      "description": "Auto-tuning (code)"
+    },
+    "H002": {
+      "description": "Motor data used (code)"
+    },
+    "F001": {
+      "description": "Frequency setpoint"
+    },
+    "d001": {
+      "description": "Output frequency"
+    },
+    "d002": {
+      "description": "Output current"
+    },
+    "d013": {
+      "description": "Output voltage"
+    },
+    "d014": {
+      "description": "Input power"
+    },
+    "d015": {
+      "description": "Accumulated energy"
+    },
+    "d016": {
+      "description": "Run hours"
+    },
+    "d017": {
+      "description": "Power-on hours"
+    },
+    "d018": {
+      "description": "Heat sink temperature"
+    },
+    "d080": {
+      "description": "Number of faults"
+    },
+    "d102": {
+      "description": "DC bus voltage"
+    },
+    "d104": {
+      "description": "Electronic thermal load"
+    }
+  },
+  "commands": {}
+}

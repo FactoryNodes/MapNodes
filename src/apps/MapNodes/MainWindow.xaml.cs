@@ -18,6 +18,11 @@ public partial class MainWindow : Window
         DataContext = _model;
         InputBindings.Add(new KeyBinding(_model.SaveCommand, Key.S, ModifierKeys.Control));
         Drop += OnDrop;
+        // «Abrir de la web»: la lista en su ventana mientras el ViewModel la tiene abierta
+        _model.Web.PropertyChanged += (_, e) =>
+        {
+            if (e.PropertyName == nameof(MapNodesWebViewModel.IsOpen) && _model.Web.IsOpen) new WebWindow(_model.Web) { Owner = this }.ShowDialog();
+        };
         if (file is not null) _model.OpenFile(file);
     }
 

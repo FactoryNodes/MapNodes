@@ -1,0 +1,432 @@
+{
+  "schemaVersion": 1,
+  "translationOf": {
+    "brand": "SCAIME",
+    "model": "eNod4-F"
+  },
+  "language": "ca",
+  "version": 1,
+  "author": "",
+  "kind": "Transmissor de pesatge",
+  "groups": {
+    "1": "Identificació",
+    "2": "Pesatge i calibratge",
+    "3": "Filtres",
+    "4": "Dosificació i reompliment",
+    "5": "PID i sortida analògica",
+    "6": "Entrades, sortides i llindars",
+    "10": "Mesura",
+    "11": "Dosificació en curs",
+    "12": "Ordres",
+    "13": "Entrades i sortides en viu"
+  },
+  "parameters": {
+    "Status": {
+      "description": "Estat de la mesura",
+      "bits": {
+        "2": "b2 (b3b2 ≠ 00: fallada de mesura; 01 control d'entrada, 10 fora de capacitat, 11 fora del rang de l'A/D)",
+        "3": "b3 (vegeu b2)",
+        "4": "Mesura estable",
+        "5": "Zero dins d'1/4 de divisió",
+        "6": "Fallada d'EEPROM",
+        "7": "Fora del rang de mesura",
+        "8": "Entrada 1",
+        "9": "Entrada 2",
+        "10": "Sortida 1",
+        "11": "Sortida 2",
+        "12": "Sortida 3",
+        "13": "Sortida 4",
+        "14": "S'ha fet alguna tara"
+      }
+    },
+    "Gross": {
+      "description": "Pes brut"
+    },
+    "Tare": {
+      "description": "Valor de la tara"
+    },
+    "Net": {
+      "description": "Pes net"
+    },
+    "Points": {
+      "description": "Punts del convertidor (de fàbrica)"
+    },
+    "FlowInst": {
+      "description": "Cabal instantani"
+    },
+    "FlowAvg": {
+      "description": "Cabal mitjà"
+    },
+    "FlowOut": {
+      "description": "Sortida de control de cabal"
+    },
+    "OutValue": {
+      "description": "Valor de la sortida de control"
+    },
+    "Total": {
+      "description": "Totalitzador (unitat de pes × 1000)"
+    },
+    "TotalCompl": {
+      "description": "Totalitzador, part complementària (unitat de pes)"
+    },
+    "Command": {
+      "description": "Registre d'ordres",
+      "options": {
+        "0": "Esborrar la resposta (enviar abans de cada ordre)",
+        "208": "Reset (D0h)",
+        "209": "Desar a l'EEPROM (D1h)",
+        "210": "Tornar als valors de fàbrica (D2h)",
+        "211": "Zero (D3h)",
+        "212": "Tara (D4h)",
+        "213": "Anul·lar la tara (D5h)",
+        "214": "Anul·lar l'ordre (D6h)",
+        "223": "Totalització / esborrar errors (DFh)",
+        "228": "Arrencar / reprendre la dosificació o el lot (E4h)",
+        "229": "Aturar la dosificació / anul·lar el lot (E5h)",
+        "237": "Posar a zero el gran total (EDh)",
+        "238": "Posar a zero el total general (EEh)",
+        "241": "Adquisició del zero dinàmic (F1h)",
+        "242": "Tara predeterminada (F2h)",
+        "243": "Cicle d'aprenentatge en el cicle següent (F3h)",
+        "244": "Buidar la tremuja (neteja) (F4h)",
+        "245": "Començar el reompliment (F5h)",
+        "246": "Aturar el reompliment (F6h)",
+        "247": "Suspendre el lot (F7h)",
+        "199": "Aturar el PID (C7h)",
+        "200": "Rearrencar el PID (C8h)"
+      }
+    },
+    "Response": {
+      "description": "Resposta a l'ordre",
+      "options": {
+        "0": "Llest per a una altra ordre",
+        "1": "Executant l'ordre",
+        "2": "Ordre feta",
+        "3": "Error en executar-la"
+      }
+    },
+    "IO": {
+      "description": "Entrades (byte baix) i sortides (byte alt) lògiques",
+      "bits": {
+        "0": "Entrada 1",
+        "1": "Entrada 2",
+        "2": "Entrada 3",
+        "3": "Entrada 4",
+        "8": "Sortida 1",
+        "9": "Sortida 2",
+        "10": "Sortida 3",
+        "11": "Sortida 4"
+      }
+    },
+    "Deviation": {
+      "description": "Desviació de pes de la dosificació"
+    },
+    "DosingStatus": {
+      "description": "Estat de la dosificació",
+      "bits": {
+        "0": "Aturat",
+        "1": "Reomplint",
+        "2": "Fi de l'espera del reompliment (cicle d'aprenentatge)",
+        "3": "Fi de l'estabilització del reompliment",
+        "4": "Determinant el cabal",
+        "5": "Dosificant",
+        "6": "Lot suspès",
+        "7": "Buidant la tremuja",
+        "9": "Cicle d'aprenentatge",
+        "10": "Calibratge de cabal fet",
+        "11": "Dosificació volumètrica",
+        "12": "Extracció activada",
+        "13": "Reompliment en curs",
+        "14": "Cicle de dosificació en curs",
+        "15": "Lot acabat"
+      }
+    },
+    "DosingErrors": {
+      "description": "Alarmes de dosificació",
+      "bits": {
+        "0": "Cabal instantani > màxim admissible",
+        "1": "Cabal instantani < mínim admissible",
+        "2": "Sortida de control de cabal > màxima admissible",
+        "3": "Sortida de control de cabal < mínima admissible",
+        "4": "Sense variació de pes durant el reompliment",
+        "5": "Reompliment massa llarg",
+        "6": "Tremuja buida",
+        "7": "Desbordament de la sortida del totalitzador extern",
+        "8": "Lot massa llarg",
+        "9": "Tremuja plena",
+        "10": "PID aturat per l'usuari",
+        "11": "Cabal més gran que la capacitat de la màquina"
+      }
+    },
+    "ErrorCount": {
+      "description": "Comptador d'errors de dosificació"
+    },
+    "LastError": {
+      "description": "Últim error de dosificació",
+      "bits": {
+        "0": "Cabal instantani > màxim admissible",
+        "1": "Cabal instantani < mínim admissible",
+        "2": "Sortida de control de cabal > màxima admissible",
+        "3": "Sortida de control de cabal < mínima admissible",
+        "4": "Sense variació de pes durant el reompliment",
+        "5": "Reompliment massa llarg",
+        "6": "Tremuja buida",
+        "7": "Desbordament de la sortida del totalitzador extern",
+        "8": "Lot massa llarg",
+        "9": "Tremuja plena",
+        "10": "PID aturat per l'usuari",
+        "11": "Cabal més gran que la capacitat de la màquina"
+      }
+    },
+    "Quality": {
+      "description": "Indicador de qualitat de la dosificació"
+    },
+    "TotalFlow": {
+      "description": "Cabal de totalització"
+    },
+    "GrandTotal": {
+      "description": "Gran total (unitat de pes × 1000)"
+    },
+    "GeneralTotal": {
+      "description": "Total general (unitat de pes × 1000)"
+    },
+    "ExtractTime": {
+      "description": "Temps d'extracció"
+    },
+    "Version": {
+      "description": "Versió del programa i del producte"
+    },
+    "ZeroFn": {
+      "description": "Funcions de zero"
+    },
+    "StabDec": {
+      "description": "Criteri d'estabilitat (byte baix) i posició del punt decimal (byte alt)"
+    },
+    "Capacity": {
+      "description": "Capacitat màxima"
+    },
+    "Segments": {
+      "description": "Nombre de segments de calibratge"
+    },
+    "Load1": {
+      "description": "Càrrega de calibratge, segment 1"
+    },
+    "Load2": {
+      "description": "Càrrega de calibratge, segment 2"
+    },
+    "Load3": {
+      "description": "Càrrega de calibratge, segment 3"
+    },
+    "Sensitivity": {
+      "description": "Sensibilitat del sensor"
+    },
+    "Division": {
+      "description": "Esglaó (divisió)"
+    },
+    "CalZero": {
+      "description": "Zero de calibratge"
+    },
+    "Slope1": {
+      "description": "Coeficient de pendent 1"
+    },
+    "Slope2": {
+      "description": "Coeficient de pendent 2"
+    },
+    "Slope3": {
+      "description": "Coeficient de pendent 3"
+    },
+    "ZeroOffset": {
+      "description": "Desplaçament del zero"
+    },
+    "PresetTare": {
+      "description": "Tara predeterminada"
+    },
+    "AdFreq": {
+      "description": "Freqüència del convertidor A/D"
+    },
+    "FilterOrder": {
+      "description": "Activació del filtre (byte baix) i ordre del passabaix (byte alt)"
+    },
+    "Cutoff": {
+      "description": "Freqüència de tall del filtre passabaix"
+    },
+    "AvgDepth": {
+      "description": "Profunditat de la mitjana mòbil del pes"
+    },
+    "Clipping": {
+      "description": "Tolerància del filtre de retall del cabal instantani"
+    },
+    "FlowTime": {
+      "description": "Temps de determinació del cabal instantani"
+    },
+    "FlowAvgDepth": {
+      "description": "Profunditat del cabal mitjà"
+    },
+    "FlowTimeUnit": {
+      "description": "Unitat de temps del cabal"
+    },
+    "NominalFlow": {
+      "description": "Cabal nominal (consigna)"
+    },
+    "CycleOptions": {
+      "description": "Opcions de cicle i alarmes"
+    },
+    "RefillStart": {
+      "description": "Nivell d'inici del reompliment"
+    },
+    "RefillEnd": {
+      "description": "Nivell de fi del reompliment"
+    },
+    "RefillThrow": {
+      "description": "Cua de caiguda del reompliment"
+    },
+    "RefillFlow": {
+      "description": "Cabal imposat durant el reompliment"
+    },
+    "EmptyLevel": {
+      "description": "Nivell de tremuja buida"
+    },
+    "FullLevel": {
+      "description": "Nivell de tremuja plena"
+    },
+    "RefillMaxStart": {
+      "description": "Temps màxim d'arrencada del reompliment"
+    },
+    "RefillCheck": {
+      "description": "Interval de control de variació de pes en el reompliment"
+    },
+    "RefillMax": {
+      "description": "Temps màxim de reompliment"
+    },
+    "FlowMin": {
+      "description": "Cabal instantani mínim admissible"
+    },
+    "FlowMax": {
+      "description": "Cabal instantani màxim admissible"
+    },
+    "OutMin": {
+      "description": "Sortida de control de cabal mínima admissible"
+    },
+    "OutMax": {
+      "description": "Sortida de control de cabal màxima admissible"
+    },
+    "InhibitStart": {
+      "description": "Inhibició d'alarmes de cabal en arrencar"
+    },
+    "InhibitRun": {
+      "description": "Inhibició d'alarmes de cabal en servei"
+    },
+    "BatchMax": {
+      "description": "Temps màxim del lot"
+    },
+    "BatchWeight": {
+      "description": "Pes a totalitzar (unitat de pes × 1000)"
+    },
+    "BatchCompl": {
+      "description": "Pes a totalitzar, part complementària"
+    },
+    "BatchInflight": {
+      "description": "Cua de caiguda del pes a totalitzar"
+    },
+    "MaxFlow": {
+      "description": "Cabal màxim"
+    },
+    "Kp": {
+      "description": "PID: Kp"
+    },
+    "Ti": {
+      "description": "PID: Ti"
+    },
+    "Td": {
+      "description": "PID: Td"
+    },
+    "PidBehavior": {
+      "description": "PID: comportament",
+      "options": {
+        "0": "Estable",
+        "1": "Ràpid",
+        "2": "Lent"
+      }
+    },
+    "PidTuneFlow": {
+      "description": "PID: cabal per a l'autoajust"
+    },
+    "PidTuneCycles": {
+      "description": "PID: cicles de l'autoajust"
+    },
+    "RampUp": {
+      "description": "Rampa de pujada de la sortida analògica"
+    },
+    "RampDown": {
+      "description": "Rampa de baixada de la sortida analògica"
+    },
+    "InFn12": {
+      "description": "Funció de les entrades 1 (byte baix) i 2 (byte alt)"
+    },
+    "HoldTime": {
+      "description": "Temps de manteniment"
+    },
+    "OutFn12": {
+      "description": "Funció de les sortides 1 (byte baix) i 2 (byte alt)"
+    },
+    "OutFn34": {
+      "description": "Funció de les sortides 3 (byte baix) i 4 (byte alt)"
+    },
+    "High1": {
+      "description": "Llindar alt 1"
+    },
+    "Low1": {
+      "description": "Llindar baix 1"
+    },
+    "High2": {
+      "description": "Llindar alt 2"
+    },
+    "Low2": {
+      "description": "Llindar baix 2"
+    },
+    "High3": {
+      "description": "Llindar alt 3"
+    },
+    "Low3": {
+      "description": "Llindar baix 3"
+    },
+    "High4": {
+      "description": "Llindar alt 4"
+    },
+    "Low4": {
+      "description": "Llindar baix 4"
+    },
+    "ThresholdFn": {
+      "description": "Funcions dels llindars 1-2 (byte baix) i 3-4 (byte alt)"
+    }
+  },
+  "commands": {
+    "Cero": {
+      "text": "Zero"
+    },
+    "Tara": {
+      "text": "Tara"
+    },
+    "Anular la tara": {
+      "text": "Anul·lar la tara"
+    },
+    "Arrancar la dosificación": {
+      "text": "Arrencar la dosificació"
+    },
+    "Parar la dosificación": {
+      "text": "Aturar la dosificació"
+    },
+    "Empezar el relleno": {
+      "text": "Començar el reompliment"
+    },
+    "Parar el relleno": {
+      "text": "Aturar el reompliment"
+    },
+    "Borrar errores": {
+      "text": "Esborrar errors"
+    },
+    "Guardar en EEPROM": {
+      "text": "Desar a l'EEPROM"
+    }
+  }
+}

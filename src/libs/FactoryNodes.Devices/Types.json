@@ -1,0 +1,8 @@
+{
+  "types": [
+    { "key": "drive", "es": "Variador", "ca": "Variador", "en": "Drive", "fr": "Variateur", "de": "Frequenzumrichter", "pt": "Variador" },
+    { "key": "starter", "es": "Arrancador", "ca": "Arrencador", "en": "Starter", "fr": "Démarreur", "de": "Motorstarter", "pt": "Arrancador" },
+    { "key": "weighing", "es": "Pesaje", "ca": "Pesatge", "en": "Weighing", "fr": "Pesage", "de": "Wägetechnik", "pt": "Pesagem" },
+    { "key": "lighting", "es": "Iluminación", "ca": "Il·luminació", "en": "Lighting", "fr": "Éclairage", "de": "Beleuchtung", "pt": "Iluminação" }
+  ]
+}

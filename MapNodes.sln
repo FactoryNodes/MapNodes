@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactoryNodes.MapNodes.Tests", "tests\FactoryNodes.MapNodes.Tests\FactoryNodes.MapNodes.Tests.csproj", "{EE386489-B9AC-484A-A9D2-42CC384DD4C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactoryNodes.Modbus.Tcp", "src\libs\FactoryNodes.Modbus.Tcp\FactoryNodes.Modbus.Tcp.csproj", "{C617A71E-F557-4109-8E52-A7D2B2CBD14D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,18 @@ Global
 		{EE386489-B9AC-484A-A9D2-42CC384DD4C5}.Release|x64.Build.0 = Release|Any CPU
 		{EE386489-B9AC-484A-A9D2-42CC384DD4C5}.Release|x86.ActiveCfg = Release|Any CPU
 		{EE386489-B9AC-484A-A9D2-42CC384DD4C5}.Release|x86.Build.0 = Release|Any CPU
+		{C617A71E-F557-4109-8E52-A7D2B2CBD14D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C617A71E-F557-4109-8E52-A7D2B2CBD14D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C617A71E-F557-4109-8E52-A7D2B2CBD14D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C617A71E-F557-4109-8E52-A7D2B2CBD14D}.Debug|x64.Build.0 = Debug|Any CPU
+		{C617A71E-F557-4109-8E52-A7D2B2CBD14D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C617A71E-F557-4109-8E52-A7D2B2CBD14D}.Debug|x86.Build.0 = Debug|Any CPU
+		{C617A71E-F557-4109-8E52-A7D2B2CBD14D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C617A71E-F557-4109-8E52-A7D2B2CBD14D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C617A71E-F557-4109-8E52-A7D2B2CBD14D}.Release|x64.ActiveCfg = Release|Any CPU
+		{C617A71E-F557-4109-8E52-A7D2B2CBD14D}.Release|x64.Build.0 = Release|Any CPU
+		{C617A71E-F557-4109-8E52-A7D2B2CBD14D}.Release|x86.ActiveCfg = Release|Any CPU
+		{C617A71E-F557-4109-8E52-A7D2B2CBD14D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,5 +117,6 @@ Global
 		{AD2A5A3B-A595-3E96-334A-002D08FE630C} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{E88E37CE-8BBE-46DB-87F2-E76BDF9FCC8E} = {AD2A5A3B-A595-3E96-334A-002D08FE630C}
 		{EE386489-B9AC-484A-A9D2-42CC384DD4C5} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
+		{C617A71E-F557-4109-8E52-A7D2B2CBD14D} = {E431C0EF-0A07-9D2C-3EA9-2C750D5184D2}
 	EndGlobalSection
 EndGlobal

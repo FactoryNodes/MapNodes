@@ -1,0 +1,372 @@
+{
+  "schemaVersion": 1,
+  "translationOf": {
+    "brand": "Bluebelt",
+    "model": "Bluebelt v1.9"
+  },
+  "language": "de",
+  "version": 1,
+  "author": "",
+  "kind": "Bandwaagenregler",
+  "groups": {
+    "1": "Start",
+    "2": "Sollwerte",
+    "3": "Regelung",
+    "4": "Nullstellen des Bandes",
+    "5": "Gewichtskalibrierung",
+    "6": "Geschwindigkeit und Förderleistung",
+    "7": "Betrieb",
+    "8": "Eingänge, Ausgänge und Kommunikation",
+    "9": "Analogausgang",
+    "10": "Ausgang je Sollwert"
+  },
+  "parameters": {
+    "Flow": {
+      "description": "Momentane Förderleistung"
+    },
+    "Total": {
+      "description": "Gesamtfördermenge"
+    },
+    "State": {
+      "description": "Betriebszustand",
+      "bits": {
+        "0": "Start",
+        "1": "Hand",
+        "2": "Regelung",
+        "3": "AL1",
+        "4": "AL2",
+        "5": "AL3",
+        "6": "AL4",
+        "7": "AL5",
+        "8": "Abweichungsalarm",
+        "9": "Ausgang SET",
+        "10": "Ausgang PRE-SET"
+      }
+    },
+    "SetpointNo": {
+      "description": "Nummer des aktiven Sollwerts"
+    },
+    "Mode": {
+      "description": "Betrieb",
+      "options": {
+        "0": "Automatik",
+        "1": "Hand"
+      }
+    },
+    "ManualOut": {
+      "description": "Analogausgang im Handbetrieb"
+    },
+    "OutPct": {
+      "description": "Momentaner Analogausgang"
+    },
+    "Speed": {
+      "description": "Momentane Bandgeschwindigkeit"
+    },
+    "RunInput": {
+      "description": "Starteingang über Modbus",
+      "bits": {
+        "0": "Start (Eingang geschlossen)",
+        "15": "Das Register steuert, nicht Eingang 1"
+      }
+    },
+    "SP1": {
+      "description": "Förderleistungs-Sollwert 1"
+    },
+    "SP2": {
+      "description": "Förderleistungs-Sollwert 2"
+    },
+    "SP3": {
+      "description": "Förderleistungs-Sollwert 3"
+    },
+    "SP4": {
+      "description": "Förderleistungs-Sollwert 4"
+    },
+    "SP5": {
+      "description": "Förderleistungs-Sollwert 5"
+    },
+    "SP6": {
+      "description": "Förderleistungs-Sollwert 6"
+    },
+    "SP7": {
+      "description": "Förderleistungs-Sollwert 7"
+    },
+    "SP8": {
+      "description": "Förderleistungs-Sollwert 8"
+    },
+    "SP9": {
+      "description": "Förderleistungs-Sollwert 9"
+    },
+    "SP10": {
+      "description": "Förderleistungs-Sollwert 10"
+    },
+    "SP11": {
+      "description": "Förderleistungs-Sollwert 11"
+    },
+    "SP12": {
+      "description": "Förderleistungs-Sollwert 12"
+    },
+    "SP13": {
+      "description": "Förderleistungs-Sollwert 13"
+    },
+    "SP14": {
+      "description": "Förderleistungs-Sollwert 14"
+    },
+    "SP15": {
+      "description": "Förderleistungs-Sollwert 15"
+    },
+    "StartOutPct": {
+      "description": "Analogausgang beim Anlauf (Sollwert 15)"
+    },
+    "TotalSet": {
+      "description": "Sollwert der Gesamtfördermenge"
+    },
+    "Kp": {
+      "description": "Proportionalkonstante"
+    },
+    "Ki": {
+      "description": "Integralkonstante"
+    },
+    "DeadBand": {
+      "description": "Totband"
+    },
+    "Tolerance": {
+      "description": "Sollwerttoleranz"
+    },
+    "MaxCapacity": {
+      "description": "Maximale Systemkapazität"
+    },
+    "KK": {
+      "description": "Korrekturkoeffizient KK"
+    },
+    "ZeroTurns": {
+      "description": "Umläufe beim Nullstellen des Bandes"
+    },
+    "ZeroMode": {
+      "description": "Nullstellen nach",
+      "options": {
+        "0": "Zeit",
+        "1": "Länge"
+      }
+    },
+    "BeltTurnTime": {
+      "description": "Zeit eines Bandumlaufs"
+    },
+    "BeltTurnLength": {
+      "description": "Länge eines Bandumlaufs"
+    },
+    "AutoZero": {
+      "description": "Auto-Null des Bandes",
+      "options": {
+        "0": "Nein",
+        "1": "Ja"
+      }
+    },
+    "CellCapacity": {
+      "description": "Nennlast der Wägezellen"
+    },
+    "CellSens": {
+      "description": "Empfindlichkeit der Wägezellen"
+    },
+    "WeightDivIndex": {
+      "description": "Index des Gewichts-Teilungswerts"
+    },
+    "WeightDiv": {
+      "description": "Teilungswert des Gewichts"
+    },
+    "WeightDec": {
+      "description": "Dezimalstellen des Gewichts"
+    },
+    "WeightZeros": {
+      "description": "Feste Nullen des Gewichts"
+    },
+    "MaxWeightDiv": {
+      "description": "Höchstgewicht in Teilungen"
+    },
+    "ZeroCal": {
+      "description": "Nullpunktkalibrierung des Gewichts"
+    },
+    "SpanCal": {
+      "description": "Endwertkalibrierung des Gewichts"
+    },
+    "WeightFilter": {
+      "description": "Gewichtsfilter"
+    },
+    "Encoder": {
+      "description": "Bandgeschwindigkeit",
+      "options": {
+        "1": "Konstant",
+        "2": "Encoder"
+      }
+    },
+    "RollerDiam": {
+      "description": "Durchmesser der Encoderrolle"
+    },
+    "EncoderRes": {
+      "description": "Encoderimpulse pro Umdrehung"
+    },
+    "BeltSpeed": {
+      "description": "Voreingestellte Bandgeschwindigkeit"
+    },
+    "RollerDist": {
+      "description": "Rollenabstand"
+    },
+    "MaxFlow": {
+      "description": "Maximale Förderleistung des Systems"
+    },
+    "FlowDiv": {
+      "description": "Teilungswert der Förderleistung"
+    },
+    "FlowDec": {
+      "description": "Dezimalstellen der Förderleistung"
+    },
+    "FlowRatio": {
+      "description": "Verhältnis Förderleistungseinheit / Gewichtseinheit"
+    },
+    "FlowUnit": {
+      "description": "Einheit der Förderleistung"
+    },
+    "FlowFilter": {
+      "description": "Förderleistungsfilter"
+    },
+    "WeightTimeout": {
+      "description": "Maximale Zeit mit unverändertem Gewicht (Alarm 5)"
+    },
+    "K": {
+      "description": "Koeffizient K"
+    },
+    "BeltZero": {
+      "description": "Nullwert des Bandes"
+    },
+    "TestTime": {
+      "description": "Prüfzeit"
+    },
+    "MinWeight": {
+      "description": "Mindestgewicht"
+    },
+    "PulseValue": {
+      "description": "Impulswert des Summenzählers"
+    },
+    "MinAnalog": {
+      "description": "Mindestwert des Analogausgangs"
+    },
+    "OperMode": {
+      "description": "Betriebsart"
+    },
+    "OutLockTime": {
+      "description": "Ausgangssperre beim Anlauf"
+    },
+    "TolInitTime": {
+      "description": "Anfangsverzögerung des Toleranzalarms"
+    },
+    "TolDelay": {
+      "description": "Verzögerung des Toleranzalarms"
+    },
+    "Out4Logic": {
+      "description": "Logik von Ausgang 4 (schwerer Alarm)"
+    },
+    "Out5Logic": {
+      "description": "Logik von Ausgang 5 (außerhalb der Toleranz)"
+    },
+    "In6Func": {
+      "description": "Funktion von Eingang 6"
+    },
+    "AL3Enable": {
+      "description": "Alarm 3 freigegeben"
+    },
+    "Language": {
+      "description": "Sprache von Anzeige und Drucker"
+    },
+    "TolMode": {
+      "description": "Toleranz absolut oder in Prozent"
+    },
+    "Baud1": {
+      "description": "Baudrate von COM1"
+    },
+    "Baud2": {
+      "description": "Baudrate von COM2"
+    },
+    "Periph1": {
+      "description": "Peripheriegerät an COM1"
+    },
+    "Periph2": {
+      "description": "Peripheriegerät an COM2"
+    },
+    "SerialAddr": {
+      "description": "Serielle Adresse"
+    },
+    "AoFullScale": {
+      "description": "Endwert des Analogausgangs"
+    },
+    "AoZeroCal": {
+      "description": "Nullpunktkalibrierung des Analogausgangs"
+    },
+    "AoSpanCal": {
+      "description": "Endwertkalibrierung des Analogausgangs"
+    },
+    "AoRange": {
+      "description": "Bereich des Analogausgangs"
+    },
+    "SP1Out": {
+      "description": "Analogausgang für Sollwert 1"
+    },
+    "SP2Out": {
+      "description": "Analogausgang für Sollwert 2"
+    },
+    "SP3Out": {
+      "description": "Analogausgang für Sollwert 3"
+    },
+    "SP4Out": {
+      "description": "Analogausgang für Sollwert 4"
+    },
+    "SP5Out": {
+      "description": "Analogausgang für Sollwert 5"
+    },
+    "SP6Out": {
+      "description": "Analogausgang für Sollwert 6"
+    },
+    "SP7Out": {
+      "description": "Analogausgang für Sollwert 7"
+    },
+    "SP8Out": {
+      "description": "Analogausgang für Sollwert 8"
+    },
+    "SP9Out": {
+      "description": "Analogausgang für Sollwert 9"
+    },
+    "SP10Out": {
+      "description": "Analogausgang für Sollwert 10"
+    },
+    "SP11Out": {
+      "description": "Analogausgang für Sollwert 11"
+    },
+    "SP12Out": {
+      "description": "Analogausgang für Sollwert 12"
+    },
+    "SP13Out": {
+      "description": "Analogausgang für Sollwert 13"
+    },
+    "SP14Out": {
+      "description": "Analogausgang für Sollwert 14"
+    },
+    "SP15Out": {
+      "description": "Analogausgang für Sollwert 15"
+    }
+  },
+  "commands": {
+    "Automático": {
+      "text": "Automatik"
+    },
+    "Manual": {
+      "text": "Hand"
+    },
+    "Marcha por Modbus": {
+      "text": "Start über Modbus"
+    },
+    "Paro por Modbus": {
+      "text": "Stopp über Modbus"
+    },
+    "Marcha por la entrada": {
+      "text": "Start über den Eingang"
+    }
+  }
+}

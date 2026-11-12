@@ -18,6 +18,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\libs\FactoryNodes.MapNodes.Presentation\FactoryNodes.MapNodes.Presentation.csproj" />
+    <!-- El cliente y el equipo simulado de «Probar con el equipo» -->
+    <ProjectReference Include="..\..\src\libs\FactoryNodes.Modbus.Tcp\FactoryNodes.Modbus.Tcp.csproj" />
   </ItemGroup>
 
 </Project>

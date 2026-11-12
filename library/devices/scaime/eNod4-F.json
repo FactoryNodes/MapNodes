@@ -2,6 +2,8 @@
   "schemaVersion": 1,
   "brand": "SCAIME",
   "model": "eNod4-F",
+  "type": "weighing",
+  "language": "es",
   "kind": "Transmisor de pesaje",
   "description": "eNod4-F: transmisor de pesaje para dosificadores por pérdida de peso (carril DIN: eNod4-F-DI00…). Modbus TCP en la versión «-EM» (puerto 502, Unit ID 0xFF o 0); todas las versiones Ethernet (también -EI, -EP, -EC) tienen además Modbus RTU por el RS485 AUX (8N2, como mucho 30 registros por lectura). AUX (conector A8): borna 1 = B− (RB/TB), borna 2 = A+ (RA/TA), 3 = GND; la A de la pasarela va a la borna 2. Dirección = ruedas SW1/SW2 (hex); velocidad = interruptores SW3 1-2-3, y en este equipo «abajo» es ON (los tres abajo = 9600; 1 y 2 abajo, 3 arriba = 115200). Las dos solo cambian tras un reset. Con el USB conectado, el AUX no contesta. El protocolo de AUX/USB tiene que ser Modbus RTU (bits 9-8 de 0x003E = 01), no SCMBus.",
   "source": "SCAIME NU-Soft-eNod4F-ETH-E-235709-I, capítulos 5 (Modbus TCP), 9 (estado de la medida), 10 (órdenes), 15 (estados y errores de dosificación) y 16 (tabla de registros). Probado el 2026-10-16 con un eNod4-F-EI real (programa 0xD8) por el RS485 AUX y una pasarela Modbus TCP → RTU: a 9600 8N2 y a 115200 8N2 (30 registros en unos 21 ms), dirección 1; se leen todos los parámetros y la palabra baja va primero (capacidad 500000, pendientes 0,01, Kp 0,75); el byte alto de 0x0001 es el código de velocidad (0 = 9600, 4 = 115200). Las órdenes llegan (respuesta en 0x0091); la tara sin célula conectada da error 3 a los 5 s (medida inestable), como dice el manual. Falta: una orden que acabe bien, escribir un parámetro y comparar los decimales con eNodView.",

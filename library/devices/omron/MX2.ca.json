@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "translationOf": {
+    "brand": "Omron",
+    "model": "MX2"
+  },
+  "language": "ca",
+  "version": 1,
+  "author": "",
+  "kind": "Variador",
+  "groups": {
+    "1": "Dades del motor",
+    "2": "Rampes i velocitats",
+    "3": "Comandament",
+    "4": "Entrades i sortides",
+    "5": "Ajustos del control",
+    "10": "Monitors"
+  },
+  "parameters": {
+    "H003": {
+      "description": "Potència del motor (codi de la taula del manual)"
+    },
+    "H004": {
+      "description": "Pols del motor (codi de la taula del manual)"
+    },
+    "A003": {
+      "description": "Freqüència base"
+    },
+    "A004": {
+      "description": "Freqüència màxima"
+    },
+    "A082": {
+      "description": "Tensió del motor (AVR, codi)"
+    },
+    "b012": {
+      "description": "Nivell tèrmic electrònic (unitats del manual)"
+    },
+    "b013": {
+      "description": "Característica tèrmica",
+      "options": {
+        "0": "Parell reduït",
+        "1": "Parell constant",
+        "2": "Lliure"
+      }
+    },
+    "F002": {
+      "description": "Temps d'acceleració 1"
+    },
+    "F003": {
+      "description": "Temps de desacceleració 1"
+    },
+    "A020": {
+      "description": "Multivelocitat 0"
+    },
+    "A061": {
+      "description": "Límit superior de freqüència"
+    },
+    "A062": {
+      "description": "Límit inferior de freqüència"
+    },
+    "A093": {
+      "description": "Temps de desacceleració 2"
+    },
+    "A001": {
+      "description": "Origen de la consigna de freqüència",
+      "options": {
+        "0": "Potenciòmetre",
+        "1": "Borns",
+        "2": "Operador (F001)",
+        "3": "Modbus",
+        "4": "Targeta opcional",
+        "6": "Tren de polsos",
+        "7": "Seqüència (Drive Programming)",
+        "10": "Resultat de càlcul"
+      }
+    },
+    "A002": {
+      "description": "Origen de l'ordre de marxa",
+      "options": {
+        "1": "Borns",
+        "2": "Operador",
+        "3": "Modbus",
+        "4": "Targeta opcional"
+      }
+    },
+    "F004": {
+      "description": "Sentit de gir amb la tecla RUN",
+      "options": {
+        "0": "Endavant",
+        "1": "Enrere"
+      }
+    },
+    "b091": {
+      "description": "Mode d'aturada",
+      "options": {
+        "0": "Desacceleració",
+        "1": "Lliure"
+      }
+    },
+    "b001": {
+      "description": "Mode de rearrencada després de fallada (codi)"
+    },
+    "C001": {
+      "description": "Funció de l'entrada 1 (codi)"
+    },
+    "C002": {
+      "description": "Funció de l'entrada 2 (codi)"
+    },
+    "C021": {
+      "description": "Funció de la sortida 11 (codi)"
+    },
+    "C036": {
+      "description": "Relé d'alarma: contacte en repòs (codi)"
+    },
+    "A044": {
+      "description": "Característica V/f",
+      "options": {
+        "0": "Parell constant",
+        "1": "Parell reduït",
+        "2": "V/f lliure",
+        "3": "Vectorial sense sensor"
+      }
+    },
+    "A045": {
+      "description": "Guany de la tensió de sortida"
+    },
+    "b083": {
+      "description": "Freqüència portadora"
+    },
+    "H001": {
+      "description": "Autoajust (codi)"
+    },
+    "H002": {
+      "description": "Dades del motor usades (codi)"
+    },
+    "F001": {
+      "description": "Consigna de freqüència"
+    },
+    "d001": {
+      "description": "Freqüència de sortida"
+    },
+    "d002": {
+      "description": "Intensitat de sortida"
+    },
+    "d013": {
+      "description": "Tensió de sortida"
+    },
+    "d014": {
+      "description": "Potència d'entrada"
+    },
+    "d015": {
+      "description": "Energia acumulada"
+    },
+    "d016": {
+      "description": "Hores en marxa"
+    },
+    "d017": {
+      "description": "Hores amb tensió"
+    },
+    "d018": {
+      "description": "Temperatura del radiador"
+    },
+    "d080": {
+      "description": "Nombre de fallades"
+    },
+    "d102": {
+      "description": "Tensió del bus de contínua"
+    },
+    "d104": {
+      "description": "Càrrega tèrmica electrònica"
+    }
+  },
+  "commands": {}
+}

@@ -66,6 +66,10 @@ public static class MapNodesIcons
     public static string AddRow => Get("row-add");
     public static string RemoveRow => Get("row-remove");
     public static string Language => Get("language");
+    public static string WebOpen => Get("web-open");
+    public static string Share => Get("share");
+    public static string DeviceTest => Get("device-test");
+    public static string DrawingOpen => Get("drawing-open");
 
     private const string Folder = "Icons/";
     private static readonly Assembly Assembly = typeof(MapNodesIcons).Assembly;
@@ -117,4 +121,18 @@ public interface IMapNodesServices
 
     /// <summary>Cerrar y volver a abrir el programa (cambio de idioma).</summary>
     void Restart();
+
+    // Lo de abajo, desde el 2026-11-12 (terminar el punto 200); con su valor de siempre para quien no lo tenga (las pruebas, un web)
+
+    /// <summary>Elegir un dibujo SVG para el equipo (null = cancelado). Devuelve su ruta.</summary>
+    string? ChooseDrawingToOpen() => null;
+
+    /// <summary>Un cliente Modbus TCP con ese equipo, para «Probar con el equipo» (null = este programa no se conecta).</summary>
+    FactoryNodes.Devices.IModbusClient? Connect(string host, int port) => null;
+
+    /// <summary>Los bytes de una dirección de la web (el catálogo publicado); null = este programa no se conecta.</summary>
+    Func<string, CancellationToken, Task<byte[]>>? HttpBytes => null;
+
+    /// <summary>Abre una dirección en el navegador.</summary>
+    void OpenUrl(string url) { }
 }

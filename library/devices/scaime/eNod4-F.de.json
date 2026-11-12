@@ -1,0 +1,432 @@
+{
+  "schemaVersion": 1,
+  "translationOf": {
+    "brand": "SCAIME",
+    "model": "eNod4-F"
+  },
+  "language": "de",
+  "version": 1,
+  "author": "",
+  "kind": "Wägetransmitter",
+  "groups": {
+    "1": "Identifikation",
+    "2": "Wägen und Kalibrierung",
+    "3": "Filter",
+    "4": "Dosierung und Nachfüllen",
+    "5": "PID und Analogausgang",
+    "6": "Eingänge, Ausgänge und Schwellwerte",
+    "10": "Messung",
+    "11": "Laufende Dosierung",
+    "12": "Befehle",
+    "13": "Ein- und Ausgänge live"
+  },
+  "parameters": {
+    "Status": {
+      "description": "Messstatus",
+      "bits": {
+        "2": "b2 (b3b2 ≠ 00: Messfehler; 01 Eingangskontrolle, 10 außerhalb der Kapazität, 11 außerhalb des A/D-Bereichs)",
+        "3": "b3 (siehe b2)",
+        "4": "Messwert stabil",
+        "5": "Null innerhalb 1/4 Teilung",
+        "6": "EEPROM-Fehler",
+        "7": "Außerhalb des Messbereichs",
+        "8": "Eingang 1",
+        "9": "Eingang 2",
+        "10": "Ausgang 1",
+        "11": "Ausgang 2",
+        "12": "Ausgang 3",
+        "13": "Ausgang 4",
+        "14": "Es wurde tariert"
+      }
+    },
+    "Gross": {
+      "description": "Bruttogewicht"
+    },
+    "Tare": {
+      "description": "Tarawert"
+    },
+    "Net": {
+      "description": "Nettogewicht"
+    },
+    "Points": {
+      "description": "Wandlerpunkte (ab Werk)"
+    },
+    "FlowInst": {
+      "description": "Momentaner Durchsatz"
+    },
+    "FlowAvg": {
+      "description": "Mittlerer Durchsatz"
+    },
+    "FlowOut": {
+      "description": "Stellausgang Durchsatz"
+    },
+    "OutValue": {
+      "description": "Wert des Stellausgangs"
+    },
+    "Total": {
+      "description": "Summenzähler (Gewichtseinheit × 1000)"
+    },
+    "TotalCompl": {
+      "description": "Summenzähler, Restanteil (Gewichtseinheit)"
+    },
+    "Command": {
+      "description": "Befehlsregister",
+      "options": {
+        "0": "Antwort löschen (vor jedem Befehl senden)",
+        "208": "Reset (D0h)",
+        "209": "In EEPROM speichern (D1h)",
+        "210": "Auf Werkseinstellungen zurücksetzen (D2h)",
+        "211": "Nullstellen (D3h)",
+        "212": "Tara (D4h)",
+        "213": "Tara löschen (D5h)",
+        "214": "Befehl abbrechen (D6h)",
+        "223": "Summierung / Fehler löschen (DFh)",
+        "228": "Dosierung oder Charge starten / fortsetzen (E4h)",
+        "229": "Dosierung stoppen / Charge abbrechen (E5h)",
+        "237": "Großsumme nullen (EDh)",
+        "238": "Gesamtsumme nullen (EEh)",
+        "241": "Dynamischen Nullpunkt erfassen (F1h)",
+        "242": "Voreingestellte Tara (F2h)",
+        "243": "Lernzyklus im nächsten Zyklus (F3h)",
+        "244": "Trichter entleeren (Reinigung) (F4h)",
+        "245": "Nachfüllen starten (F5h)",
+        "246": "Nachfüllen stoppen (F6h)",
+        "247": "Charge unterbrechen (F7h)",
+        "199": "PID stoppen (C7h)",
+        "200": "PID neu starten (C8h)"
+      }
+    },
+    "Response": {
+      "description": "Antwort auf den Befehl",
+      "options": {
+        "0": "Bereit für den nächsten Befehl",
+        "1": "Befehl wird ausgeführt",
+        "2": "Befehl ausgeführt",
+        "3": "Fehler bei der Ausführung"
+      }
+    },
+    "IO": {
+      "description": "Logische Eingänge (Low-Byte) und Ausgänge (High-Byte)",
+      "bits": {
+        "0": "Eingang 1",
+        "1": "Eingang 2",
+        "2": "Eingang 3",
+        "3": "Eingang 4",
+        "8": "Ausgang 1",
+        "9": "Ausgang 2",
+        "10": "Ausgang 3",
+        "11": "Ausgang 4"
+      }
+    },
+    "Deviation": {
+      "description": "Gewichtsabweichung der Dosierung"
+    },
+    "DosingStatus": {
+      "description": "Dosierstatus",
+      "bits": {
+        "0": "Gestoppt",
+        "1": "Nachfüllen",
+        "2": "Ende der Nachfüll-Wartezeit (Lernzyklus)",
+        "3": "Ende der Nachfüll-Beruhigung",
+        "4": "Durchsatz wird ermittelt",
+        "5": "Dosieren",
+        "6": "Charge unterbrochen",
+        "7": "Trichter wird entleert",
+        "9": "Lernzyklus",
+        "10": "Durchsatzkalibrierung ausgeführt",
+        "11": "Volumetrische Dosierung",
+        "12": "Austrag aktiviert",
+        "13": "Nachfüllen läuft",
+        "14": "Dosierzyklus läuft",
+        "15": "Charge beendet"
+      }
+    },
+    "DosingErrors": {
+      "description": "Dosieralarme",
+      "bits": {
+        "0": "Momentaner Durchsatz > zulässiges Maximum",
+        "1": "Momentaner Durchsatz < zulässiges Minimum",
+        "2": "Stellausgang Durchsatz > zulässiges Maximum",
+        "3": "Stellausgang Durchsatz < zulässiges Minimum",
+        "4": "Keine Gewichtsänderung beim Nachfüllen",
+        "5": "Nachfüllen zu lang",
+        "6": "Trichter leer",
+        "7": "Überlauf des Ausgangs für den externen Summenzähler",
+        "8": "Charge zu lang",
+        "9": "Trichter voll",
+        "10": "PID vom Benutzer gestoppt",
+        "11": "Durchsatz größer als die Maschinenkapazität"
+      }
+    },
+    "ErrorCount": {
+      "description": "Dosierfehlerzähler"
+    },
+    "LastError": {
+      "description": "Letzter Dosierfehler",
+      "bits": {
+        "0": "Momentaner Durchsatz > zulässiges Maximum",
+        "1": "Momentaner Durchsatz < zulässiges Minimum",
+        "2": "Stellausgang Durchsatz > zulässiges Maximum",
+        "3": "Stellausgang Durchsatz < zulässiges Minimum",
+        "4": "Keine Gewichtsänderung beim Nachfüllen",
+        "5": "Nachfüllen zu lang",
+        "6": "Trichter leer",
+        "7": "Überlauf des Ausgangs für den externen Summenzähler",
+        "8": "Charge zu lang",
+        "9": "Trichter voll",
+        "10": "PID vom Benutzer gestoppt",
+        "11": "Durchsatz größer als die Maschinenkapazität"
+      }
+    },
+    "Quality": {
+      "description": "Qualitätsindikator der Dosierung"
+    },
+    "TotalFlow": {
+      "description": "Summierungsdurchsatz"
+    },
+    "GrandTotal": {
+      "description": "Großsumme (Gewichtseinheit × 1000)"
+    },
+    "GeneralTotal": {
+      "description": "Gesamtsumme (Gewichtseinheit × 1000)"
+    },
+    "ExtractTime": {
+      "description": "Austragszeit"
+    },
+    "Version": {
+      "description": "Programm- und Produktversion"
+    },
+    "ZeroFn": {
+      "description": "Nullfunktionen"
+    },
+    "StabDec": {
+      "description": "Stillstandskriterium (Low-Byte) und Dezimalpunktposition (High-Byte)"
+    },
+    "Capacity": {
+      "description": "Maximale Kapazität"
+    },
+    "Segments": {
+      "description": "Anzahl der Kalibriersegmente"
+    },
+    "Load1": {
+      "description": "Kalibrierlast, Segment 1"
+    },
+    "Load2": {
+      "description": "Kalibrierlast, Segment 2"
+    },
+    "Load3": {
+      "description": "Kalibrierlast, Segment 3"
+    },
+    "Sensitivity": {
+      "description": "Sensorempfindlichkeit"
+    },
+    "Division": {
+      "description": "Ziffernschritt (Teilung)"
+    },
+    "CalZero": {
+      "description": "Kalibrier-Nullpunkt"
+    },
+    "Slope1": {
+      "description": "Steigungskoeffizient 1"
+    },
+    "Slope2": {
+      "description": "Steigungskoeffizient 2"
+    },
+    "Slope3": {
+      "description": "Steigungskoeffizient 3"
+    },
+    "ZeroOffset": {
+      "description": "Nullpunktverschiebung"
+    },
+    "PresetTare": {
+      "description": "Voreingestellte Tara"
+    },
+    "AdFreq": {
+      "description": "Frequenz des A/D-Wandlers"
+    },
+    "FilterOrder": {
+      "description": "Filteraktivierung (Low-Byte) und Tiefpassordnung (High-Byte)"
+    },
+    "Cutoff": {
+      "description": "Grenzfrequenz des Tiefpassfilters"
+    },
+    "AvgDepth": {
+      "description": "Tiefe des gleitenden Gewichtsmittelwerts"
+    },
+    "Clipping": {
+      "description": "Toleranz des Begrenzungsfilters für den momentanen Durchsatz"
+    },
+    "FlowTime": {
+      "description": "Ermittlungszeit des momentanen Durchsatzes"
+    },
+    "FlowAvgDepth": {
+      "description": "Tiefe des mittleren Durchsatzes"
+    },
+    "FlowTimeUnit": {
+      "description": "Zeiteinheit des Durchsatzes"
+    },
+    "NominalFlow": {
+      "description": "Nenndurchsatz (Sollwert)"
+    },
+    "CycleOptions": {
+      "description": "Zyklusoptionen und Alarme"
+    },
+    "RefillStart": {
+      "description": "Füllstand für Nachfüllbeginn"
+    },
+    "RefillEnd": {
+      "description": "Füllstand für Nachfüllende"
+    },
+    "RefillThrow": {
+      "description": "Nachlauf des Nachfüllens"
+    },
+    "RefillFlow": {
+      "description": "Vorgegebener Durchsatz beim Nachfüllen"
+    },
+    "EmptyLevel": {
+      "description": "Füllstand Trichter leer"
+    },
+    "FullLevel": {
+      "description": "Füllstand Trichter voll"
+    },
+    "RefillMaxStart": {
+      "description": "Maximale Anlaufzeit des Nachfüllens"
+    },
+    "RefillCheck": {
+      "description": "Prüfintervall der Gewichtsänderung beim Nachfüllen"
+    },
+    "RefillMax": {
+      "description": "Maximale Nachfüllzeit"
+    },
+    "FlowMin": {
+      "description": "Minimal zulässiger momentaner Durchsatz"
+    },
+    "FlowMax": {
+      "description": "Maximal zulässiger momentaner Durchsatz"
+    },
+    "OutMin": {
+      "description": "Minimal zulässiger Stellausgang Durchsatz"
+    },
+    "OutMax": {
+      "description": "Maximal zulässiger Stellausgang Durchsatz"
+    },
+    "InhibitStart": {
+      "description": "Unterdrückung der Durchsatzalarme beim Anlauf"
+    },
+    "InhibitRun": {
+      "description": "Unterdrückung der Durchsatzalarme im Betrieb"
+    },
+    "BatchMax": {
+      "description": "Maximale Chargenzeit"
+    },
+    "BatchWeight": {
+      "description": "Zu summierendes Gewicht (Gewichtseinheit × 1000)"
+    },
+    "BatchCompl": {
+      "description": "Zu summierendes Gewicht, Restanteil"
+    },
+    "BatchInflight": {
+      "description": "Nachlauf des zu summierenden Gewichts"
+    },
+    "MaxFlow": {
+      "description": "Maximaler Durchsatz"
+    },
+    "Kp": {
+      "description": "PID: Kp"
+    },
+    "Ti": {
+      "description": "PID: Ti"
+    },
+    "Td": {
+      "description": "PID: Td"
+    },
+    "PidBehavior": {
+      "description": "PID: Verhalten",
+      "options": {
+        "0": "Stabil",
+        "1": "Schnell",
+        "2": "Langsam"
+      }
+    },
+    "PidTuneFlow": {
+      "description": "PID: Durchsatz für das Autotuning"
+    },
+    "PidTuneCycles": {
+      "description": "PID: Autotuning-Zyklen"
+    },
+    "RampUp": {
+      "description": "Anstiegsrampe des Analogausgangs"
+    },
+    "RampDown": {
+      "description": "Abfallrampe des Analogausgangs"
+    },
+    "InFn12": {
+      "description": "Funktion der Eingänge 1 (Low-Byte) und 2 (High-Byte)"
+    },
+    "HoldTime": {
+      "description": "Haltezeit"
+    },
+    "OutFn12": {
+      "description": "Funktion der Ausgänge 1 (Low-Byte) und 2 (High-Byte)"
+    },
+    "OutFn34": {
+      "description": "Funktion der Ausgänge 3 (Low-Byte) und 4 (High-Byte)"
+    },
+    "High1": {
+      "description": "Oberer Schwellwert 1"
+    },
+    "Low1": {
+      "description": "Unterer Schwellwert 1"
+    },
+    "High2": {
+      "description": "Oberer Schwellwert 2"
+    },
+    "Low2": {
+      "description": "Unterer Schwellwert 2"
+    },
+    "High3": {
+      "description": "Oberer Schwellwert 3"
+    },
+    "Low3": {
+      "description": "Unterer Schwellwert 3"
+    },
+    "High4": {
+      "description": "Oberer Schwellwert 4"
+    },
+    "Low4": {
+      "description": "Unterer Schwellwert 4"
+    },
+    "ThresholdFn": {
+      "description": "Funktionen der Schwellwerte 1-2 (Low-Byte) und 3-4 (High-Byte)"
+    }
+  },
+  "commands": {
+    "Cero": {
+      "text": "Nullstellen"
+    },
+    "Tara": {
+      "text": "Tara"
+    },
+    "Anular la tara": {
+      "text": "Tara löschen"
+    },
+    "Arrancar la dosificación": {
+      "text": "Dosierung starten"
+    },
+    "Parar la dosificación": {
+      "text": "Dosierung stoppen"
+    },
+    "Empezar el relleno": {
+      "text": "Nachfüllen starten"
+    },
+    "Parar el relleno": {
+      "text": "Nachfüllen stoppen"
+    },
+    "Borrar errores": {
+      "text": "Fehler löschen"
+    },
+    "Guardar en EEPROM": {
+      "text": "In EEPROM speichern"
+    }
+  }
+}

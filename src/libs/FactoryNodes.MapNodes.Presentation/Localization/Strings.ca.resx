@@ -50,12 +50,6 @@
   <data name="El modelo (es el nombre del fichero). Marca y modelo juntos identifican el dispositivo en los proyectos y en las copias." xml:space="preserve">
     <value>El model (és el nom del fitxer). Marca i model junts identifiquen el dispositiu als projectes i a les còpies.</value>
   </data>
-  <data name="Tipo de equipo" xml:space="preserve">
-    <value>Tipus d'equip</value>
-  </data>
-  <data name="Variador, visor de peso, arrancador…" xml:space="preserve">
-    <value>Variador, visor de pes, arrencador…</value>
-  </data>
   <data name="Descripción" xml:space="preserve">
     <value>Descripció</value>
   </data>
@@ -70,9 +64,6 @@
   </data>
   <data name="Solo si se han leído las direcciones en un equipo de verdad. Sin marcar, el programa avisa antes de restaurar una copia." xml:space="preserve">
     <value>Només si s'han llegit les adreces en un equip de veritat. Sense marcar, el programa avisa abans de restaurar una còpia.</value>
-  </data>
-  <data name="Lleva el dibujo del equipo (se conserva al guardar)." xml:space="preserve">
-    <value>Porta el dibuix de l'equip (es conserva en desar).</value>
   </data>
   <data name="Protocolo" xml:space="preserve">
     <value>Protocol</value>
@@ -373,5 +364,239 @@
   </data>
   <data name="En vivo" xml:space="preserve">
     <value>En viu</value>
+  </data>
+  <data name="Otros" xml:space="preserve">
+    <value>Altres</value>
+  </data>
+  <data name="{0} no es un dibujo SVG." xml:space="preserve">
+    <value>{0} no és un dibuix SVG.</value>
+  </data>
+  <data name="Dibujo cargado de {0}." xml:space="preserve">
+    <value>Dibuix carregat de {0}.</value>
+  </data>
+  <data name="Dibujo quitado." xml:space="preserve">
+    <value>Dibuix tret.</value>
+  </data>
+  <data name="Pon la IP del equipo, el puerto (502) y el número de esclavo (0 a 255)." xml:space="preserve">
+    <value>Posa la IP de l'equip, el port (502) i el número d'esclau (0 a 255).</value>
+  </data>
+  <data name="Antes hay que arreglar los problemas del fichero: {0}" xml:space="preserve">
+    <value>Abans cal arreglar els problemes del fitxer: {0}</value>
+  </data>
+  <data name="Este programa no puede conectarse a un equipo." xml:space="preserve">
+    <value>Aquest programa no es pot connectar a un equip.</value>
+  </data>
+  <data name="Leyendo de {0}…" xml:space="preserve">
+    <value>Llegint de {0}…</value>
+  </data>
+  <data name="Leídos los {0} parámetros." xml:space="preserve">
+    <value>Llegits els {0} paràmetres.</value>
+  </data>
+  <data name="Leídos {0} de {1} parámetros: los demás dicen por qué en su fila." xml:space="preserve">
+    <value>Llegits {0} de {1} paràmetres: els altres diuen per què a la seva fila.</value>
+  </data>
+  <data name="No se pudo leer de {0}: {1}" xml:space="preserve">
+    <value>No s'ha pogut llegir de {0}: {1}</value>
+  </data>
+  <data name="Abierto {0} de la web: {1} parámetros. Guárdalo donde quieras." xml:space="preserve">
+    <value>Obert {0} del web: {1} paràmetres. Desa'l on vulguis.</value>
+  </data>
+  <data name="Antes de compartirlo hay que arreglar los problemas del fichero (abajo)." xml:space="preserve">
+    <value>Abans de compartir-lo cal arreglar els problemes del fitxer (a sota).</value>
+  </data>
+  <data name="Guardado en {0}. En la página que se ha abierto, entra con tu cuenta y sube ese fichero: lo revisamos antes de publicarlo (licencia CC-BY 4.0)." xml:space="preserve">
+    <value>Desat a {0}. A la pàgina que s'ha obert, entra amb el teu compte i puja aquest fitxer: el revisem abans de publicar-lo (llicència CC-BY 4.0).</value>
+  </data>
+  <data name="Todos los tipos" xml:space="preserve">
+    <value>Tots els tipus</value>
+  </data>
+  <data name="Todas las marcas" xml:space="preserve">
+    <value>Totes les marques</value>
+  </data>
+  <data name="Este programa no puede conectarse a la web." xml:space="preserve">
+    <value>Aquest programa no es pot connectar al web.</value>
+  </data>
+  <data name="Leyendo la lista de la web…" xml:space="preserve">
+    <value>Llegint la llista del web…</value>
+  </data>
+  <data name="{0} modelos publicados. Elige uno y pulsa «Abrir»." xml:space="preserve">
+    <value>{0} models publicats. Tria'n un i prem «Obre».</value>
+  </data>
+  <data name="Bajando {0}…" xml:space="preserve">
+    <value>Baixant {0}…</value>
+  </data>
+  <data name="No se llega a la web de FactoryNodes: {0}" xml:space="preserve">
+    <value>No s'arriba al web de FactoryNodes: {0}</value>
+  </data>
+  <data name="La lista de la web no lleva la firma de FactoryNodes: no se usa." xml:space="preserve">
+    <value>La llista del web no porta la signatura de FactoryNodes: no es fa servir.</value>
+  </data>
+  <data name="El fichero de {0} no es el que dice la lista firmada: no se usa." xml:space="preserve">
+    <value>El fitxer de {0} no és el que diu la llista signada: no es fa servir.</value>
+  </data>
+  <data name="Probado en un equipo" xml:space="preserve">
+    <value>Provat en un equip</value>
+  </data>
+  <data name="Sin probar en un equipo" xml:space="preserve">
+    <value>Sense provar en un equip</value>
+  </data>
+  <data name="Abrir de la web…: los ficheros de dispositivo publicados por FactoryNodes, por tipo y marca" xml:space="preserve">
+    <value>Obre del web…: els fitxers de dispositiu publicats per FactoryNodes, per tipus i marca</value>
+  </data>
+  <data name="Compartir…: guarda el fichero y abre la página donde se sube con tu cuenta. Lo revisamos antes de publicarlo; los ficheros compartidos llevan la licencia CC-BY 4.0." xml:space="preserve">
+    <value>Comparteix…: desa el fitxer i obre la pàgina on es puja amb el teu compte. El revisem abans de publicar-lo; els fitxers compartits porten la llicència CC-BY 4.0.</value>
+  </data>
+  <data name="El tipo, de la lista: por él se elige el dispositivo en el programa, antes que por la marca" xml:space="preserve">
+    <value>El tipus, de la llista: per ell es tria el dispositiu al programa, abans que per la marca</value>
+  </data>
+  <data name="Qué es" xml:space="preserve">
+    <value>Què és</value>
+  </data>
+  <data name="En palabras, al lado del modelo: transmisor de pesaje, regulador LED…" xml:space="preserve">
+    <value>En paraules, al costat del model: transmissor de pesatge, regulador LED…</value>
+  </data>
+  <data name="Versión" xml:space="preserve">
+    <value>Versió</value>
+  </data>
+  <data name="La versión de este fichero (1, 2, 3…): súbela con cada corrección que compartas" xml:space="preserve">
+    <value>La versió d'aquest fitxer (1, 2, 3…): apuja-la amb cada correcció que comparteixis</value>
+  </data>
+  <data name="Autor" xml:space="preserve">
+    <value>Autor</value>
+  </data>
+  <data name="Quién ha hecho el fichero: se cita al compartirlo (CC-BY 4.0)" xml:space="preserve">
+    <value>Qui ha fet el fitxer: se cita en compartir-lo (CC-BY 4.0)</value>
+  </data>
+  <data name="Dibujo del equipo" xml:space="preserve">
+    <value>Dibuix de l'equip</value>
+  </data>
+  <data name="Cargar el dibujo de un fichero SVG" xml:space="preserve">
+    <value>Carrega el dibuix d'un fitxer SVG</value>
+  </data>
+  <data name="Quitar el dibujo" xml:space="preserve">
+    <value>Treu el dibuix</value>
+  </data>
+  <data name="Probar con el equipo" xml:space="preserve">
+    <value>Prova amb l'equip</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="La IP del equipo, o la de su pasarela Modbus TCP/RTU" xml:space="preserve">
+    <value>La IP de l'equip, o la de la seva passarel·la Modbus TCP/RTU</value>
+  </data>
+  <data name="Puerto" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Esclavo" xml:space="preserve">
+    <value>Esclau</value>
+  </data>
+  <data name="Lee del equipo todos los parámetros con dirección Modbus y pone lo leído en la columna «Leído», para ver que las direcciones cuadran. Solo lee: no escribe nada." xml:space="preserve">
+    <value>Llegeix de l'equip tots els paràmetres amb adreça Modbus i posa el que ha llegit a la columna «Llegit», per veure que les adreces quadren. Només llegeix: no escriu res.</value>
+  </data>
+  <data name="Decimales de" xml:space="preserve">
+    <value>Decimals de</value>
+  </data>
+  <data name="Si los decimales los da otro parámetro (un peso): su código y, si hace falta, el desplazamiento, la máscara y la tabla. «StabDec &gt;&gt;8 &amp;255» (el byte alto) o «DspDiv: 0=3; 5=2» (según su valor). Vacío: solo la escala." xml:space="preserve">
+    <value>Si els decimals els dona un altre paràmetre (un pes): el seu codi i, si cal, el desplaçament, la màscara i la taula. «StabDec &gt;&gt;8 &amp;255» (el byte alt) o «DspDiv: 0=3; 5=2» (segons el seu valor). Buit: només l'escala.</value>
+  </data>
+  <data name="Leído" xml:space="preserve">
+    <value>Llegit</value>
+  </data>
+  <data name="Abrir de la web" xml:space="preserve">
+    <value>Obre del web</value>
+  </data>
+  <data name="Cerrar" xml:space="preserve">
+    <value>Tanca</value>
+  </data>
+  <data name="Abrir" xml:space="preserve">
+    <value>Obre</value>
+  </data>
+  <data name="Probado" xml:space="preserve">
+    <value>Provat</value>
+  </data>
+  <data name="(sin indicar)" xml:space="preserve">
+    <value>(sense indicar)</value>
+  </data>
+  <data name="Idioma de los textos" xml:space="preserve">
+    <value>Idioma dels textos</value>
+  </data>
+  <data name="Traducción" xml:space="preserve">
+    <value>Traducció</value>
+  </data>
+  <data name="Traducción ({0} de {1})" xml:space="preserve">
+    <value>Traducció ({0} de {1})</value>
+  </data>
+  <data name="Guardar en EEPROM" xml:space="preserve">
+    <value>Desa a l'EEPROM</value>
+  </data>
+  <data name="Grupo {0}" xml:space="preserve">
+    <value>Grup {0}</value>
+  </data>
+  <data name="{0} · unidad" xml:space="preserve">
+    <value>{0} · unitat</value>
+  </data>
+  <data name="{0} · opción {1}" xml:space="preserve">
+    <value>{0} · opció {1}</value>
+  </data>
+  <data name="{0} · bit {1}" xml:space="preserve">
+    <value>{0} · bit {1}</value>
+  </data>
+  <data name="{0} · nota" xml:space="preserve">
+    <value>{0} · nota</value>
+  </data>
+  <data name="Orden «{0}»" xml:space="preserve">
+    <value>Ordre «{0}»</value>
+  </data>
+  <data name="Orden «{0}» · nota" xml:space="preserve">
+    <value>Ordre «{0}» · nota</value>
+  </data>
+  <data name="{0} textos para traducir al {1}. Lo que dejes vacío se verá en el idioma del fichero." xml:space="preserve">
+    <value>{0} textos per traduir a {1}. El que deixis buit es veurà en l'idioma del fitxer.</value>
+  </data>
+  <data name="Antes de guardar la traducción, pon la marca y el modelo del fichero." xml:space="preserve">
+    <value>Abans de desar la traducció, posa la marca i el model del fitxer.</value>
+  </data>
+  <data name="Guardada la traducción en {0}: solo textos; el fichero del dispositivo no cambia." xml:space="preserve">
+    <value>Desada la traducció a {0}: només textos; el fitxer del dispositiu no canvia.</value>
+  </data>
+  <data name="no lleva «translationOf»" xml:space="preserve">
+    <value>no porta «translationOf»</value>
+  </data>
+  <data name="{0} no es un fichero de traducción: {1}" xml:space="preserve">
+    <value>{0} no és un fitxer de traducció: {1}</value>
+  </data>
+  <data name="{0} es la traducción de {1}, y el fichero abierto es {2}." xml:space="preserve">
+    <value>{0} és la traducció de {1}, i el fitxer obert és {2}.</value>
+  </data>
+  <data name="Abierta la traducción {0}: {1} de {2} textos traducidos." xml:space="preserve">
+    <value>Oberta la traducció {0}: {1} de {2} textos traduïts.</value>
+  </data>
+  <data name="En qué idioma están escritos los textos de este fichero. Las traducciones a otros idiomas van en ficheros aparte (pestaña «Traducción»)." xml:space="preserve">
+    <value>En quin idioma estan escrits els textos d'aquest fitxer. Les traduccions a altres idiomes van en fitxers a part (pestanya «Traducció»).</value>
+  </data>
+  <data name="Traducir al" xml:space="preserve">
+    <value>Tradueix a</value>
+  </data>
+  <data name="Poner en la lista los textos del fichero abierto para traducirlos (lo ya traducido se conserva). No hace falta haber guardado el fichero." xml:space="preserve">
+    <value>Posa a la llista els textos del fitxer obert per traduir-los (el que ja està traduït es conserva). No cal haver desat el fitxer.</value>
+  </data>
+  <data name="Abrir una traducción ya hecha de este modelo, para seguir con ella" xml:space="preserve">
+    <value>Obre una traducció ja feta d'aquest model, per continuar-la</value>
+  </data>
+  <data name="Guardar la traducción en su propio fichero (modelo.idioma.json): solo lleva textos, sin direcciones ni parámetros; el fichero del dispositivo no cambia" xml:space="preserve">
+    <value>Desa la traducció en el seu propi fitxer (model.idioma.json): només porta textos, sense adreces ni paràmetres; el fitxer del dispositiu no canvia</value>
+  </data>
+  <data name="Qué" xml:space="preserve">
+    <value>Què</value>
+  </data>
+  <data name="En el fichero" xml:space="preserve">
+    <value>Al fitxer</value>
+  </data>
+  <data name="Vacío: se ve como en el fichero" xml:space="preserve">
+    <value>Buit: es veu com al fitxer</value>
+  </data>
+  <data name="Idiomas" xml:space="preserve">
+    <value>Idiomes</value>
   </data>
 </root>
