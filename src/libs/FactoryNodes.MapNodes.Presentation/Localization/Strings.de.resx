@@ -356,6 +356,9 @@
   <data name="El fichero vale: el programa lo puede leer." xml:space="preserve">
     <value>Die Datei ist gültig: das Programm kann sie lesen.</value>
   </data>
+  <data name="1 problema" xml:space="preserve">
+    <value>1 Problem</value>
+  </data>
   <data name="{0} problemas" xml:space="preserve">
     <value>{0} Probleme</value>
   </data>

@@ -482,7 +482,7 @@ public sealed partial class MapNodesViewModel : ObservableObject
 
     public bool HasProblems => Problems.Count > 0;
 
-    public string ProblemsHeader => Problems.Count == 0 ? L.T("El fichero vale: el programa lo puede leer.") : L.F("{0} problemas", Problems.Count);
+    public string ProblemsHeader => Problems.Count == 0 ? L.T("El fichero vale: el programa lo puede leer.") : Problems.Count == 1 ? L.T("1 problema") : L.F("{0} problemas", Problems.Count);
 
     private void Validate()
     {

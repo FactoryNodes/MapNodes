@@ -26,8 +26,9 @@ public sealed partial class MapNodesViewModel
         OpenWebCommand = new RelayCommand(() =>
         {
             if (IsDirty && !_services.Confirm(OpenQuestion)) return;
-            Web.IsOpen = true;
+            // Antes de abrir: la ventana es modal y, hasta que se cierra, no se llega a la línea siguiente (2026-11-12: salía vacía)
             _ = Web.LoadAsync();
+            Web.IsOpen = true;
         });
         ShareCommand = new RelayCommand(Share);
     }

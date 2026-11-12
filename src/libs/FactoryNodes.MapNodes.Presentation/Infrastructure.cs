@@ -41,7 +41,11 @@ public sealed class RelayCommand(Action<object?> execute, Func<object?, bool>? c
 }
 
 /// <summary>Una opción de un desplegable: el valor y su texto.</summary>
-public sealed record Option<T>(T Value, string Text);
+public sealed record Option<T>(T Value, string Text)
+{
+    /// <summary>El texto: es lo que lee un lector de pantalla (y la automatización) de cada línea de un desplegable.</summary>
+    public override string ToString() => Text;
+}
 
 /// <summary>Un idioma en la lista del botón del globo: su nombre en su idioma («Català»), si es el de ahora y elegirlo.</summary>
 public sealed class LanguageChoice(AppLanguage language, bool isCurrent, Action<AppLanguage> choose)
